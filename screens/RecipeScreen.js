@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     fontWeight: '600',
     fontSize: 18,
-    fontFamily: ''
+    
   },
   instructionTitle: {
 
@@ -139,20 +139,20 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     fontWeight: '600',
     fontSize: 18,
-    fontFamily: ''
+    
   },
   heading: {
     flex: 3,
 
     fontWeight: '600',
     fontSize: 18,
-    fontFamily: ''
+    
   },
   p: {
     marginTop: 8,
     fontWeight: '400',
     fontSize: 14,
-    fontFamily: '',
+    
     lineHeight: 25,
   },
   listItem: {
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     width: '100%',
     flexDirection: 'row',
-    fontFamily: '',
+    
     borderBottomColor: 'rgba(0,0,0,0.10)',
     borderBottomWidth: 1,
   },
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     margin: 0,
     fontWeight: '600',
     fontSize: 14,
-    fontFamily: ''
+    
 
   }
 });

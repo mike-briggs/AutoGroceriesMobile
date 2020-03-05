@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
           marginBottom: 4.8,
           fontWeight:'600',
           fontSize:18,
-          fontFamily:''
+          
       },
       rating:{
           flex: 1,
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
           marginBottom:16,
           fontWeight:'600',
           fontSize:14,
-          fontFamily:''
+          
 
       },
       iconList:{
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         marginBottom:16,
         fontWeight:'600',
         fontSize:14,
-        fontFamily:''
+        
 
     }
 });

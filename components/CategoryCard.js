@@ -38,6 +38,8 @@ const styles = StyleSheet.create({
     },
     backgroundImage:{
         position: 'absolute',
+        width:120,
+        height:120,
         top: 0,
         left: 0,
         bottom: 0,
@@ -47,8 +49,8 @@ const styles = StyleSheet.create({
 
     },
     welcomeImage: {
-        width: '100%',
-        height: '100%',
+        width: 120,
+        height: 120,
         resizeMode: 'cover',
       },
 
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
           fontWeight:'600',
           fontSize:18,
           color:'#fff',
-          fontFamily:''
+          
       },
       rating:{
           flex: 1,
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
           marginBottom:16,
           fontWeight:'600',
           fontSize:14,
-          fontFamily:''
+          
 
       },
       iconList:{
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
         marginBottom:16,
         fontWeight:'600',
         fontSize:14,
-        fontFamily:''
+        
 
     }
 });
