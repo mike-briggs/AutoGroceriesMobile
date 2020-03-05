@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontWeight: '400',
     fontSize: 14,
-    fontFamily: '',
+    
 
 
   },
@@ -172,20 +172,20 @@ const styles = StyleSheet.create({
     marginTop: 0,
     fontWeight: '600',
     fontSize: 24,
-    fontFamily: ''
+    
   },
   heading: {
     flex: 3,
 
     fontWeight: '600',
     fontSize: 18,
-    fontFamily: ''
+    
   },
   p: {
     marginTop: 8,
     fontWeight: '400',
     fontSize: 14,
-    fontFamily: ''
+    
   },
   optionText: {
     fontSize: 15,
