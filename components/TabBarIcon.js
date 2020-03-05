@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Icon } from 'react-native-elements'
+import  Icon  from 'react-native-ionicons';
 
 import Colors from '../constants/Colors';
 
 export default function TabBarIcon(props) {
   return (
     <Icon
-      name="bowl"
+      name={props.name}
       ios={props.ios}
       android={props.android}
       size={30}

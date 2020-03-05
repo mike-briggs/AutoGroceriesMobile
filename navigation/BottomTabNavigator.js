@@ -26,21 +26,21 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Home"
         component={BrowseScreen}
         options={{
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="cart"  />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-cart"  />,
         }}
       />
       <BottomTab.Screen
         name="Search"
         component={SearchScreen}
         options={{
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="search" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-search" />,
         }}
       />
       <BottomTab.Screen
         name="Pantry"
         component={PantryScreen}
         options={{
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-options" ios="ios-options-outline" android="md-options"/>,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-options" ios="ios-options" android="md-options"/>,
         }}
       />
       
