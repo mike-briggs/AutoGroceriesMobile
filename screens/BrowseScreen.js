@@ -10,9 +10,7 @@ import { CategoryCard } from '../components/CategoryCard';
 export default function BrowseScreen({ navigation }) {
     return (
         <View style={styles.container}>
-
-                
-                <ScrollView>
+            <ScrollView>
                 <ScrollView horizontal={true} contentContainerStyle={styles.category}>
                     <CategoryCard  />
                     <CategoryCard style={styles.categoryCard} />
