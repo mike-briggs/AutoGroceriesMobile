@@ -10,7 +10,9 @@ import BottomTabNavigator from './navigation/BottomTabNavigator';
 import useLinking from './navigation/useLinking';
 import RecipeScreen from './screens/RecipeScreen';
 import ProfileScreen from './screens/ProfileScreen';
-
+import SignInScreen from './screens/SignInScreen';
+import StartingIngredients from './screens/StartingIngredients'
+import SignUpScreen from './screens/SignUpScreen';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +21,9 @@ export default function App(props) {
   
 
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
+  var [signedIn,setSignedIn] = React.useState(false);
+  
+  //signedIn = true;
   const [initialNavigationState, setInitialNavigationState] = React.useState();
   const containerRef = React.useRef();
   const { getInitialState } = useLinking(containerRef);
@@ -43,6 +48,7 @@ export default function App(props) {
         console.warn(e);
       } finally {
         setLoadingComplete(true);
+        setSignedIn(false);
         SplashScreen.hide();
       }
     }
@@ -56,17 +62,23 @@ export default function App(props) {
     return (
       <View style={styles.container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+        
         <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
           <Stack.Navigator>
+            <Stack.Screen name="SignIn" navigationOptions={{ title: 'Home',headerLeft: null}} component={SignInScreen}/>
+            <Stack.Screen name="SignUp" navigationOptions={{ title: 'Home',headerLeft: null}} component={SignUpScreen}/>
+
+            <Stack.Screen name="Ingredients" component={StartingIngredients}/>
             <Stack.Screen name="Root" component={BottomTabNavigator} />
             <Stack.Screen name="Recipe" component={RecipeScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
 
-          </Stack.Navigator>
+          </Stack.Navigator> 
+   
         </NavigationContainer>
       </View>
     );
-  }
+  } 
 }
 
 const styles = StyleSheet.create({

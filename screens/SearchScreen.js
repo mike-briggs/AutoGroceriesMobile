@@ -21,7 +21,8 @@ export default class SearchScreen extends React.Component {
   }
 
   updateSearch = search => {
-    this.setState({ search });
+    let s = search.toLowerCase()
+    this.setState({ search:s });
   };
 
   updatePantry = (remove,value) => {
@@ -50,7 +51,8 @@ export default class SearchScreen extends React.Component {
         placeholder="Search Ingredients"
         onChangeText={this.updateSearch}
         value={search}
-        containerStyle={{backgroundColor:'white',border:'none'}}
+        lightTheme='light'
+        containerStyle={{backgroundColor:'white',borderBottomWidth:0,borderTopWidth:0}}
         inputContainerStyle={{backgroundColor:'rgba(0,0,0,0.05)'}}
       />
       </View>
@@ -59,14 +61,14 @@ export default class SearchScreen extends React.Component {
         {(search.length != '') ? spices.filter(item => item.toLowerCase().includes(search)).slice(0,4).map(item =>(
           <OptionButton
           left={false}
-          icon="arrow-dropright"
+          icon="arrow-forward"
           label={item}
           onPress={() => this.props.navigation.navigate('Recipe',{title:item})}
         />
         )):spices.slice(0,5).sort().map(item =>(
           <OptionButton
           left={false}
-          icon="arrow-dropright"
+          icon="arrow-forward"
           label={item}
           onPress={() => this.props.navigation.navigate('Recipe',{title:item})}
         />

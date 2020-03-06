@@ -6,6 +6,7 @@ import BrowseScreen from '../screens/BrowseScreen';
 import SearchScreen from '../screens/SearchScreen';
 import PantryScreen from '../screens/PantryScreen';
 
+
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
@@ -15,13 +16,17 @@ export default function BottomTabNavigator({ navigation, route }) {
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
   navigation.setOptions({ headerTitle: getHeaderTitle(route),
                           headerTitleAlign:'center',
-                          headerRightContainerStyle:{padding:20},
-                          headerRight:()=><BarIcon size={30} onPress={() => navigation.navigate('Profile')
+                          headerRightContainerStyle:{paddingRight:20},
+                          headerLeft:null,
+                          headerRight:()=><BarIcon size={36} onPress={() => navigation.navigate('Profile')
   }
-   color={'#6CD34C'} name="person"  /> });
+   color={'#404040'} name="ios-contact"  /> });
 
   return (
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}tabBarOptions={{
+      activeTintColor: '#6CD34C',
+      inactiveTintColor: 'gray',
+    }} >
       <BottomTab.Screen
         name="Home"
         component={BrowseScreen}

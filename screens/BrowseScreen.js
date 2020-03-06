@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
+import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {Button} from 'react-native-elements'
 import { ScrollView,FlatList } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
-
+import Icon from 'react-native-ionicons'
 import { MonoText } from '../components/StyledText';
 import { RecipeCard } from '../components/RecipeCard';
 import { CategoryCard } from '../components/CategoryCard';
@@ -18,23 +19,60 @@ export default function BrowseScreen({ navigation }) {
                     <CategoryCard style={styles.categoryCard} />
                     <CategoryCard style={styles.categoryCard} />
                     <CategoryCard style={styles.categoryCard} />
+                    <CategoryCard style={styles.categoryCard} />
+                    <CategoryCard style={styles.categoryCard} />
+
                 </ScrollView>
                 <View style={styles.getStartedContainer}>
 
                     <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
-                    <RecipeCard />
-                    <RecipeCard />
-                    <RecipeCard />
-                    <RecipeCard />
-                    <RecipeCard />
-                    <RecipeCard />
+                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
+                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
+                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
+                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
+                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
+                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
+                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
+                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
+                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
+                    
 
                 </View>
 
             </ScrollView>
 
             <View style={styles.tabBarInfoContainer}>
-                <Button title="Checkout"  style={{fontSize:'36pt'}} color="#6CD34C" />
+                <View style={{flex:1}}>
+
+                </View>
+                <View style={{flex:1}}>
+                <Button
+                        onPress={()=>navigation.navigate('Root')
+                    }
+                        buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
+                            ios: {
+                                shadowColor: 'black',
+                                shadowOffset: { width: 0, height: 3 },
+                                shadowOpacity: 0.25,
+                                shadowRadius: 10,
+                            },
+                            android: {
+                                elevation: 6,
+                            },
+                        })}}
+                        icon={
+                            <Icon
+                                name="arrow-forward"
+                                size={18}
+                                color="white"
+                                style={{paddingLeft:10, paddingTop:2}}
+                            />
+                        }
+                        iconRight
+                        title="CHECKOUT"
+                    /> 
+                </View>
+            
             </View>
         </View>
     );
@@ -136,8 +174,11 @@ const styles = StyleSheet.create({
     tabBarInfoContainer: {
         position: 'absolute',
         bottom: 0,
+        flex:1,
         left: 0,
         right: 0,
+        flexDirection:'row',
+        textAlign:'right',
         ...Platform.select({
             ios: {
                 shadowColor: 'black',
@@ -150,7 +191,7 @@ const styles = StyleSheet.create({
             },
         }),
         backgroundColor: 'transparent',
-        paddingVertical: 0,
+        padding: 15,
     },
     tabBarInfoText: {
         fontSize: 17,

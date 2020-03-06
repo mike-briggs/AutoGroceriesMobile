@@ -4,13 +4,13 @@ import Icon  from 'react-native-ionicons';
 import { RectButton } from 'react-native-gesture-handler';
 
 
-export function OptionButton({ icon, label, onPress, isLastOption,left },props) {
+export function OptionButton({ icon, label, onPress, isLastOption,left,color },props) {
     return (
       <RectButton style={[styles.option, isLastOption && styles.lastOption]} onPress={onPress}>
         {console.log(props.left)}
         {(left==true) ? (<View style={{ flexDirection: 'row' }}>
         <View style={styles.optionIconContainer}>
-          <Icon name={icon} size={22} color="rgba(0,0,0,0.90)" />
+          <Icon name={icon} size={22} color={color} />
         </View>
         <View style={styles.optionTextContainer}>
           <Text style={styles.optionText}>{label}</Text>
@@ -21,7 +21,7 @@ export function OptionButton({ icon, label, onPress, isLastOption,left },props) 
            <Text style={styles.optionText2}>{label}</Text>
          </View>
          <View style={styles.optionIconContainer2}>
-           <Icon name={icon} size={22} color="rgba(0,0,0,0.90)" />
+           <Icon name={icon} size={22} color={color}  />
          </View>
 
        </View>)}
