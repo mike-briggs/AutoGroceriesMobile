@@ -19,7 +19,7 @@ export default function Instacart({ navigation }) {
             
             <View style={styles.getStartedContainer}>
                 <Image style={styles.welcomeImage} source={require('../../assets/images/Instacart.png')}/>    
-                <Text style={{fontSize:24,fontWeight:'600',textAlign:'center',margin:25}}>Once you’ve added all the meals you want to cook, proceed to instacart and complete your order.</Text>            
+                <Text style={{fontSize:24,fontWeight:'300',textAlign:'center',marginVertical:60,marginHorizontal:15}}>Once you’ve added all the meals you want to cook, proceed to instacart and complete your order.</Text>            
             </View>
             <View style={{flex:5}}>
             <View style={styles.tabBarInfoContainer}>

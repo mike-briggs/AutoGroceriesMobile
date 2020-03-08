@@ -104,7 +104,6 @@ const styles = StyleSheet.create({
         paddingRight:10
     },
     continueButton:{
-        fontSize:'36pt',
         position: 'absolute',
         bottom: 0,
         left: 0,

@@ -6,7 +6,7 @@ import TextIcon from '../components/TextIcon';
 export function RecipeCard({navigation,title,image},props) {
     return( <View {...props} style={styles.card} >
 
-        <Image  style={styles.welcomeImage} source={image}/>
+        <Image  style={styles.welcomeImage} source={{uri:image}}/>
         <View style={{flex: 1, flexDirection: 'row',marginTop:16,marginLeft:16}}>
             
             <Text style={styles.title}>{title}</Text>
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     },
     welcomeImage: {
         width: '100%',
-        height: 115,
+        height: 125,
         resizeMode: 'cover',
       },
 

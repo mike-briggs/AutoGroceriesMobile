@@ -12,6 +12,8 @@ export default function BrowseScreen({ navigation }) {
    
     const [categories,setCategories] = React.useState(['Italian','Vegan','Vegetarian','Chinese','Healthy','Quick'])
     const [recipes,setRecipes] = React.useState()
+    const [veganRecipes,setVeganRecipes] = React.useState()
+
     const [baseUri,setBaseUri] = React.useState()
     const [currentCategory,setCurrentCategory] = React.useState()
     const [isLoadingComplete,setLoadingComplete] = React.useState()
@@ -32,14 +34,23 @@ export default function BrowseScreen({ navigation }) {
         fetch("https://api.spoonacular.com/recipes/search?apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
             .then(response => response.text())
             .then((result) => {
-
+                
                 var json = JSON.parse(result);
-
                 setRecipes(json)
                 setLoadingComplete(true);
                 setBaseUri(json.baseUri)
                 console.log('hello')
                 console.log(recipes)
+            })
+            .catch(error => console.log('error', error));
+
+        fetch("https://api.spoonacular.com/recipes/search?diet=vegan&apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
+            .then(response => response.text())
+            .then((result) => {
+                var json = JSON.parse(result);
+                setVeganRecipes(json)
+                console.log('hello')
+                console.log(veganRecipes)
             })
             .catch(error => console.log('error', error));
 
