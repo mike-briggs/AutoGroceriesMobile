@@ -11,13 +11,18 @@ export default function TrackOrder({ navigation, order }){
     return (
         <View style={styles.container}>
             <ScrollView>
-                <View style={styles.header}>
-                    <Text style={styles.headerText}>Order Placed</Text>
+                <View style={styles.container}>
+                    <View style={styles.header}>
+                        <Text style={styles.headerText}>Order Placed</Text>
+                        <Text style={styles.orderTime} >1:28:03 </Text>
+                    </View>
+                    <View style={styles.orderTimeContainer}>
                     <Text style={styles.headerDescription}>Track your order below.</Text>
+                        <Text style={styles.orderDate}> 2020-03-07 </Text>
+                    </View>
                 </View>
                 <TrackOrderList current='2'/>
             </ScrollView>
-            <Button title="Continue" style={styles.continueButton} onPress={ () => {(orderTime)?(navigation.navigate('TrackOrder')):(console.log('no order time selected!'))} }/>
         </View>
     );
 }
@@ -58,6 +63,14 @@ const templateTime = [
 let timeOptionArr = templateTime.map(() => {return false;});
 
 const styles = StyleSheet.create({
+    orderTime:{
+        fontSize:24,
+        fontWeight:'600'
+    },
+    orderDate:{
+        fontSize:12,
+        fontWeight:'600'
+    },
     input:{
         padding:10,
         fontSize:15,
@@ -76,10 +89,20 @@ const styles = StyleSheet.create({
     timeContainer:{
         margin:20
     },
+    orderTimeContainer:{
+        display:'flex',
+        flexDirection:'row',
+        marginHorizontal:20,
+        alignItems:'flex-end',
+        justifyContent:'space-between'
+    },
     header:{
         display:'flex',
-        flexDirection:'column',
-        margin:20
+        flexDirection:'row',
+        marginTop:20,
+        marginHorizontal: 20,
+        alignItems:'flex-end',
+        justifyContent:'space-between'
     },
     headerText:{
         fontWeight: '600',
@@ -100,6 +123,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
+        flexDirection:'column',
         backgroundColor: '#fff',
     },
     category: {

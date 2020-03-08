@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
+import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Button } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import units from '../constants/Units.js';
 import OrderList from '../components/OrderList.js';
+import Icon from 'react-native-ionicons';
 
 export default function OrderDetails({ navigation }){
     return (
@@ -18,7 +20,31 @@ export default function OrderDetails({ navigation }){
                     </View>
                 </View>
             </ScrollView>
-            <Button title="Continue" style={styles.continueButton} onPress={ () => navigation.navigate('SelectTime') }/>
+            <Button
+                        onPress={()=>navigation.navigate('SelectTime')
+                    }
+                        buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
+                            ios: {
+                                shadowColor: 'black',
+                                shadowOffset: { width: 0, height: 3 },
+                                shadowOpacity: 0.12,
+                                shadowRadius: 10,
+                            },
+                            android: {
+                                elevation: 6,
+                            },
+                        })}}
+                        icon={
+                            <Icon
+                                name="arrow-forward"
+                                size={18}
+                                color="white"
+                                style={{paddingLeft:10, paddingTop:2}}
+                            />
+                        }
+                        iconRight
+                        title="CONTINUE"
+                    /> 
         </View>
     );
 }

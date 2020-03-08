@@ -8,34 +8,34 @@ export default function TrackOrderList ({ current }){
         <View style={styles.contentContainer}>
             <Option 
                 num='1'
-                numColor={(num < current)?(colors.accentGreen):(null)}
+                numColor={(1 < current)?(colors.accentGreen):(null)}
                 stage='RECIEVED'
                 state='COMPLETE'
                 isLast={false}/>
             <Option 
                 num='2'
-                numColor={(num < current)?(colors.accentGreen):(null)}
+                numColor={(2 < current)?(colors.accentGreen):(null)}
                 stage='GATHERING'
                 state='IN PROGRESS'
                 isLast={false}/>
             <Option 
                 num='3'
-                numColor={(num < current)?(colors.accentGreen):(null)}
+                numColor={(3 < current)?(colors.accentGreen):(null)}
                 stage='PACKING'
                 state='PENDING'
                 isLast={false}/>
             <Option 
                 num='4'
-                numColor={(num < current)?(colors.accentGreen):(null)}
+                numColor={(4 < current)?(colors.accentGreen):(null)}
                 stage='LOADING'
                 state='PENDING'
                 isLast={false}/>
             <Option 
                 num='5'
-                numColor={(num < current)?(colors.accentGreen):(null)}
+                numColor={(5 < current)?(colors.accentGreen):(null)}
                 stage='OUT FOR DELIVERY'
                 state='PENDING'
-                isLast={false}/>
+                isLast={true}/>
         </View>
     );
 }
@@ -49,8 +49,8 @@ const Option = ({ num, numColor, stage, state, isLast }) => {
             <View style={styles.optionTextContainerDate}>
                 <Text style={styles.optionTextDate}>{ stage }</Text>
             </View>
-            <View style={styles.optionTextContainer}>
-                <Text style={styles.optionText}>{ state }</Text>
+            <View style={styles.optionStatusContainer}>
+                <Text style={styles.optionStatusText}>{ state }</Text>
             </View>
         </View>
     );
@@ -64,6 +64,16 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#fafafa',
     },
+    optionStatusContainer:{
+        marginLeft: 40
+    },
+    optionTextDate:{
+        fontWeight:'600',
+        fontSize: 18
+    }, 
+    optionStatusText:{
+        fontSize: 12
+    }, 
     contentContainer: {
       paddingTop: 15,
       paddingHorizontal: 20
@@ -85,18 +95,26 @@ const styles = StyleSheet.create({
     optionTextContainerDate:{
         flex:1,
         display: 'flex',
-        marginLeft: -30
+        marginLeft: -80
     },
     option: {
+      flexDirection: 'row',
+      display:'flex',
       paddingHorizontal: 15,
       paddingVertical: 10,
       borderBottomWidth: StyleSheet.hairlineWidth,
       borderColor: '#ededed',
+      height: 60,
+      alignItems:'center'
     },
     lastOption: {
+      flexDirection: 'row',
+      display:'flex',
       paddingHorizontal: 15,
       paddingVertical: 10,
       borderColor: '#ededed',
       borderBottomWidth: 0,
+      height: 60,
+      alignItems:'center'
     }
 });

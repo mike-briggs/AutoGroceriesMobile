@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View, Button } from 'react-native';
+import { Image, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Button } from 'react-native-elements';
 import TimeOption from '../components/TimeOption.js';
 import { ScrollView } from 'react-native-gesture-handler';
 import units from '../constants/Units.js';
 import OrderList from '../components/OrderList.js';
+import Icon from 'react-native-ionicons';
 
 const { useState } = React;
 
@@ -64,7 +66,30 @@ export default function SelectTime({ navigation, order }){
                 </View>
             </View>
             </ScrollView>
-            <Button title="Continue" style={styles.continueButton} onPress={ () => {(orderTime)?(navigation.navigate('TrackOrder')):(console.log('no order time selected!'))} }/>
+            <Button
+                        onPress={ () => {(orderTime)?(navigation.navigate('TrackOrder')):(console.log('no order time selected!'))} }
+                        buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
+                            ios: {
+                                shadowColor: 'black',
+                                shadowOffset: { width: 0, height: 3 },
+                                shadowOpacity: 0.12,
+                                shadowRadius: 10,
+                            },
+                            android: {
+                                elevation: 6,
+                            },
+                        })}}
+                        icon={
+                            <Icon
+                                name="arrow-forward"
+                                size={18}
+                                color="white"
+                                style={{paddingLeft:10, paddingTop:2}}
+                            />
+                        }
+                        iconRight
+                        title="CONTINUE"
+                    />
         </View>
     );
 }
