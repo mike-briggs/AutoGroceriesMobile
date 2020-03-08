@@ -86,7 +86,6 @@ export default function App(props) {
 
             <Stack.Screen name="SignIn" navigationOptions={{ title: 'Home',headerLeft: null}} component={SignInScreen}/>
             <Stack.Screen name="SignUp" navigationOptions={{ title: 'Home',headerLeft: null}} component={SignUpScreen}/>
-
             <Stack.Screen name="Ingredients" component={StartingIngredients}/>
             <Stack.Screen name="Root" component={BottomTabNavigator} />
             <Stack.Screen name="Recipe" component={RecipeScreen} />

@@ -1,7 +1,11 @@
 import React from 'react';
+<<<<<<< HEAD
 import {StyleSheet,View  } from "react-native";
+=======
+>>>>>>> 9b36acebdce3bfd9fb34f8b0ede152fe5b0aaeba
 import colors from '../constants/Colors';
-
+import { Image, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View, Button } from 'react-native';
+ 
 export default function TrackOrderList ({ current }){
 
     return (

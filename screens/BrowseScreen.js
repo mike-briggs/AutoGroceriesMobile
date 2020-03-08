@@ -10,7 +10,7 @@ import { CategoryCard } from '../components/CategoryCard';
 
 export default function BrowseScreen({ navigation }) {
    
-    const [categories,setCategories] = React.useState(['Italian','Vegan','Vegetarian','Chinese','Healthy','Quick'])
+    const [categories,setCategories] = React.useState([{title:'Italian',image:require('../assets/images/italian.jpeg')},{title:'Healthy',image:require('../assets/images/salad-dark.jpg')},{title:'Chinese',image:require('../assets/images/chinese-food.jpeg')},{title:'Quick',image:require('../assets/images/pasta.jpeg')},{title:'Vegan',image:require('../assets/images/vegan.jpeg')},{title:'Vegetarian',image:require('../assets/images/salad-dark.jpg')},{title:'Protein',image:require('../assets/images/steak.jpeg')}])
     const [recipes,setRecipes] = React.useState()
     const [veganRecipes,setVeganRecipes] = React.useState()
 
@@ -64,7 +64,7 @@ export default function BrowseScreen({ navigation }) {
                 <ScrollView>
                 <ScrollView horizontal={true} contentContainerStyle={styles.category}>
                     <CategoryCard  title="Protein" />
-                    {categories.map(item=>(<CategoryCard style={styles.categoryCard} title={item}/>))}
+                    {categories.map(item=>(<CategoryCard style={styles.categoryCard} image={item.image} title={item.title}/>))}
                     
 
                 </ScrollView>
