@@ -3,77 +3,50 @@ import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react
 import Icon from 'react-native-ionicons'
 import { Input, Button } from 'react-native-elements'
 import * as WebBrowser from 'expo-web-browser';
+import {RecipeCard} from '../../components/RecipeCard'
 
-export default function SignInScreen({ navigation }) {
+export default function Instacart({ navigation }) {
+    navigation.setOptions({headerTitle:null,headerStyle:{borderBottomWidth:0}})
     return (
         <View style={styles.container}>
             {/*<View style={styles.welcomeContainer}>
                 <Text style={{ fontSize: 24, fontWeight: '600' }}>Welcome to Auto Grocery</Text>
                 <Text style={{ fontSize: 14, fontweight: '400' }}>Create your account below.</Text>
             </View>*/}
-            <View style={{flex:1}}>
+            <View style={{flex:2}}>
 
             </View>
-            <View style={{flex:5}}>
-            <View style={{ padding: 20 }}>
-                <Input
-                    label="Email Address or Username"
-                    labelStyle={styles.inputLabel}
-                    inputContainerStyle={{borderBottomWidth:0, borderRadius: 30, fontSize: 1, height:48, backgroundColor: 'rgba(0,0,0,0.05)' }}
-                    leftIcon={
-                        <Icon
-                            name='send'
-                            size={20}
-                            color='#6CD34C'
-                            style={{ paddingRight: 10 }}
-                        />
-                    }
-                />
-               
-                <Input
-                    label="Password"
-                    labelStyle={styles.inputLabel}
-                    inputContainerStyle={{borderBottomWidth:0, borderRadius: 30, fontSize: 1, height:48, backgroundColor: 'rgba(0,0,0,0.05)' }}
-                    leftIcon={
-                        <Icon
-                            name='lock'
-                            size={20}
-                            color='#6CD34C'
-                            style={{ paddingRight: 10 }}
-                        />
-                    }
-                />
-                             
+            
+            <View style={styles.getStartedContainer}>
+                <Image style={styles.welcomeImage} source={require('../../assets/images/Instacart.png')}/>    
+                <Text style={{fontSize:24,fontWeight:'600',textAlign:'center',margin:25}}>Once you’ve added all the meals you want to cook, proceed to instacart and complete your order.</Text>            
             </View>
+            <View style={{flex:5}}>
             <View style={styles.tabBarInfoContainer}>
             <View style={{flex:1}}>
-                <Button
-                        onPress={()=> navigation.navigate('Ingredients')
-                    }
-                        buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15}}
+            
+                
+                    <Button
+                        onPress={()=> navigation.navigate('Root')
+                    }   titleStyle={{color:'#6CD34C'}}
+                        buttonStyle={{borderRadius:40,backgroundColor:'transparent',fontWeight:'500', float:'right',paddingTop:40,padding:15}}
                         icon={
                             <Icon
                                 name="arrow-forward"
                                 size={18}
-                                color="white"
+                                color="#6CD34C"
                                 style={{paddingLeft:10, paddingTop:2}}
                             />
                         }
                         iconRight
-                        title='SIGN IN'
+                        title='NEXT'
                     /> 
                 </View>
                 
                 
             </View>
-            <TouchableOpacity onPress={()=> navigation.navigate('SignUp')} style={{flex:1,textAlign:'center',marginTop:20}}>
-                    <Text style={{textAlign:'center',color:'#909090'}}>Don't have an account?</Text>
-
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=> navigation.navigate('SignUp')} style={{flex:1,textAlign:'center',paddingTop:0}}>
-                    <Text style={{textAlign:'center',color:'#909090'}}>Forgot password.</Text>
-
-                </TouchableOpacity>
+            
+                
             </View>
             <View style={{flex:1}}>
                 
@@ -83,7 +56,7 @@ export default function SignInScreen({ navigation }) {
     );
 }
 
-SignInScreen.navigationOptions = {
+Instacart.navigationOptions = {
     header: null,
 };
 
@@ -126,11 +99,10 @@ const styles = StyleSheet.create({
         marginBottom: 15,
     },
     welcomeImage: {
-        width: 100,
-        height: 80,
+        width: 320,
+        height: 200,
         resizeMode: 'contain',
-        marginTop: 3,
-        marginLeft: -10,
+        
     },
     getStartedContainer: {
         alignItems: 'center',
@@ -157,21 +129,12 @@ const styles = StyleSheet.create({
         bottom: 0,
         margin: 10,
         left: 0,
+        paddingTop:0,
         right: 0,
         flex:1,
         padding:30,
         flexDirection:'column',
-        ...Platform.select({
-            ios: {
-                shadowColor: 'black',
-                shadowOffset: { width: 0, height: 3 },
-                shadowOpacity: 0.2,
-                shadowRadius: 6,
-            },
-            android: {
-                elevation: 7,
-            },
-        }),
+        
         backgroundColor: 'transparent',
         paddingVertical: 0,
     },

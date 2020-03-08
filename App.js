@@ -17,6 +17,16 @@ import TrackOrder from './screens/TrackOrder';
 import SignInScreen from './screens/SignInScreen';
 import StartingIngredients from './screens/StartingIngredients'
 import SignUpScreen from './screens/SignUpScreen';
+<<<<<<< HEAD
+=======
+import Browse from './screens/InitialSlides/Browse'
+import Search from './screens/InitialSlides/Search'
+import Welcome from './screens/InitialSlides/Welcome'
+import Add from './screens/InitialSlides/Add'
+import Order from './screens/InitialSlides/Order'
+import Instacart from './screens/InitialSlides/Instacart'
+
+>>>>>>> f6e27f81831c75ef1ffe22f1ddb5752bd89cdf27
 
 const Stack = createStackNavigator();
 
@@ -69,6 +79,14 @@ export default function App(props) {
         
         <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
           <Stack.Navigator>
+            <Stack.Screen name="Welcome" component={Welcome}/>
+            <Stack.Screen name="Browse" component={Browse}/>
+            <Stack.Screen name="Search" component={Search}/>
+            <Stack.Screen name="Add" component={Add}/>
+            <Stack.Screen name="Order" component={Order}/>
+            <Stack.Screen name="Instacart" component={Instacart}/>
+
+
             <Stack.Screen name="SignIn" navigationOptions={{ title: 'Home',headerLeft: null}} component={SignInScreen}/>
             <Stack.Screen name="SignUp" navigationOptions={{ title: 'Home',headerLeft: null}} component={SignUpScreen}/>
             <Stack.Screen name="Ingredients" component={StartingIngredients}/>

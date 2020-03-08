@@ -5,6 +5,7 @@ import { Input, Button } from 'react-native-elements'
 import * as WebBrowser from 'expo-web-browser';
 
 export default function SignInScreen({ navigation }) {
+    navigation.setOptions({headerTitle:null,headerStyle:{borderBottomWidth:0}})
     return (
         <View style={styles.container}>
             {/*<View style={styles.welcomeContainer}>
@@ -15,40 +16,15 @@ export default function SignInScreen({ navigation }) {
 
             </View>
             <View style={{flex:5}}>
-            <View style={{ padding: 20 }}>
-                <Input
-                    label="Email Address or Username"
-                    labelStyle={styles.inputLabel}
-                    inputContainerStyle={{borderBottomWidth:0, borderRadius: 30, fontSize: 1, height:48, backgroundColor: 'rgba(0,0,0,0.05)' }}
-                    leftIcon={
-                        <Icon
-                            name='send'
-                            size={20}
-                            color='#6CD34C'
-                            style={{ paddingRight: 10 }}
-                        />
-                    }
-                />
-               
-                <Input
-                    label="Password"
-                    labelStyle={styles.inputLabel}
-                    inputContainerStyle={{borderBottomWidth:0, borderRadius: 30, fontSize: 1, height:48, backgroundColor: 'rgba(0,0,0,0.05)' }}
-                    leftIcon={
-                        <Icon
-                            name='lock'
-                            size={20}
-                            color='#6CD34C'
-                            style={{ paddingRight: 10 }}
-                        />
-                    }
-                />
-                             
+            <View style={{ padding: 40 }}>
+                <Text style={{fontSize:32,fontWeight:'600'}}>Welcome to AutoGrocery</Text>
+                <Text style={{fontSize:18,fontWeight:'400',paddingTop:20}}>Continue to the quick tutorial or skip to sign in.</Text>
+           
             </View>
             <View style={styles.tabBarInfoContainer}>
             <View style={{flex:1}}>
                 <Button
-                        onPress={()=> navigation.navigate('Ingredients')
+                        onPress={()=> navigation.navigate('Browse')
                     }
                         buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15}}
                         icon={
@@ -60,20 +36,29 @@ export default function SignInScreen({ navigation }) {
                             />
                         }
                         iconRight
-                        title='SIGN IN'
+                        title='TUTORIAL'
+                    /> 
+                    <Button
+                        onPress={()=> navigation.navigate('SignIn')
+                    }   titleStyle={{color:'#6CD34C'}}
+                        buttonStyle={{borderRadius:40,backgroundColor:'transparent',fontWeight:'500', float:'right',paddingTop:40,padding:15}}
+                        icon={
+                            <Icon
+                                name="arrow-forward"
+                                size={18}
+                                color="#6CD34C"
+                                style={{paddingLeft:10, paddingTop:2}}
+                            />
+                        }
+                        iconRight
+                        title='SKIP TO SIGN IN'
                     /> 
                 </View>
                 
                 
             </View>
-            <TouchableOpacity onPress={()=> navigation.navigate('SignUp')} style={{flex:1,textAlign:'center',marginTop:20}}>
-                    <Text style={{textAlign:'center',color:'#909090'}}>Don't have an account?</Text>
-
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=> navigation.navigate('SignUp')} style={{flex:1,textAlign:'center',paddingTop:0}}>
-                    <Text style={{textAlign:'center',color:'#909090'}}>Forgot password.</Text>
-
-                </TouchableOpacity>
+            
+                
             </View>
             <View style={{flex:1}}>
                 
@@ -157,21 +142,12 @@ const styles = StyleSheet.create({
         bottom: 0,
         margin: 10,
         left: 0,
+        paddingTop:30,
         right: 0,
         flex:1,
         padding:30,
         flexDirection:'column',
-        ...Platform.select({
-            ios: {
-                shadowColor: 'black',
-                shadowOffset: { width: 0, height: 3 },
-                shadowOpacity: 0.2,
-                shadowRadius: 6,
-            },
-            android: {
-                elevation: 7,
-            },
-        }),
+        
         backgroundColor: 'transparent',
         paddingVertical: 0,
     },

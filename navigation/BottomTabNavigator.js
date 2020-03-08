@@ -16,11 +16,12 @@ export default function BottomTabNavigator({ navigation, route }) {
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
   navigation.setOptions({ headerTitle: getHeaderTitle(route),
                           headerTitleAlign:'center',
-                          headerRightContainerStyle:{paddingRight:20},
+                          headerRightContainerStyle:{paddingRight:20,activeTintColor: '#6CD34C',},
+                          headerLeftContainerStyle:{paddingLeft:20,activeTintColor: '#6CD34C',},
                           headerLeft:null,
                           headerRight:()=><BarIcon size={36} onPress={() => navigation.navigate('Profile')
   }
-   color={'#404040'} name="ios-contact"  /> });
+   color={'#aaaaaa'} name="ios-contact"  /> });
 
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}tabBarOptions={{
@@ -31,14 +32,14 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Home"
         component={BrowseScreen}
         options={{
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-cart"  />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-basket"  />,
         }}
       />
       <BottomTab.Screen
         name="Search"
         component={SearchScreen}
         options={{
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-search" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-search" />,
         }}
       />
       <BottomTab.Screen

@@ -19,7 +19,7 @@ export default function SignUpScreen({ navigation }) {
                     <Input
                         label="Email Address"
                         labelStyle={styles.inputLabel}
-                        inputContainerStyle={{ borderBottomWidth: 0, borderRadius: 10, fontSize: 1, height: 48, backgroundColor: 'rgba(0,0,0,0.05)' }}
+                        inputContainerStyle={{ borderBottomWidth: 0, borderRadius: 30, fontSize: 1, height: 48, backgroundColor: 'rgba(0,0,0,0.05)' }}
                         leftIcon={
                             <Icon
                                 name='send'
@@ -32,7 +32,7 @@ export default function SignUpScreen({ navigation }) {
                     <Input
                         label="Username"
                         labelStyle={styles.inputLabel}
-                        inputContainerStyle={{ borderBottomWidth: 0, borderRadius: 10, fontSize: 1, height: 48, backgroundColor: 'rgba(0,0,0,0.05)' }}
+                        inputContainerStyle={{ borderBottomWidth: 0, borderRadius: 30, fontSize: 1, height: 48, backgroundColor: 'rgba(0,0,0,0.05)' }}
                         leftIcon={
                             <Icon
                                 name='person'
@@ -45,7 +45,7 @@ export default function SignUpScreen({ navigation }) {
                     <Input
                         label="Password"
                         labelStyle={styles.inputLabel}
-                        inputContainerStyle={{ borderBottomWidth: 0, borderRadius: 10, fontSize: 1, height: 48, backgroundColor: 'rgba(0,0,0,0.05)' }}
+                        inputContainerStyle={{ borderBottomWidth: 0, borderRadius: 30, fontSize: 1, height: 48, backgroundColor: 'rgba(0,0,0,0.05)' }}
                         leftIcon={
                             <Icon
                                 name='lock'
@@ -58,7 +58,7 @@ export default function SignUpScreen({ navigation }) {
                     <Input
                         label="Confirm Password"
                         labelStyle={styles.inputLabel}
-                        inputContainerStyle={{ borderBottomWidth: 0, borderRadius: 10, fontSize: 1, height: 48, backgroundColor: 'rgba(0,0,0,0.05)' }}
+                        inputContainerStyle={{ borderBottomWidth: 0, borderRadius: 30, fontSize: 1, height: 48, backgroundColor: 'rgba(0,0,0,0.05)' }}
                         leftIcon={
                             <Icon
                                 name='lock'
@@ -73,7 +73,7 @@ export default function SignUpScreen({ navigation }) {
                 <View style={styles.tabBarInfoContainer}>
                     <View style={{ flex: 1 }}>
                         <Button
-                            onPress={() => navigation.navigate('Root')
+                            onPress={() => navigation.navigate('Ingredients')
                             }
                             buttonStyle={{ borderRadius: 40, backgroundColor: '#6CD34C', fontWeight: '500', float: 'right', padding: 15 }}
                             icon={
@@ -127,7 +127,8 @@ const styles = StyleSheet.create({
     },
     inputLabel: {
         paddingVertical: 10,
-        color: '#808080'
+        color: '#808080',
+        
     },
     category: {
         marginHorizontal: 20,

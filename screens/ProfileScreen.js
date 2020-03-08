@@ -43,7 +43,7 @@ export default function ProfileScreen({ navigation: { navigate } }) {
       left={true}
         icon="add"
         label="Add Ingredients to Pantry"
-        onPress={() => {}}
+        onPress={() => navigate('Pantry')}
       />
 
       <OptionButton

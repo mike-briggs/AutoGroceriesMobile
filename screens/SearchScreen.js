@@ -14,9 +14,40 @@ export default class SearchScreen extends React.Component {
     this.state = {
       search: '',
       pantry:[],
+      filtered:[],
       spices:['Butter Chicken','Pasta','Tacos','Power Bowl'],
       navigation:navigation
     };
+
+    
+    
+        console.log(this.state.filtered)
+        console.log(this.state.filtered)
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({ "query": "chicken", "cuisine": "", "intolerences": "", "diet": "" });
+
+
+        var requestOptions2 = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        fetch("https://api.spoonacular.com/recipes/search?apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
+            .then(response => response.text())
+            .then((result) => {
+
+                var json = JSON.parse(result);
+
+                this.setState({filtered:json})
+                console.log('hello')
+                console.log(this.state.filtered)
+            })
+            .catch(error => console.log('error', error));
+        
     
   }
 
@@ -33,7 +64,7 @@ export default class SearchScreen extends React.Component {
   }
 
   render(){ 
-    const { search,spices,pantry } = this.state;
+    const { search,spices,pantry,filtered } = this.state;
     return(
     
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -41,7 +72,7 @@ export default class SearchScreen extends React.Component {
 
         <View style={{ flex: 1 }}>
           <Text style={styles.title}>Search Recipes</Text>
-          <Text style={styles.p}>Search you favourite meals!</Text>
+          <Text style={styles.p}>Search your favourite meals!</Text>
         </View>
 
       </View>
@@ -58,12 +89,12 @@ export default class SearchScreen extends React.Component {
       </View>
       <View>
 
-        {(search.length != '') ? spices.filter(item => item.toLowerCase().includes(search)).slice(0,4).map(item =>(
+        {(search.length != '') ? filtered.filter(item => item.toLowerCase().includes(search)).slice(0,4).map(item =>(
           <OptionButton
           left={false}
           icon="arrow-forward"
-          label={item}
-          onPress={() => this.props.navigation.navigate('Recipe',{title:item})}
+          label={item.title}
+          onPress={() => this.props.navigation.navigate('Recipe',{title:item.title})}
         />
         )):spices.slice(0,5).sort().map(item =>(
           <OptionButton
