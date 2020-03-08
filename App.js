@@ -10,6 +10,10 @@ import BottomTabNavigator from './navigation/BottomTabNavigator';
 import useLinking from './navigation/useLinking';
 import RecipeScreen from './screens/RecipeScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import OrderDetails from './screens/OrderDetails';
+import PastOrdersScreen from './screens/PastOrdersScreen';
+import SelectTime from './screens/SelectTime';
+import TrackOrder from './screens/TrackOrder';
 import SignInScreen from './screens/SignInScreen';
 import StartingIngredients from './screens/StartingIngredients'
 import SignUpScreen from './screens/SignUpScreen';
@@ -19,6 +23,7 @@ import Welcome from './screens/InitialSlides/Welcome'
 import Add from './screens/InitialSlides/Add'
 import Order from './screens/InitialSlides/Order'
 import Instacart from './screens/InitialSlides/Instacart'
+
 
 const Stack = createStackNavigator();
 
@@ -86,9 +91,11 @@ export default function App(props) {
             <Stack.Screen name="Root" component={BottomTabNavigator} />
             <Stack.Screen name="Recipe" component={RecipeScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
-
-          </Stack.Navigator> 
-   
+            <Stack.Screen name="OrderDetails" component={OrderDetails} />
+            <Stack.Screen name="SelectTime" component={SelectTime} />
+            <Stack.Screen name="TrackOrder" component={TrackOrder} />
+            <Stack.Screen name="PastOrders" component={PastOrdersScreen} />
+          </Stack.Navigator>
         </NavigationContainer>
       </View>
     );

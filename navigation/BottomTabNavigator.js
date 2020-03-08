@@ -66,5 +66,13 @@ function getHeaderTitle(route) {
       return 'Pantry';
     case 'Profile':
       return 'Profile';
+    case 'OrderDetails':
+      return 'Order Details';
+    case 'OrderTime':
+      return 'Order Time';
+    case 'PastOrders':
+      return 'Past Order';
+    case 'TrackOrder':
+      return 'Track Order';
   }
 }

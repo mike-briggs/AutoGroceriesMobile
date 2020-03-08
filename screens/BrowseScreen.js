@@ -72,7 +72,7 @@ export default function BrowseScreen({ navigation }) {
                 </View>
                 <View style={{flex:1}}>
                 <Button
-                        onPress={()=>navigation.navigate('Root')
+                        onPress={()=>navigation.navigate('OrderDetails')
                     }
                         buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
                             ios: {
