@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React, {useEffect} from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import {Button} from 'react-native-elements'
 import { ScrollView,FlatList } from 'react-native-gesture-handler';
@@ -9,33 +9,58 @@ import { RecipeCard } from '../components/RecipeCard';
 import { CategoryCard } from '../components/CategoryCard';
 
 export default function BrowseScreen({ navigation }) {
+   
+    const [categories,setCategories] = React.useState(['Italian','Vegan','Vegetarian','Chinese','Healthy','Quick'])
+    const [recipes,setRecipes] = React.useState()
+    const [baseUri,setBaseUri] = React.useState()
+    const [currentCategory,setCurrentCategory] = React.useState()
+    const [isLoadingComplete,setLoadingComplete] = React.useState()
+    
+    useEffect(()=>{
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({ "query": "chicken", "cuisine": "", "intolerences": "", "diet": "" });
+
+        var requestOptions2 = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        fetch("https://api.spoonacular.com/recipes/search?apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
+            .then(response => response.text())
+            .then((result) => {
+
+                var json = JSON.parse(result);
+
+                setRecipes(json)
+                setLoadingComplete(true);
+                setBaseUri(json.baseUri)
+                console.log('hello')
+                console.log(recipes)
+            })
+            .catch(error => console.log('error', error));
+
+    },[])
+    if (!isLoadingComplete) {
+        return null;
+      } else {
     return (
         <View style={styles.container}>
 
-                
                 <ScrollView>
                 <ScrollView horizontal={true} contentContainerStyle={styles.category}>
-                    <CategoryCard  />
-                    <CategoryCard style={styles.categoryCard} />
-                    <CategoryCard style={styles.categoryCard} />
-                    <CategoryCard style={styles.categoryCard} />
-                    <CategoryCard style={styles.categoryCard} />
-                    <CategoryCard style={styles.categoryCard} />
+                    <CategoryCard  title="Protein" />
+                    {categories.map(item=>(<CategoryCard style={styles.categoryCard} title={item}/>))}
+                    
 
                 </ScrollView>
                 <View style={styles.getStartedContainer}>
 
-                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
-                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
-                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
-                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
-                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
-                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
-                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
-                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
-                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
-                    <TouchableOpacity style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:"Chicken Salad"})}><RecipeCard /></TouchableOpacity>
-                    
+                    {recipes.results.map(item=>(<TouchableOpacity key={item.id} style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:item.title,image:baseUri +''+item.imageUrls})}><RecipeCard image={baseUri +''+item.imageUrls} title={item.title}/></TouchableOpacity>))}
+                                       
 
                 </View>
 
@@ -53,7 +78,7 @@ export default function BrowseScreen({ navigation }) {
                             ios: {
                                 shadowColor: 'black',
                                 shadowOffset: { width: 0, height: 3 },
-                                shadowOpacity: 0.25,
+                                shadowOpacity: 0.12,
                                 shadowRadius: 10,
                             },
                             android: {
@@ -76,6 +101,7 @@ export default function BrowseScreen({ navigation }) {
             </View>
         </View>
     );
+                    }
 }
 
 BrowseScreen.navigationOptions = {

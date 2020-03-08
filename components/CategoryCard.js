@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Text,StyleSheet,View,Image,Button,ImageBackground,Platform } from 'react-native';
 
 
-export function CategoryCard({navigation},props) {
-    return( <View {...props} style={styles.card} >
+export function CategoryCard({navigation,title},props) {
+    return( <View style={styles.card} >
         <Image style={styles.backgroundImage} source={require('../assets/images/salad-dark.jpg')} />
         <View>
-            <Text style={styles.title}>Vegan</Text>
+            <Text style={styles.title}>{title}</Text>
         </View>
         
         

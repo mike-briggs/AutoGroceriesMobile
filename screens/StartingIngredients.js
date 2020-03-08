@@ -175,7 +175,7 @@ export default class StartingIngrdients extends React.Component {
                             ios: {
                                 shadowColor: 'black',
                                 shadowOffset: { width: 0, height: 3 },
-                                shadowOpacity: 0.25,
+                                shadowOpacity: 0.12,
                                 shadowRadius: 10,
                             },
                             android: {

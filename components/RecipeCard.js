@@ -3,13 +3,13 @@ import { Text,StyleSheet,View,Image,Button,Platform } from 'react-native';
 import TextIcon from '../components/TextIcon';
 
 
-export function RecipeCard({navigation},props) {
+export function RecipeCard({navigation,title,image},props) {
     return( <View {...props} style={styles.card} >
 
-        <Image  style={styles.welcomeImage} source={require('../assets/images/salad.jpg')}/>
+        <Image  style={styles.welcomeImage} source={image}/>
         <View style={{flex: 1, flexDirection: 'row',marginTop:16,marginLeft:16}}>
             
-            <Text style={styles.title}>Chicken Salad w/ Cranberry</Text>
+            <Text style={styles.title}>{title}</Text>
             <TextIcon sheet={styles.rating} style={{marginTop:0}} size={18} text="4.9" name='star' color="#EFB110"></TextIcon>
         </View>
 
