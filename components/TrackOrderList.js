@@ -1,14 +1,8 @@
 import React from 'react';
-import {StyleSheet  } from "react-native";
 import colors from '../constants/Colors';
 import { Image, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View, Button } from 'react-native';
-
-<<<<<<< HEAD
-
-export default function TrackOrderList({ current }){
-=======
+ 
 export default function TrackOrderList ({ current }){
->>>>>>> f6e27f81831c75ef1ffe22f1ddb5752bd89cdf27
 
     return (
         <View style={styles.contentContainer}>
