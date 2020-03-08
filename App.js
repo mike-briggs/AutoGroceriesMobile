@@ -10,8 +10,10 @@ import BottomTabNavigator from './navigation/BottomTabNavigator';
 import useLinking from './navigation/useLinking';
 import RecipeScreen from './screens/RecipeScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import OrderScreen from './screens/OrderScreen';
+import OrderDetails from './screens/OrderDetails';
 import PastOrdersScreen from './screens/PastOrdersScreen';
+import SelectTime from './screens/SelectTime';
+import TrackOrder from './screens/TrackOrder';
 
 const Stack = createStackNavigator();
 
@@ -62,7 +64,9 @@ export default function App(props) {
             <Stack.Screen name="Root" component={BottomTabNavigator} />
             <Stack.Screen name="Recipe" component={RecipeScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
-            <Stack.Screen name="Order" component={OrderScreen} />
+            <Stack.Screen name="OrderDetails" component={OrderDetails} />
+            <Stack.Screen name="SelectTime" component={SelectTime} />
+            <Stack.Screen name="TrackOrder" component={TrackOrder} />
             <Stack.Screen name="PastOrders" component={PastOrdersScreen} />
           </Stack.Navigator>
         </NavigationContainer>

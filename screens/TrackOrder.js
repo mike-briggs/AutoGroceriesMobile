@@ -1,18 +1,103 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View, Button } from 'react-native';
+import TimeOption from '../components/TimeOption.js';
 import { ScrollView } from 'react-native-gesture-handler';
+import units from '../constants/Units.js';
+import OrderList from '../components/OrderList.js';
+import TrackOrderList from '../components/TrackOrderList';
 
-export default function OrderScreen({ navigation }){
+export default function TrackOrder({ navigation, order }){
+
     return (
         <View style={styles.container}>
             <ScrollView>
-
+                <View style={styles.header}>
+                    <Text style={styles.headerText}>Order Placed</Text>
+                    <Text style={styles.headerDescription}>Track your order below.</Text>
+                </View>
+                <TrackOrderList current='2'/>
             </ScrollView>
+            <Button title="Continue" style={styles.continueButton} onPress={ () => {(orderTime)?(navigation.navigate('TrackOrder')):(console.log('no order time selected!'))} }/>
         </View>
     );
 }
 
+const templateTime = [
+    {
+        index:1,
+        date:'Monday',
+        time:'10:00am - 1:00pm'
+    },
+    {
+        index:2,
+        date:'Monday',
+        time:'1:00pm - 4:00pm'
+    },
+    {
+        index:3,
+        date:'Monday',
+        time:'4:00pm - 7:00pm'
+    },
+    {
+        index:4,
+        date:'Tuesday',
+        time:'10:00am - 1:00pm'
+    },
+    {
+        index:5,
+        date:'Tuesday',
+        time:'1:00pm - 4:00pm'
+    },
+    {
+        index:6,
+        date:'Tuesday',
+        time:'4:00pm - 7:00pm'
+    }
+]
+
+let timeOptionArr = templateTime.map(() => {return false;});
+
 const styles = StyleSheet.create({
+    input:{
+        padding:10,
+        fontSize:15,
+        fontWeight:'600',
+        backgroundColor: '#F9F9F9',
+        borderRadius:10
+    },
+    informationContainer:{
+        marginVertical: 20,
+        paddingHorizontal: 10
+    },
+    additionalInformation:{
+        fontSize:24,
+        fontWeight:'600'
+    },
+    timeContainer:{
+        margin:20
+    },
+    header:{
+        display:'flex',
+        flexDirection:'column',
+        margin:20
+    },
+    headerText:{
+        fontWeight: '600',
+        fontSize: 36
+    },
+    headerDescription:{
+        fontWeight: '600',
+        fontSize:15
+    },
+    continueButton:{
+        fontSize:'36pt',
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor:"#6CD34C",
+        color: '#FFFFFF'
+    },
     container: {
         flex: 1,
         backgroundColor: '#fff',

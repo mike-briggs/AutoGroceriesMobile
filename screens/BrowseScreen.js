@@ -32,7 +32,7 @@ export default function BrowseScreen({ navigation }) {
             </ScrollView>
 
             <View style={styles.tabBarInfoContainer}>
-                <Button title="Checkout"  style={{fontSize:'36pt'}} color="#6CD34C" />
+                <Button title="Checkout"  style={{fontSize:'36pt'}} color="#6CD34C" onPress={ () => navigation.navigate('OrderDetails') }/>
             </View>
         </View>
     );
