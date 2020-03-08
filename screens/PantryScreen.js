@@ -12,21 +12,26 @@ export default class PantryScreen extends React.Component {
     this.state = {
       search: '',
       pantry:[],
-      spices:['Oregano','Rosemary','Chili Flakes','Salt','Pepper','Basil','Saffron']
+      spices:['Oregano','Rosemary','Chili Flakes','Salt','Pepper','Basil','Saffron','Garlic','Olive Oil','Cashews','Tomato Paste', 'Canned Tomatoes', 'Black Beans', 'Kidney Beans', 'Turmeric','Chickpeas','Brown Sugar', 'Granulated Sugar', 'White Beans', 'Icing Sugar', 'Honey', 'Peanut Butter','Almonds','Rolled Oats', 'Quinoa','Flax Seeds','Rice','Paprika','Cumin','Lentils','Vanilla','Baking Soda', 'Baking Powder','All Purpose Flour', 'Yeast', 'Coconut Milk'  ]
     };
 
   }
 
   updateSearch = search => {
-    this.setState({ search });
+    let s = search.toLowerCase()
+    this.setState({ search:s });
   };
 
   updatePantry = (remove,value) => {
     if(remove){
       //Keeps elements in pantry that aren't equal to the value we want to remove
-      this.setState({pantry:this.state.pantry.filter(a => a !== value)})
+      this.setState({pantry:this.state.pantry.filter(a => a != value)})
+      this.setState({search:''})
+    }else{
+      this.setState({pantry:((this.state.pantry.indexOf(value) == -1) ? this.state.pantry.concat(value) : this.state.pantry)})
+      this.setState({search:''})
     }
-    this.setState({pantry:this.state.pantry.concat(value)})
+    
     console.log(this.state.pantry[0])
     console.log(value)
   }
@@ -44,41 +49,48 @@ export default class PantryScreen extends React.Component {
         </View>
 
       </View>
-      <View>
+      <View >
+      
+      <SearchBar 
+        placeholder="Search Ingredients"
+        lightTheme="light"
+        round
+        value={search.toLowerCase()}
+        onChangeText={this.updateSearch}
+        containerStyle={{backgroundColor:'white',borderBottomWidth:0,borderTopWidth:0}}
+        inputContainerStyle={{backgroundColor:'rgba(0,0,0,0.05)'}}
+      />
+      <ScrollView>{(search.length != '') ? spices.filter(item => item.toLowerCase().includes(search)).slice(0,4).map(item =>(
+          <OptionButton
+          
+          left={false}
+          icon="add"
+          color='#6CD34C'
+          label={item}
+          onPress={() => this.updatePantry(false,item)}
+        />
+        ))
+        //Don't render a list if search bar is empty
+        :<></>}</ScrollView>
+        <View style={{padding:20}}>
+        <Text style={{fontSize:24,fontWeight:'600'}}>In Pantry</Text>
+        {(pantry.length == 0) ? <Text style={{fontSize:14, fontweight:'400'}}>Nothing in pantry.</Text>:<></>}
+        </View>
+        
       {(pantry.length > 0) ? pantry.map(item =>(
           <OptionButton
           left={false}
-          icon="add"
+          icon="remove"
+          color='red'
           label={item}
           onPress={() => this.updatePantry(true,item)}
         />
         )):<></>
         }
-      <SearchBar
-        placeholder="Search Ingredients"
-        onChangeText={this.updateSearch}
-        value={search}
-        containerStyle={{backgroundColor:'white',border:'none'}}
-        inputContainerStyle={{backgroundColor:'rgba(0,0,0,0.05)'}}
-      />
       </View>
-      <View>
+      <View >
 
-        {(search.length != '') ? spices.filter(item => item.toLowerCase().includes(search)).slice(0,4).map(item =>(
-          <OptionButton
-          left={false}
-          icon="add"
-          label={item}
-          onPress={() => this.updatePantry(false,item)}
-        />
-        )):spices.slice(0,5).sort().map(item =>(
-          <OptionButton
-          left={false}
-          icon="add"
-          label={item}
-          onPress={() =>this.updatePantry(false,item)}
-        />
-        ))}
+        
       {/*<OptionButton
         left={false}
         icon="add"
@@ -150,6 +162,12 @@ const styles = StyleSheet.create({
     marginRight: 12,
     marginLeft: 12,
     textAlign:'right',
+  },
+  title: {
+
+    marginTop: 16,
+    fontWeight: '600',
+    fontSize: 18,
   },
   optionTextContainer:{
     flex:9,

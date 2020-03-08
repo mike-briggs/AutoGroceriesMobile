@@ -13,7 +13,7 @@ export default function RecipeScreen({route, navigation},props) {
           <View style={styles.recipeContainer}>
             <View style={styles.descContainer} >
               <Text style={styles.title}>{JSON.stringify(route.params.title).slice(1,JSON.stringify(route.params.title).length-1)}</Text>
-              <Text style={styles.p}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</Text>
+              <Text style={styles.p}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</Text>
             </View>
             <View style={styles.iconContainer}>
               <TextIcon sheet={styles.rating} size={18} text="4.9" name='star' color="#EFB110"></TextIcon>
@@ -112,7 +112,8 @@ const styles = StyleSheet.create({
     marginLeft: 32
   },
   descContainer: {
-    flex: 3,
+    flex: 5,
+    marginRight:10,
   },
   card: {
     width: '100%',
@@ -176,7 +177,7 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     margin: 16,
-    flex: 1, flexDirection: 'column', 
+    flex: 2, flexDirection: 'column', 
   },
   rating: {
     flex: 1,

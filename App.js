@@ -10,10 +10,16 @@ import BottomTabNavigator from './navigation/BottomTabNavigator';
 import useLinking from './navigation/useLinking';
 import RecipeScreen from './screens/RecipeScreen';
 import ProfileScreen from './screens/ProfileScreen';
+<<<<<<< HEAD
 import OrderDetails from './screens/OrderDetails';
 import PastOrdersScreen from './screens/PastOrdersScreen';
 import SelectTime from './screens/SelectTime';
 import TrackOrder from './screens/TrackOrder';
+=======
+import SignInScreen from './screens/SignInScreen';
+import StartingIngredients from './screens/StartingIngredients'
+import SignUpScreen from './screens/SignUpScreen';
+>>>>>>> 2b82c6ce80e25ef864b2153987ca853964b9afa9
 
 const Stack = createStackNavigator();
 
@@ -22,6 +28,9 @@ export default function App(props) {
   
 
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
+  var [signedIn,setSignedIn] = React.useState(false);
+  
+  //signedIn = true;
   const [initialNavigationState, setInitialNavigationState] = React.useState();
   const containerRef = React.useRef();
   const { getInitialState } = useLinking(containerRef);
@@ -46,6 +55,7 @@ export default function App(props) {
         console.warn(e);
       } finally {
         setLoadingComplete(true);
+        setSignedIn(false);
         SplashScreen.hide();
       }
     }
@@ -59,8 +69,13 @@ export default function App(props) {
     return (
       <View style={styles.container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+        
         <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
           <Stack.Navigator>
+            <Stack.Screen name="SignIn" navigationOptions={{ title: 'Home',headerLeft: null}} component={SignInScreen}/>
+            <Stack.Screen name="SignUp" navigationOptions={{ title: 'Home',headerLeft: null}} component={SignUpScreen}/>
+
+            <Stack.Screen name="Ingredients" component={StartingIngredients}/>
             <Stack.Screen name="Root" component={BottomTabNavigator} />
             <Stack.Screen name="Recipe" component={RecipeScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
@@ -72,7 +87,7 @@ export default function App(props) {
         </NavigationContainer>
       </View>
     );
-  }
+  } 
 }
 
 const styles = StyleSheet.create({

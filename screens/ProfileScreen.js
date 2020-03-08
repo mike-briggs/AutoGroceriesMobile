@@ -21,13 +21,11 @@ export default function ProfileScreen({ navigation: { navigate } }) {
           <View style={{ flex: 1 }}>
             <TextIcon sheet={styles.rating} size={18} text="Loblaws" name='cart' color="#000"></TextIcon>
             <TextIcon sheet={styles.rating} size={18} text="99 University Ave" name='compass' color="#000"></TextIcon>
-
-          </View>
-          <View style={{ flex: 1 }}>
-            <TextIcon sheet={styles.rating} size={18} text="contact@mikebriggs.ca" name='' color="#000"></TextIcon>
+            <TextIcon sheet={styles.rating} size={18} text="contact@mikebriggs.ca" name='send' color="#000"></TextIcon>
             <TextIcon sheet={styles.rating} size={18} text="(123) 456-7890" name='call' color="#000"></TextIcon>
 
           </View>
+          
         </View>
 
 
@@ -67,6 +65,13 @@ export default function ProfileScreen({ navigation: { navigate } }) {
         icon="person"
         label="Edit Account Info"
         onPress={() => {}}
+        isLastOption
+      />
+      <OptionButton
+      left={true}
+        icon="arrow-back"
+        label="Logout"
+        onPress={() => navigate('SignIn')}
         isLastOption
       />
       <OptionButton
