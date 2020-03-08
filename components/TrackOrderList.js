@@ -1,7 +1,9 @@
 import React from 'react';
 import colors from '../constants/Colors';
+import { Image, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View, Button } from 'react-native';
 
-export default TrackOrderList = ({ current }) => {
+
+export default function TrackOrderList({ current }){
 
     return (
         <View style={styles.contentContainer}>

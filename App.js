@@ -10,16 +10,13 @@ import BottomTabNavigator from './navigation/BottomTabNavigator';
 import useLinking from './navigation/useLinking';
 import RecipeScreen from './screens/RecipeScreen';
 import ProfileScreen from './screens/ProfileScreen';
-<<<<<<< HEAD
 import OrderDetails from './screens/OrderDetails';
 import PastOrdersScreen from './screens/PastOrdersScreen';
 import SelectTime from './screens/SelectTime';
 import TrackOrder from './screens/TrackOrder';
-=======
 import SignInScreen from './screens/SignInScreen';
 import StartingIngredients from './screens/StartingIngredients'
 import SignUpScreen from './screens/SignUpScreen';
->>>>>>> 2b82c6ce80e25ef864b2153987ca853964b9afa9
 
 const Stack = createStackNavigator();
 
@@ -74,7 +71,6 @@ export default function App(props) {
           <Stack.Navigator>
             <Stack.Screen name="SignIn" navigationOptions={{ title: 'Home',headerLeft: null}} component={SignInScreen}/>
             <Stack.Screen name="SignUp" navigationOptions={{ title: 'Home',headerLeft: null}} component={SignUpScreen}/>
-
             <Stack.Screen name="Ingredients" component={StartingIngredients}/>
             <Stack.Screen name="Root" component={BottomTabNavigator} />
             <Stack.Screen name="Recipe" component={RecipeScreen} />
