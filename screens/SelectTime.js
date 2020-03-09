@@ -30,7 +30,7 @@ export default function SelectTime({ navigation, order }){
             <View style={{ flex: 1,paddingRight:10,paddingLeft:5 }}>
               <Button
                 onPress={() =>{ setVisible(false)
-                  navigation.navigate('SelectTime')}
+                  navigation.navigate('Root')}
               }
                 icon={
                   <Icon
@@ -217,15 +217,14 @@ const styles = StyleSheet.create({
     },
     informationContainer:{
         marginVertical: 20,
-        paddingHorizontal: 10,
-        paddingBottom:100
+        paddingHorizontal: 10
     },
     additionalInformation:{
         fontSize:24,
         fontWeight:'600'
     },
     timeContainer:{
-        marginHorizontal:20
+        margin:20
     },
     header:{
         display:'flex',
@@ -237,8 +236,7 @@ const styles = StyleSheet.create({
         fontSize: 36
     },
     headerDescription:{
-        fontWeight: '300',
-        paddingTop:15,
+        fontWeight: '600',
         fontSize:15
     },
     continueButton:{

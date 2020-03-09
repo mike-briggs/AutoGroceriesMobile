@@ -32,38 +32,19 @@ export default function ProfileScreen({ navigation: { navigate } }) {
 
       </View>
 
-      <OptionButton
-      left={true}
-        icon="lock"
-        label="Change Password"
-        onPress={() => {}}
-        isLastOption
-      />
-      <OptionButton
-      left={true}
-        icon="add"
-        label="Add Ingredients to Pantry"
-        onPress={() => navigate('Pantry')}
-      />
-      <OptionButton
-      left={true}
-        icon="clock"
-        label="Past Orders"
-        onPress={() => navigate('PastOrders')}
-        isLastOption
-      />
-      <OptionButton
-      left={true}
-        icon="ios-basket"
-        label="Current Order"
-        onPress={() => navigate('TrackOrder')}
-        isLastOption
-      />
+
       <OptionButton
       left={true}
         icon="pizza"
         label="Edit Favourite Foods"
         onPress={() => {}}
+      />
+
+      <OptionButton
+      left={true}
+        icon="add"
+        label="Add Ingredients to Pantry"
+        onPress={() => navigate('Pantry')}
       />
 
       <OptionButton
@@ -89,9 +70,9 @@ export default function ProfileScreen({ navigation: { navigate } }) {
       />
       <OptionButton
       left={true}
-        icon="code"
-        label="View Code"
-        onPress={() => {}}
+        icon="clock"
+        label="Past Orders"
+        onPress={() => navigate('PastOrders')}
         isLastOption
       />
       <OptionButton
@@ -99,6 +80,20 @@ export default function ProfileScreen({ navigation: { navigate } }) {
         icon="arrow-back"
         label="Logout"
         onPress={() => navigate('SignIn')}
+        isLastOption
+      />
+      <OptionButton
+      left={true}
+        icon="lock"
+        label="Change Password"
+        onPress={() => {}}
+        isLastOption
+      />
+      <OptionButton
+      left={true}
+        icon="code"
+        label="View Code"
+        onPress={() => {}}
         isLastOption
       />
     </ScrollView>

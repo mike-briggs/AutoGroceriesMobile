@@ -34,10 +34,8 @@ export default function OrderDetails({ navigation,route }){
                 </View>
             </ScrollView>
             <View style={styles.tabBarInfoContainer}>
+                <View style={{flex:1}}></View>
                 <View style={{flex:1}}>
-
-                </View>
-                <View style={{flex:1,width:'50%',alignSelf:'flex-end',margin:15}}>
                     <Button
                                 onPress={()=>navigation.navigate('SelectTime')
                             }

@@ -22,7 +22,7 @@ export default function TimeOption({ index, day, timeRange, hilighted, isLastOpt
     }
 
     return (
-      <RectButton style={[btnStyle,{borderBottomColor: '#ccc', paddingTop: 10, borderBottomWidth: StyleSheet.hairlineWidth}]} onPress={press}>
+      <RectButton style={btnStyle} onPress={press}>
         <View style={{ flexDirection: 'row' }}>
             <View style={styles.optionTextContainer}>
                 <Text style={styles.optionText}>{ index }</Text>
@@ -30,8 +30,8 @@ export default function TimeOption({ index, day, timeRange, hilighted, isLastOpt
             <View style={styles.optionTextContainerDate}>
                 <Text style={styles.optionTextDate}>{ day }</Text>
             </View>
-            <View style={styles.optionTextContainer2}>
-                <Text style={styles.optionText2}>{ timeRange }</Text>
+            <View style={styles.optionTextContainer}>
+                <Text style={styles.optionText}>{ timeRange }</Text>
             </View>
         </View>
       </RectButton>
@@ -41,8 +41,7 @@ export default function TimeOption({ index, day, timeRange, hilighted, isLastOpt
 
   const styles = StyleSheet.create({
     selected:{
-        backgroundColor: '#C5FFB2',
-        borderBottomColor: '#ccc', paddingTop: 10, borderBottomWidth: StyleSheet.hairlineWidth
+        backgroundColor: '#6CD34C'
     },
     container: {
       flex: 1,
@@ -65,19 +64,14 @@ export default function TimeOption({ index, day, timeRange, hilighted, isLastOpt
       flex:1,
       display: 'flex',
     },
-    optionTextContainer2:{
-      flex:3,
-      display: 'flex',
-    },
     optionTextContainerDate:{
-        flex:3,
+        flex:1,
         display: 'flex',
-        marginLeft: 0
+        marginLeft: -30
       },
     option: {
       paddingHorizontal: 15,
       paddingVertical: 10,
-      borderBottomColor: '#ccc', paddingTop: 10, borderBottomWidth: StyleSheet.hairlineWidth,
       borderBottomWidth: StyleSheet.hairlineWidth,
       borderColor: '#ededed',
     },
@@ -115,22 +109,22 @@ export default function TimeOption({ index, day, timeRange, hilighted, isLastOpt
       
     },
     optionText: {
-        fontSize: 32,
+        fontSize: 15,
         alignSelf: 'flex-start',
         marginTop: 1,
-        fontWeight:'700'
+        fontWeight:'600'
     },
     optionTextDate: {
         fontSize: 18,
         alignSelf: 'flex-start',
-        marginTop: 10,
+        marginTop: 1,
         fontWeight:'600'
     },
     optionText2: {
       fontSize: 15,
       alignSelf: 'flex-start',
-      marginTop: 12,
-      fontWeight:'300'
+      marginTop: 1,
+      fontWeight:'600'
 
     },
   });

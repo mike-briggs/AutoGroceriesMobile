@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     cardContainer:{
         display: 'flex',
         flexDirection: 'column',
-        borderColor:'#aaaaaa',
+        borderColor:'#999999',
         borderWidth:StyleSheet.hairlineWidth,
         borderRadius:20,
         ...Platform.select({
@@ -71,8 +71,6 @@ const styles = StyleSheet.create({
     },
     bottomContent:{
         display: 'flex',
-        borderTopColor:'#cccccc',
-        borderTopWidth:StyleSheet.hairlineWidth,
         flexDirection:'row',
         paddingHorizontal:20,
         paddingBottom:20,
@@ -103,10 +101,8 @@ const styles = StyleSheet.create({
         fontSize:10,
     },
     recipeHeader:{
-        marginTop:10,
-        marginBottom:5,
         fontWeight:'600',
-        fontSize: 14,
+        fontSize: 12,
     },
     header:{
         flexDirection:'row',
@@ -128,10 +124,9 @@ const styles = StyleSheet.create({
         fontSize:12,
     },
     fullOrderLink:{
-        marginVertical:40,
-        fontSize:14,
-        fontWeight:'300',
-        
+        margin:20,
+        fontSize:12,
+        fontWeight:'600'
     },
     orderAgainButton:{
         borderRadius:40,
