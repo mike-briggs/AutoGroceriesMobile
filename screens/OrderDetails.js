@@ -4,6 +4,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import units from '../constants/Units.js';
 import OrderList from '../components/OrderList.js';
 import { RecipeCard } from '../components/RecipeCard';
+import Icon from 'react-native-ionicons';
 
 
 export default function OrderDetails({ navigation,route }){
@@ -37,7 +38,7 @@ export default function OrderDetails({ navigation,route }){
                     <Button
                                 onPress={()=>navigation.navigate('SelectTime')
                             }
-                                buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
+                                style={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
                                     ios: {
                                         shadowColor: 'black',
                                         shadowOffset: { width: 0, height: 3 },

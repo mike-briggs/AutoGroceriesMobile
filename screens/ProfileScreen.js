@@ -5,6 +5,7 @@ import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 import TextIcon from '../components/TextIcon'
 import { OptionButton } from '../components/OptionButton';
+import PastOrdersScreen from './PastOrdersScreen';
 
 
 export default function ProfileScreen({ navigation: { navigate } }) {
@@ -65,6 +66,13 @@ export default function ProfileScreen({ navigation: { navigate } }) {
         icon="person"
         label="Edit Account Info"
         onPress={() => {}}
+        isLastOption
+      />
+      <OptionButton
+      left={true}
+        icon="clock"
+        label="Past Orders"
+        onPress={() => navigate('PastOrders')}
         isLastOption
       />
       <OptionButton
