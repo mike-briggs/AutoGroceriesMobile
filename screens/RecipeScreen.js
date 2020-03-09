@@ -6,7 +6,7 @@ import Modal from 'react-native-modal'
 import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import TextIcon from '../components/TextIcon'
-export default function RecipeScreen({ route, navigation,image }, props) {
+export default function RecipeScreen({ route, navigation,image,recipe }, props) {
   const [visible, setVisible] = React.useState(false)
   return (
     <View style={{ flex: 1 }}>
@@ -19,7 +19,7 @@ export default function RecipeScreen({ route, navigation,image }, props) {
             <View style={{ flex: 1,paddingLeft:10 ,paddingRight:5}}>
               <Button
                 onPress={() =>{ setVisible(false)
-                  navigation.navigate('Root')}
+                  navigation.navigate('OrderDetails')}
                 }
                 icon={
                   <Icon

@@ -63,7 +63,7 @@ export default function BrowseScreen({ navigation }) {
 
                 <ScrollView>
                 <ScrollView horizontal={true} contentContainerStyle={styles.category}>
-                    <CategoryCard  title="Protein" />
+                    
                     {categories.map(item=>(<CategoryCard style={styles.categoryCard} image={item.image} title={item.title}/>))}
                     
 
@@ -83,7 +83,7 @@ export default function BrowseScreen({ navigation }) {
                 </View>
                 <View style={{flex:1}}>
                 <Button
-                        onPress={()=>navigation.navigate('OrderDetails')
+                        onPress={()=>navigation.navigate('OrderDetails',{order:recipes,imageUrl:baseUri})
                     }
                         buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
                             ios: {

@@ -40,13 +40,12 @@ const styles = StyleSheet.create({
     backgroundImage:{
         position: 'absolute',
         width:120,
-        opacity:'50%',
+        opacity:0.5,
         height:120,
         top: 0,
         left: 0,
         bottom: 0,
         right: 0,
-        opacity: 1,
         borderRadius:10
 
     },

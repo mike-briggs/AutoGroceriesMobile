@@ -1,21 +1,34 @@
-import * as React from 'react';
+import React,{useEffect} from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import units from '../constants/Units.js';
 import OrderList from '../components/OrderList.js';
+import { RecipeCard } from '../components/RecipeCard';
 
-export default function OrderDetails({ navigation }){
+
+export default function OrderDetails({ navigation,route }){
+    navigation.setOptions({headerTitleAlign:'center'})
+    const[currentOrder,setCurrentOrder] = React.useState(JSON.stringify(route.params.order))
+    useEffect(()=>{
+
+
+        setCurrentOrder(JSON.stringify(route.params.order))
+
+    },[]);
     return (
         <View style={styles.container}>
             <ScrollView>
                 <OrderList ingredients={templateOrder.itemsList}/>
                 <View style={styles.orderTotal}>
                     <View style={styles.textContainer}>
-                        <Text style={styles.orderDetail}>Order Total:</Text>
+                        <Text style={styles.orderTitle}>Order Total:</Text>
                     </View>
                     <View style={styles.textContainer}>
                         <Text style={styles.orderDetail}>{ templateOrder.total }</Text>
                     </View>
+                </View>
+                <View>
+                {(route.params.order.results!=null)?route.params.order.results.map(item=>(<TouchableOpacity key={item.id} style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:item.title,image:JSON.stringify(route.params.imageUrl) +''+item.imageUrls})}><RecipeCard image={route.params.imageUrl +''+item.imageUrls} title={item.title}/></TouchableOpacity>)):<Text>No Recipes in Cart</Text>}
                 </View>
             </ScrollView>
             <Button title="Continue" style={styles.continueButton} onPress={ () => navigation.navigate('SelectTime') }/>
@@ -92,16 +105,23 @@ const styles = StyleSheet.create({
       },
     orderDetail:{
         fontSize: 24,
-        alignSelf: 'flex-start',
+        alignSelf: 'flex-end',
         marginTop: 1,
         fontWeight: '600'
     },  
+    orderTitle:{
+        fontSize: 24,
+        alignSelf: 'flex-start',
+        marginTop: 1,
+        fontWeight: '600'
+    }, 
 
     orderTotal:{
         display:'flex',
         flexDirection:'row',
         paddingLeft:10,
-        paddingRight:10
+        paddingRight:10,
+        borderBottomColor: '#ccc', paddingBottom: 100, borderBottomWidth: StyleSheet.hairlineWidth 
     },
     continueButton:{
         position: 'absolute',
