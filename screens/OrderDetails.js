@@ -1,10 +1,11 @@
 import React,{useEffect} from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
+import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import units from '../constants/Units.js';
 import OrderList from '../components/OrderList.js';
 import { RecipeCard } from '../components/RecipeCard';
 import Icon from 'react-native-ionicons';
+import {Button} from 'react-native-elements'
 
 
 export default function OrderDetails({ navigation,route }){
@@ -38,7 +39,7 @@ export default function OrderDetails({ navigation,route }){
                     <Button
                                 onPress={()=>navigation.navigate('SelectTime')
                             }
-                                style={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
+                                buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
                                     ios: {
                                         shadowColor: 'black',
                                         shadowOffset: { width: 0, height: 3 },
