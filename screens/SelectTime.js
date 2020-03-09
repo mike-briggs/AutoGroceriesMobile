@@ -30,7 +30,7 @@ export default function SelectTime({ navigation, order }){
             <View style={{ flex: 1,paddingRight:10,paddingLeft:5 }}>
               <Button
                 onPress={() =>{ setVisible(false)
-                  navigation.navigate('Root')}
+                  navigation.navigate('SelectTime')}
               }
                 icon={
                   <Icon
@@ -116,7 +116,7 @@ export default function SelectTime({ navigation, order }){
             </ScrollView>
             
             <View style={styles.tabBarInfoContainer}>
-                <View style={{flex:10}}>
+                <View style={{flex:1}}>
 
                 </View>
                 <View style={{flex:1,alignSelf:'flex-end',width:'50%',margin:15}}>
@@ -217,6 +217,7 @@ const styles = StyleSheet.create({
     },
     informationContainer:{
         marginVertical: 20,
+        paddingBottom:100,
         paddingHorizontal: 10
     },
     additionalInformation:{
@@ -236,7 +237,8 @@ const styles = StyleSheet.create({
         fontSize: 36
     },
     headerDescription:{
-        fontWeight: '600',
+        fontWeight: '300',
+        paddingTop:12,
         fontSize:15
     },
     continueButton:{

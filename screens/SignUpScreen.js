@@ -45,6 +45,7 @@ export default function SignUpScreen({ navigation }) {
                     <Input
                         label="Password"
                         labelStyle={styles.inputLabel}
+                        secureTextEntry={true}
                         inputContainerStyle={{ borderBottomWidth: 0, borderRadius: 30, fontSize: 1, height: 48, backgroundColor: 'rgba(0,0,0,0.05)' }}
                         leftIcon={
                             <Icon
@@ -57,6 +58,7 @@ export default function SignUpScreen({ navigation }) {
                     />
                     <Input
                         label="Confirm Password"
+                        secureTextEntry={true}
                         labelStyle={styles.inputLabel}
                         inputContainerStyle={{ borderBottomWidth: 0, borderRadius: 30, fontSize: 1, height: 48, backgroundColor: 'rgba(0,0,0,0.05)' }}
                         leftIcon={

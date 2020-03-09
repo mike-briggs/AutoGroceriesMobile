@@ -27,7 +27,7 @@ export default function Instacart({ navigation }) {
             
                 
                     <Button
-                        onPress={()=> navigation.navigate('Root')
+                        onPress={()=> navigation.navigate('SignUp')
                     }   titleStyle={{color:'#6CD34C'}}
                         buttonStyle={{borderRadius:40,backgroundColor:'transparent',fontWeight:'500', float:'right',paddingTop:40,padding:15}}
                         icon={

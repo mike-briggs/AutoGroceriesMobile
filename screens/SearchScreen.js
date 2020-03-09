@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Picker, Button } from 'react-native';
+import { StyleSheet, Text, View, Picker} from 'react-native';
+import { Button } from "react-native-elements";
 import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 import TextIcon from '../components/TextIcon'
@@ -14,47 +15,41 @@ export default class SearchScreen extends React.Component {
     this.state = {
       search: '',
       pantry:[],
-      filtered:[],
+      searchResults:[],
+      searchLoaded:false,
       spices:['Butter Chicken','Pasta','Tacos','Power Bowl'],
       navigation:navigation
     };
 
     
     
+        console.log(this.state.searchResults)
         console.log(this.state.filtered)
-        console.log(this.state.filtered)
 
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        var raw = JSON.stringify({ "query": "chicken", "cuisine": "", "intolerences": "", "diet": "" });
-
-
-        var requestOptions2 = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-        fetch("https://api.spoonacular.com/recipes/search?apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
-            .then(response => response.text())
-            .then((result) => {
-
-                var json = JSON.parse(result);
-
-                this.setState({filtered:json})
-                console.log('hello')
-                console.log(this.state.filtered)
-            })
-            .catch(error => console.log('error', error));
         
     
   }
 
   updateSearch = search => {
     let s = search.toLowerCase()
+    
     this.setState({ search:s });
   };
+
+  search = query => {
+    fetch("https://api.spoonacular.com/recipes/search?query="+query+"&apiKey=14201a9af8744411b9a22039f5b71d30")
+            .then(response => response.text())
+            .then((result) => {
+
+                var json = JSON.parse(result);
+
+                this.setState({searchResults:json})
+                this.setState({searchLoaded:true})
+                console.log('hello')
+                console.log(this.state.filtered)
+            })
+            .catch(error => console.log('error', error));
+  }
 
   updatePantry = (remove,value) => {
     
@@ -64,7 +59,7 @@ export default class SearchScreen extends React.Component {
   }
 
   render(){ 
-    const { search,spices,pantry,filtered } = this.state;
+    const { search,spices,pantry,searchResults,searchLoaded } = this.state;
     return(
     
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -86,15 +81,16 @@ export default class SearchScreen extends React.Component {
         containerStyle={{backgroundColor:'white',borderBottomWidth:0,borderTopWidth:0}}
         inputContainerStyle={{backgroundColor:'rgba(0,0,0,0.05)'}}
       />
+      <Button buttonStyle={{backgroundColor:'#6CD34C',color:'white'}} onPress={()=>this.search(search)} title="Search"/>
       </View>
       <View>
 
-        {(search.length != '') ? filtered.filter(item => item.toLowerCase().includes(search)).slice(0,4).map(item =>(
+        {(searchLoaded) ? searchResults.results.map(item =>(
           <OptionButton
           left={false}
           icon="arrow-forward"
           label={item.title}
-          onPress={() => this.props.navigation.navigate('Recipe',{title:item.title})}
+          onPress={() => this.props.navigation.navigate('Recipe',{title:item.title,image:searchResults.baseUri+''+item.imageUrls})}
         />
         )):spices.slice(0,5).sort().map(item =>(
           <OptionButton

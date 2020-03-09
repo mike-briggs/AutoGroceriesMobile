@@ -42,7 +42,7 @@ export default function TrackOrderList ({ current }){
 
 const Option = ({ num, numColor, stage, state, isLast }) => {
     return (
-        <View style={(isLast)?(styles.lastOption):(styles.option)}>
+        <View style={[(isLast)?(styles.lastOption):(styles.option),{flex:1,flexDirection:'row'}]}>
             <View style={styles.optionTextContainer}>
                 <Text style={[styles.optionText, (numColor)?({ color: numColor }):({})]}>{ num }</Text>
             </View>
@@ -65,17 +65,24 @@ const styles = StyleSheet.create({
       backgroundColor: '#fafafa',
     },
     optionStatusContainer:{
-        marginLeft: 40
+        marginLeft: 40,
+        flex:3
     },
     optionTextDate:{
         fontWeight:'600',
+        alignSelf:'flex-start',
         fontSize: 18
     }, 
+    optionText:{
+        fontSize:32,
+        fontWeight:'700'
+    },
     optionStatusText:{
-        fontSize: 12
+        fontSize: 12,
+        alignSelf:'flex-end'
     }, 
     contentContainer: {
-      paddingTop: 15,
+      paddingTop: 60,
       paddingHorizontal: 20
     },
     optionIconContainer2: {
@@ -93,9 +100,9 @@ const styles = StyleSheet.create({
       display: 'flex',
     },
     optionTextContainerDate:{
-        flex:1,
+        flex:4,
         display: 'flex',
-        marginLeft: -80
+        marginLeft: 25
     },
     option: {
       flexDirection: 'row',

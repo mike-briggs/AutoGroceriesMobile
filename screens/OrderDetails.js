@@ -34,11 +34,12 @@ export default function OrderDetails({ navigation,route }){
                 </View>
             </ScrollView>
             <View style={styles.tabBarInfoContainer}>
-                <View style={{flex:1}}></View>
                 <View style={{flex:1}}>
+
+                </View>
+                <View style={{flex:1,alignSelf:'flex-end',width:'50%',margin:15}}>
                     <Button
-                                onPress={()=>navigation.navigate('SelectTime')
-                            }
+                                onPress={()=>navigation.navigate('SelectTime')}
                                 buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
                                     ios: {
                                         shadowColor: 'black',
@@ -60,9 +61,10 @@ export default function OrderDetails({ navigation,route }){
                                 }
                                 iconRight
                                 title="CONTINUE"
-                            /> 
+                            />
                 </View>
             </View>
+            
         </View>
     );
 }

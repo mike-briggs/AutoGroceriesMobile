@@ -1,13 +1,24 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View, Button } from 'react-native';
+import { Image, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import {Button} from 'react-native-elements'
 import TimeOption from '../components/TimeOption.js';
 import { ScrollView } from 'react-native-gesture-handler';
 import units from '../constants/Units.js';
+import BarIcon from '../components/BarIcon';
+
 import OrderList from '../components/OrderList.js';
 import TrackOrderList from '../components/TrackOrderList.js';
+import Icon from 'react-native-ionicons'
 
 export default function TrackOrder({ navigation, order }){
 
+    navigation.setOptions({
+        headerRightContainerStyle:{paddingRight:20,activeTintColor: '#6CD34C',},
+        headerLeftContainerStyle:{paddingLeft:20,activeTintColor: '#6CD34C',},
+        headerLeft:()=><BarIcon size={30} onPress={() => navigation.navigate('Root')}
+ color={'#101010'} name="ios-basket"  />,
+        headerRight:()=><BarIcon size={30} onPress={() => navigation.navigate('Profile')}
+ color={'#101010'} name="ios-contact"  />})
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -22,7 +33,39 @@ export default function TrackOrder({ navigation, order }){
                     </View>
                 </View>
                 <TrackOrderList current='2'/>
+                
             </ScrollView>
+            <View style={styles.tabBarInfoContainer}>
+                <View style={{flex:1}}>
+
+                </View>
+                <View style={{flex:1,alignSelf:'flex-end',width:'50%',margin:15}}>
+                    <Button
+                                onPress={()=>navigation.navigate('Root')}
+                                buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
+                                    ios: {
+                                        shadowColor: 'black',
+                                        shadowOffset: { width: 0, height: 3 },
+                                        shadowOpacity: 0.12,
+                                        shadowRadius: 10,
+                                    },
+                                    android: {
+                                        elevation: 6,
+                                    },
+                                })}}
+                                icon={
+                                    <Icon
+                                        name="arrow-forward"
+                                        size={18}
+                                        color="white"
+                                        style={{paddingLeft:10, paddingTop:2}}
+                                    />
+                                }
+                                iconRight
+                                title="BACK HOME"
+                            />
+                </View>
+            </View>
         </View>
     );
 }

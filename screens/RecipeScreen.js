@@ -16,7 +16,7 @@ export default function RecipeScreen({ route, navigation,image,recipe }, props) 
           <Text style={{ fontWeight: '600', fontSize: 18, textAlign: 'center', flex: 1,paddingTop:50 }}>Item Added!</Text>
 
           <View style={{ flexDirection: 'row', flex: 1 }}>
-            <View style={{ flex: 1,paddingLeft:10 ,paddingRight:5}}>
+            {/*<View style={{ flex: 1,paddingLeft:10 ,paddingRight:5}}>
               <Button
                 onPress={() =>{ setVisible(false)
                   navigation.navigate('OrderDetails')}
@@ -45,7 +45,7 @@ export default function RecipeScreen({ route, navigation,image,recipe }, props) 
                 }}
                 title="Checkout"
               />
-            </View>
+              </View>*/}
             <View style={{ flex: 1,paddingRight:10,paddingLeft:5 }}>
               <Button
                 onPress={() =>{ setVisible(false)

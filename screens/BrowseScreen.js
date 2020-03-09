@@ -46,7 +46,7 @@ export default function BrowseScreen({ navigation }) {
             redirect: 'follow'
         };
 
-        if(!loadingItalianComplete){fetch("https://api.spoonacular.com/recipes/search?query=italian&apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
+        if(!loadingItalianComplete){fetch("https://api.spoonacular.com/recipes/search?query=italian&apiKey=14201a9af8744411b9a22039f5b71d30")
             .then(response => response.text())
             .then((result) => {
                 var json = JSON.parse(result);
@@ -58,7 +58,7 @@ export default function BrowseScreen({ navigation }) {
             .catch(error => console.log('error', error));}
 
             if(!loadingHealthyComplete){
-        fetch("https://api.spoonacular.com/recipes/search?query=healthy&apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
+        fetch("https://api.spoonacular.com/recipes/search?query=healthy&apiKey=14201a9af8744411b9a22039f5b71d30")
             .then(response => response.text())
             .then((result) => {
                 var json = JSON.parse(result);
@@ -70,7 +70,7 @@ export default function BrowseScreen({ navigation }) {
             .catch(error => console.log('error', error));}
 
             if(!loadingChineseComplete){
-            fetch("https://api.spoonacular.com/recipes/search?query=chinese&apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
+            fetch("https://api.spoonacular.com/recipes/search?query=chinese&apiKey=14201a9af8744411b9a22039f5b71d30")
             .then(response => response.text())
             .then((result) => {
 
@@ -87,7 +87,7 @@ export default function BrowseScreen({ navigation }) {
             .catch(error => console.log('error', error));}
 
             if(!loadingQuickComplete){
-                fetch("https://api.spoonacular.com/recipes/search?query=quick&apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
+                fetch("https://api.spoonacular.com/recipes/search?query=quick&apiKey=14201a9af8744411b9a22039f5b71d30")
                 .then(response => response.text())
                 .then((result) => {
     
@@ -95,7 +95,6 @@ export default function BrowseScreen({ navigation }) {
                     setRecipes(json)
                     setQuickRecipes(json)
                     setBaseUri(json.baseUri)
-                    setCurrentRecipes(json)
                     setLoadingQuickComplete(true);
     
                     console.log('hello')
@@ -104,7 +103,7 @@ export default function BrowseScreen({ navigation }) {
                 .catch(error => console.log('error', error));}
 
                 if(!loadingVeganComplete){
-                    fetch("https://api.spoonacular.com/recipes/search?diet=vegan&apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
+                    fetch("https://api.spoonacular.com/recipes/search?diet=vegan&apiKey=14201a9af8744411b9a22039f5b71d30")
                     .then(response => response.text())
                     .then((result) => {
         
@@ -121,7 +120,7 @@ export default function BrowseScreen({ navigation }) {
                     .catch(error => console.log('error', error));}
 
                     if(!loadingVegetarianComplete){
-                        fetch("https://api.spoonacular.com/recipes/search?diet=vegetarian&apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
+                        fetch("https://api.spoonacular.com/recipes/search?diet=vegetarian&apiKey=14201a9af8744411b9a22039f5b71d30")
                         .then(response => response.text())
                         .then((result) => {
             
@@ -137,7 +136,7 @@ export default function BrowseScreen({ navigation }) {
                         .catch(error => console.log('error', error));}
 
                         if(!loadingProteinComplete){
-                            fetch("https://api.spoonacular.com/recipes/search?query=protein&apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
+                            fetch("https://api.spoonacular.com/recipes/search?query=protein&apiKey=14201a9af8744411b9a22039f5b71d30")
                             .then(response => response.text())
                             .then((result) => {
                 
