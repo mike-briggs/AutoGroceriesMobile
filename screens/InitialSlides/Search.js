@@ -19,7 +19,7 @@ export default function Search({ navigation }) {
             
             <View style={styles.getStartedContainer}>
                 <Image style={styles.welcomeImage} source={require('../../assets/images/Search.png')}/>    
-                <Text style={{fontSize:24,fontWeight:'600',textAlign:'center',margin:25}}>Search over 3 Million healthy recipes.</Text>            
+                <Text style={{fontSize:24,fontWeight:'300',textAlign:'center',marginVertical:60,marginHorizontal:15}}>Search over 3 Million healthy recipes.</Text>            
             </View>
             <View style={{flex:5}}>
             <View style={styles.tabBarInfoContainer}>

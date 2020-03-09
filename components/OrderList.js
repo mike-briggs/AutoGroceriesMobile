@@ -2,8 +2,7 @@ import * as React from 'react';
 import IngredientItem from './IngredientItem.js';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function OrderList({ ingredients }){
-
+export default function OrderList({ ingredients,navigation }){
     const { MeatContent, PantryContent, ProduceContent, FrozenContent } = unpack(ingredients);
 
     console.log(MeatContent);

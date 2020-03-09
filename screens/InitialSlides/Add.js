@@ -19,7 +19,7 @@ export default function Browse({ navigation }) {
             
             <View style={styles.getStartedContainer}>
                 <Image style={styles.welcomeImage} source={require('../../assets/images/AddRecipe.png')}/>    
-                <Text style={{fontSize:24,fontWeight:'600',textAlign:'center',margin:25}}>Add your favourites to your order.</Text>            
+                <Text style={{fontSize:24,fontWeight:'300',textAlign:'center',marginVertical:60,marginHorizontal:15}}>Add your favourites to your order.</Text>            
             </View>
             <View style={{flex:5}}>
             <View style={styles.tabBarInfoContainer}>

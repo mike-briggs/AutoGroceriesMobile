@@ -19,7 +19,7 @@ export default function Browse({ navigation }) {
             
             <View style={styles.getStartedContainer}>
                 <Image style={styles.welcomeImage} source={require('../../assets/images/RecipeCard.png')}/>    
-                <Text style={{fontSize:24,fontWeight:'600',textAlign:'center',margin:25}}>Browse our curated recipes or sort based on your favourite cusines and diets.</Text>            
+                <Text style={{fontSize:24,fontWeight:'300',textAlign:'center',marginVertical:60,marginHorizontal:15}}>Browse our curated recipes or sort based on your favourite cusines and diets.</Text>            
             </View>
             <View style={{flex:5}}>
             <View style={styles.tabBarInfoContainer}>

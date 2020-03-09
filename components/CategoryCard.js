@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Text,StyleSheet,View,Image,Button,ImageBackground,Platform } from 'react-native';
 
 
-export function CategoryCard({navigation,title},props) {
+export function CategoryCard({navigation,title,image},props) {
     return( <View style={styles.card} >
-        <Image style={styles.backgroundImage} source={require('../assets/images/salad-dark.jpg')} />
+        <Image style={styles.backgroundImage} source={image} />
         <View>
             <Text style={styles.title}>{title}</Text>
         </View>
@@ -33,18 +33,19 @@ const styles = StyleSheet.create({
         width:120,
         height: 120,
         borderRadius:10,
+        backgroundColor:'#000',
         marginTop:10,
         marginBottom: 10,marginRight:10
     },
     backgroundImage:{
         position: 'absolute',
         width:120,
+        opacity:0.5,
         height:120,
         top: 0,
         left: 0,
         bottom: 0,
         right: 0,
-        opacity: 1,
         borderRadius:10
 
     },

@@ -19,7 +19,7 @@ export default function Order({ navigation }) {
             
             <View style={styles.getStartedContainer}>
                 <Image style={styles.welcomeImage} source={require('../../assets/images/RecipeIngredients.png')}/>    
-                <Text style={{fontSize:24,fontWeight:'600',textAlign:'center',margin:25}}>We will process the ingredients needed and add them to your instacart account.</Text>            
+                <Text style={{fontSize:24,fontWeight:'300',textAlign:'center',marginVertical:60,marginHorizontal:10}}>We will process the ingredients needed and add them to your instacart account.</Text>            
             </View>
             <View style={{flex:5}}>
             <View style={styles.tabBarInfoContainer}>
