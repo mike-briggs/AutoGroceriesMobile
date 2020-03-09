@@ -81,6 +81,8 @@ export default class SearchScreen extends React.Component {
       <SearchBar
         placeholder="Search Ingredients"
         onChangeText={this.updateSearch}
+        selectionColor='#000'
+
         value={search}
         lightTheme='light'
         containerStyle={{backgroundColor:'white',borderBottomWidth:0,borderTopWidth:0}}

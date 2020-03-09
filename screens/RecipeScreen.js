@@ -11,6 +11,9 @@ export default function RecipeScreen({ route, navigation,image,recipe }, props) 
   return (
     <View style={{ flex: 1 }}>
       
+      
+      
+      <ScrollView>
       <Modal animationIn="slideInUp" animationOut="slideOutDown" onBackdropPress={() => setVisible(false)} onSwipeComplete={() => this.closeModal()} swipeDirection="right" isVisible={visible} style={{ backgroundColor: 'white', borderRadius:20,marginTop:230,maxHeight: 200}}>
         <View style={{ flexDirection: 'column', flex: 1 }}>
           <Text style={{ fontWeight: '600', fontSize: 18, textAlign: 'center', flex: 1,paddingTop:50 }}>Item Added!</Text>
@@ -83,8 +86,6 @@ export default function RecipeScreen({ route, navigation,image,recipe }, props) 
         </View>
 
       </Modal>
-      
-      <ScrollView>
         <View style={styles.card} >
 
           <Image style={styles.welcomeImage} source={{uri:route.params.image}} />

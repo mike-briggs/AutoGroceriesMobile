@@ -23,7 +23,7 @@ export default class StartingIngrdients extends React.Component {
         this.state = {
             search: '',
             pantry: [],
-            spices: ['Oregano', 'Rosemary', 'Chili Flakes', 'Salt', 'Pepper', 'Basil', 'Saffron', 'Garlic', 'Olive Oil', 'Cashews', 'Tomato Paste', 'Canned Tomatoes', 'Black Beans', 'Kidney Beans', 'Turmeric', 'Chickpeas', 'Brown Sugar', 'Granulated Sugar', 'White Beans', 'Icing Sugar', 'Honey', 'Peanut Butter', 'Almonds', 'Rolled Oats', 'Quinoa', 'Flax Seeds', 'Rice', 'Paprika', 'Cumin', 'Lentils', 'Vanilla', 'Baking Soda', 'Baking Powder', 'All Purpose Flour', 'Yeast', 'Coconut Milk']
+            spices:['Oregano','Allspice','Mustard','Sage','Tarragon','Thyme','Cayenne','Nutmeg','Rosemary','Majoram','Bay Leaves','Fennel Seeds','Arrowroot','Chili Flakes','Salt','Pepper','Basil','Saffron','Garlic','Olive Oil','Cashews','Tomato Paste', 'Canned Tomatoes', 'Black Beans', 'Kidney Beans', 'Turmeric','Chickpeas','Brown Sugar', 'Granulated Sugar', 'White Beans', 'Icing Sugar', 'Honey', 'Peanut Butter','Almonds','Rolled Oats', 'Quinoa','Flax Seeds','Rice','Paprika','Cumin','Lentils','Vanilla','Baking Soda', 'Baking Powder','All Purpose Flour', 'Yeast', 'Coconut Milk'  ]
         };
 
     }

@@ -12,7 +12,7 @@ export default class PantryScreen extends React.Component {
     this.state = {
       search: '',
       pantry:[],
-      spices:['Oregano','Rosemary','Chili Flakes','Salt','Pepper','Basil','Saffron','Garlic','Olive Oil','Cashews','Tomato Paste', 'Canned Tomatoes', 'Black Beans', 'Kidney Beans', 'Turmeric','Chickpeas','Brown Sugar', 'Granulated Sugar', 'White Beans', 'Icing Sugar', 'Honey', 'Peanut Butter','Almonds','Rolled Oats', 'Quinoa','Flax Seeds','Rice','Paprika','Cumin','Lentils','Vanilla','Baking Soda', 'Baking Powder','All Purpose Flour', 'Yeast', 'Coconut Milk'  ]
+      spices:['Oregano','Allspice','Mustard','Sage','Tarragon','Thyme','Cayenne','Nutmeg','Rosemary','Majoram','Bay Leaves','Fennel Seeds','Arrowroot','Chili Flakes','Salt','Pepper','Basil','Saffron','Garlic','Olive Oil','Cashews','Tomato Paste', 'Canned Tomatoes', 'Black Beans', 'Kidney Beans', 'Turmeric','Chickpeas','Brown Sugar', 'Granulated Sugar', 'White Beans', 'Icing Sugar', 'Honey', 'Peanut Butter','Almonds','Rolled Oats', 'Quinoa','Flax Seeds','Rice','Paprika','Cumin','Lentils','Vanilla','Baking Soda', 'Baking Powder','All Purpose Flour', 'Yeast', 'Coconut Milk'  ]
     };
 
   }
@@ -55,6 +55,8 @@ export default class PantryScreen extends React.Component {
         placeholder="Search Ingredients"
         lightTheme="light"
         round
+        inputStyle={{selectionColor:'#000'}}
+        selectionColor='#000'
         value={search.toLowerCase()}
         onChangeText={this.updateSearch}
         containerStyle={{backgroundColor:'white',borderBottomWidth:0,borderTopWidth:0}}

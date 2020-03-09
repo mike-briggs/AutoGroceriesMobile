@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React , {useEffect} from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TabBarIcon from '../components/TabBarIcon';
 import BarIcon from '../components/BarIcon';
@@ -10,10 +10,12 @@ import PantryScreen from '../screens/PantryScreen';
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
-export default function BottomTabNavigator({ navigation, route }) {
+export default function BottomTabNavigator({ navigation, route,italian,load,chinese,current,healthy,quick,vegan,vegetarian,protein,baseUri,loadingItalianComplete }) {
   // Set the header title on the parent stack navigator depending on the
   // currently active tab. Learn more in the documentation:
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
+
+
   navigation.setOptions({ headerTitle: getHeaderTitle(route),
                           headerTitleAlign:'center',
                           headerRightContainerStyle:{paddingRight:20,activeTintColor: '#6CD34C',},
@@ -23,6 +25,8 @@ export default function BottomTabNavigator({ navigation, route }) {
   }
    color={'#aaaaaa'} name="ios-contact"  /> });
 
+   
+
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}tabBarOptions={{
       activeTintColor: '#6CD34C',
@@ -30,6 +34,15 @@ export default function BottomTabNavigator({ navigation, route }) {
     }} >
       <BottomTab.Screen
         name="Home"
+        italian={italian}
+        healthy={healthy}
+        chinese={chinese}
+        protein={protein}
+        vegan={vegan}
+        vegetarian={vegetarian}
+        quick={quick}
+        baseUri={baseUri}
+        loadingItalianComplete={true}
         component={BrowseScreen}
         options={{
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-basket"  />,

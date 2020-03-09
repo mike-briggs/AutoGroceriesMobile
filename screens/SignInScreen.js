@@ -18,7 +18,10 @@ export default function SignInScreen({ navigation }) {
             <View style={{ padding: 20 }}>
                 <Input
                     label="Email Address or Username"
-                    labelStyle={styles.inputLabel}
+                    labelStyle={[styles.inputLabel,{selectionColor:'#000'
+                }]}
+                    selectionColor='#000'
+
                     inputContainerStyle={{borderBottomWidth:0, borderRadius: 30, fontSize: 1, height:48, backgroundColor: 'rgba(0,0,0,0.05)' }}
                     leftIcon={
                         <Icon
@@ -32,7 +35,9 @@ export default function SignInScreen({ navigation }) {
                
                 <Input
                     label="Password"
-                    labelStyle={styles.inputLabel}
+                    labelStyle={[styles.inputLabel,{selectionColor:'#000'
+                }]}
+                selectionColor='#000'
                     inputContainerStyle={{borderBottomWidth:0, borderRadius: 30, fontSize: 1, height:48, backgroundColor: 'rgba(0,0,0,0.05)' }}
                     leftIcon={
                         <Icon

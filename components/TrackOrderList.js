@@ -9,7 +9,7 @@ export default function TrackOrderList ({ current }){
             <Option 
                 num='1'
                 numColor={(1 < current)?(colors.accentGreen):(null)}
-                stage='RECIEVED'
+                stage='RECEIVED'
                 state='COMPLETE'
                 isLast={false}/>
             <Option 
@@ -44,7 +44,7 @@ const Option = ({ num, numColor, stage, state, isLast }) => {
     return (
         <View style={(isLast)?(styles.lastOption):(styles.option)}>
             <View style={styles.optionTextContainer}>
-                <Text style={[styles.optionText, (numColor)?({ color: numColor }):({})]}>{ num }</Text>
+                <Text style={[styles.optionNumber, (numColor)?({ color: numColor }):({})]}>{ num }</Text>
             </View>
             <View style={styles.optionTextContainerDate}>
                 <Text style={styles.optionTextDate}>{ stage }</Text>
@@ -65,14 +65,23 @@ const styles = StyleSheet.create({
       backgroundColor: '#fafafa',
     },
     optionStatusContainer:{
-        marginLeft: 40
+        marginLeft: 0,
+        flex:3
     },
     optionTextDate:{
         fontWeight:'600',
-        fontSize: 18
+        alignSelf:'flex-start',
+        textAlign:'left',
+        paddingLeft:20,
+        fontSize: 14
     }, 
+    optionNumber:{
+        fontSize: 32,
+        fontWeight:'600'
+    },
     optionStatusText:{
-        fontSize: 12
+        fontSize: 12,
+        alignSelf:'flex-end'
     }, 
     contentContainer: {
       paddingTop: 15,
@@ -93,9 +102,9 @@ const styles = StyleSheet.create({
       display: 'flex',
     },
     optionTextContainerDate:{
-        flex:1,
+        flex:3,
         display: 'flex',
-        marginLeft: -80
+        marginLeft: 0
     },
     option: {
       flexDirection: 'row',

@@ -1,12 +1,16 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View, Button } from 'react-native';
+import { Image, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import {Button} from 'react-native-elements'
 import TimeOption from '../components/TimeOption.js';
 import { ScrollView } from 'react-native-gesture-handler';
 import units from '../constants/Units.js';
+import Icon from 'react-native-ionicons'
 import OrderList from '../components/OrderList.js';
 import TrackOrderList from '../components/TrackOrderList.js';
 
 export default function TrackOrder({ navigation, order }){
+
+    navigation.setOptions({headerLeft:null})
 
     return (
         <View style={styles.container}>
@@ -21,8 +25,40 @@ export default function TrackOrder({ navigation, order }){
                         <Text style={styles.orderDate}> 2020-03-07 </Text>
                     </View>
                 </View>
-                <TrackOrderList current='2'/>
+                <TrackOrderList  current='2'/>
             </ScrollView>
+            <View style={styles.tabBarInfoContainer}>
+                <View style={{flex:1}}>
+
+                </View>
+                <View style={{flex:1,width:'50%',alignSelf:'flex-end',margin:15}}>
+                    <Button
+                                onPress={()=>navigation.navigate('Root')
+                            }
+                                buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
+                                    ios: {
+                                        shadowColor: 'black',
+                                        shadowOffset: { width: 0, height: 3 },
+                                        shadowOpacity: 0.12,
+                                        shadowRadius: 10,
+                                    },
+                                    android: {
+                                        elevation: 6,
+                                    },
+                                })}}
+                                icon={
+                                    <Icon
+                                        name="arrow-forward"
+                                        size={18}
+                                        color="white"
+                                        style={{paddingLeft:10, paddingTop:2}}
+                                    />
+                                }
+                                iconRight
+                                title="HOME"
+                            /> 
+                </View>
+            </View>
         </View>
     );
 }
@@ -65,11 +101,13 @@ let timeOptionArr = templateTime.map(() => {return false;});
 const styles = StyleSheet.create({
     orderTime:{
         fontSize:24,
-        fontWeight:'600'
+        fontWeight:'600',
+        alignSelf:'flex-end'
     },
     orderDate:{
         fontSize:12,
-        fontWeight:'600'
+        fontWeight:'600',
+        alignSelf:'flex-end'
     },
     input:{
         padding:10,
@@ -93,6 +131,7 @@ const styles = StyleSheet.create({
         display:'flex',
         flexDirection:'row',
         marginHorizontal:20,
+        marginVertical:10,
         alignItems:'flex-end',
         justifyContent:'space-between'
     },

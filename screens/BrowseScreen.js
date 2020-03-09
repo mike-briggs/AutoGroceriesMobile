@@ -8,185 +8,51 @@ import { MonoText } from '../components/StyledText';
 import { RecipeCard } from '../components/RecipeCard';
 import { CategoryCard } from '../components/CategoryCard';
 
-export default function BrowseScreen({ navigation }) {
+export default function BrowseScreen({ navigation,italian,load,chinese,current,healthy,quick,vegan,vegetarian,protein,baseUri,loadingItalianComplete }) {
 
     const [categories, setCategories] = React.useState([{ title: 'Italian', image: require('../assets/images/italian.jpeg') }, { title: 'Healthy', image: require('../assets/images/salad.jpg') }, { title: 'Chinese', image: require('../assets/images/chinese-food.jpeg') }, { title: 'Quick', image: require('../assets/images/pasta.jpeg') }, { title: 'Vegan', image: require('../assets/images/vegan.jpeg') }, { title: 'Vegetarian', image: require('../assets/images/salad.jpg') }, { title: 'Protein', image: require('../assets/images/steak.jpeg') }])
     const [recipes, setRecipes] = React.useState()
-    const [currentRecipes, setCurrentRecipes] = React.useState()
-    const [italianRecipes, setItalianRecipes] = React.useState()
-    const [chineseRecipes, setChineseRecipes] = React.useState()
-    const [healthyRecipes, setHealthyRecipes] = React.useState()
-    const [quickRecipes, setQuickRecipes] = React.useState()
-    const [veganRecipes, setVeganRecipes] = React.useState()
-    const [vegetarianRecipes, setVegetarianRecipes] = React.useState()
-    const [proteinRecipes, setProteinRecipes] = React.useState()
+    const [currentRecipes, setCurrentRecipes] = React.useState(italian)
     
-    const [baseUri, setBaseUri] = React.useState()
-    const [currentCategory, setCurrentCategory] = React.useState('Chinese')
-    const [loadingItalianComplete, setLoadingItalianComplete] = React.useState()
-    const [loadingHealthyComplete, setLoadingHealthyComplete] = React.useState()
-    const [loadingChineseComplete, setLoadingChineseComplete] = React.useState()
-    const [loadingQuickComplete, setLoadingQuickComplete] = React.useState()
-    const [loadingVeganComplete,setLoadingVeganComplete] = React.useState()
-    const [loadingProteinComplete, setLoadingProteinComplete] = React.useState()
-    const [loadingVegetarianComplete, setLoadingVegetarianComplete] = React.useState()
+    const [currentCategory, setCurrentCategory] = React.useState('Italian')
 
 
     useEffect(() => {
-
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        var raw = JSON.stringify({ "query": "chicken", "cuisine": "", "intolerences": "", "diet": "" });
-
-        var requestOptions2 = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-
-        if(!loadingItalianComplete){fetch("https://api.spoonacular.com/recipes/search?query=italian&apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
-            .then(response => response.text())
-            .then((result) => {
-                var json = JSON.parse(result);
-                setItalianRecipes(json)
-                setLoadingItalianComplete(true)
-                console.log('hello')
-                console.log(json)
-            })
-            .catch(error => console.log('error', error));}
-
-            if(!loadingHealthyComplete){
-        fetch("https://api.spoonacular.com/recipes/search?query=healthy&apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
-            .then(response => response.text())
-            .then((result) => {
-                var json = JSON.parse(result);
-                setHealthyRecipes(json)
-                setLoadingHealthyComplete(true)
-                console.log('hello')
-                console.log(json)
-            })
-            .catch(error => console.log('error', error));}
-
-            if(!loadingChineseComplete){
-            fetch("https://api.spoonacular.com/recipes/search?query=chinese&apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
-            .then(response => response.text())
-            .then((result) => {
-
-                var json = JSON.parse(result);
-                setRecipes(json)
-                setChineseRecipes(json)
-                setBaseUri(json.baseUri)
-                setCurrentRecipes(json)
-                setLoadingChineseComplete(true);
-
-                console.log('hello')
-                console.log(recipes)
-            })
-            .catch(error => console.log('error', error));}
-
-            if(!loadingQuickComplete){
-                fetch("https://api.spoonacular.com/recipes/search?query=quick&apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
-                .then(response => response.text())
-                .then((result) => {
-    
-                    var json = JSON.parse(result);
-                    setRecipes(json)
-                    setQuickRecipes(json)
-                    setBaseUri(json.baseUri)
-                    setCurrentRecipes(json)
-                    setLoadingQuickComplete(true);
-    
-                    console.log('hello')
-                    console.log(recipes)
-                })
-                .catch(error => console.log('error', error));}
-
-                if(!loadingVeganComplete){
-                    fetch("https://api.spoonacular.com/recipes/search?diet=vegan&apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
-                    .then(response => response.text())
-                    .then((result) => {
-        
-                        var json = JSON.parse(result);
-                        setRecipes(json)
-                        setVeganRecipes(json)
-                        setBaseUri(json.baseUri)
-                        setCurrentRecipes(json)
-                        setLoadingVeganComplete(true);
-        
-                        console.log('hello')
-                        console.log(recipes)
-                    })
-                    .catch(error => console.log('error', error));}
-
-                    if(!loadingVegetarianComplete){
-                        fetch("https://api.spoonacular.com/recipes/search?diet=vegetarian&apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
-                        .then(response => response.text())
-                        .then((result) => {
-            
-                            var json = JSON.parse(result);
-                            setRecipes(json)
-                            setVegetarianRecipes(json)
-                            setBaseUri(json.baseUri)
-                            setLoadingVegetarianComplete(true);
-            
-                            console.log('hello')
-                            console.log(recipes)
-                        })
-                        .catch(error => console.log('error', error));}
-
-                        if(!loadingProteinComplete){
-                            fetch("https://api.spoonacular.com/recipes/search?query=protein&apiKey=b99ab6f1589c4bde9e171cdcf1602c8f")
-                            .then(response => response.text())
-                            .then((result) => {
-                
-                                var json = JSON.parse(result);
-                                setRecipes(json)
-                                setProteinRecipes(json)
-                                setBaseUri(json.baseUri)
-                                setLoadingProteinComplete(true);
-                
-                                console.log('hello')
-                                console.log(recipes)
-                            })
-                            .catch(error => console.log('error', error));}
-
         switch (currentCategory) {
             case 'Italian': 
-                if(loadingItalianComplete){
-                setCurrentRecipes(italianRecipes)}
+                console.log('italian')
+                console.log(italian)
+                setCurrentRecipes(italian)
                 break;
             case 'Healthy': 
-                if(loadingHealthyComplete){setCurrentRecipes(healthyRecipes)}
+                setCurrentRecipes(healthy)
                 break;
             case 'Chinese':
-                if(loadingChineseComplete){setCurrentRecipes(chineseRecipes)}
-                break;
+                setCurrentRecipes(chinese)
+                break; 
             case 'Quick': 
-                if(loadingQuickComplete){
-                setCurrentRecipes(quickRecipes)}
+                setCurrentRecipes(quick)
                 break;
             case 'Vegan': 
-                if(loadingVeganComplete){setCurrentRecipes(veganRecipes)}
+                setCurrentRecipes(vegan)
                 break;
             case 'Vegetarian':
-                if(loadingVegetarianComplete){setCurrentRecipes(vegetarianRecipes)}
+                setCurrentRecipes(vegetarian)
                 break;
             case 'Protein':
-                if(loadingProteinComplete){setCurrentRecipes(proteinRecipes)}
+                setCurrentRecipes(protein)
             default:
-                setCurrentRecipes(chineseRecipes)
+                setCurrentRecipes(chinese)
                 break;
 
             
         }
 
 
-    }, [currentCategory])
+    }, [italian])
 
 
-    if (!loadingChineseComplete) {
+    if (!load) {
 
         return null;
 
