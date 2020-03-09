@@ -66,30 +66,35 @@ export default function SelectTime({ navigation, order }){
                 </View>
             </View>
             </ScrollView>
-            <Button
-                        onPress={ () => {(orderTime)?(navigation.navigate('TrackOrder')):(console.log('no order time selected!'))} }
-                        buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
-                            ios: {
-                                shadowColor: 'black',
-                                shadowOffset: { width: 0, height: 3 },
-                                shadowOpacity: 0.12,
-                                shadowRadius: 10,
-                            },
-                            android: {
-                                elevation: 6,
-                            },
-                        })}}
-                        icon={
-                            <Icon
-                                name="arrow-forward"
-                                size={18}
-                                color="white"
-                                style={{paddingLeft:10, paddingTop:2}}
+            <View style={styles.tabBarInfoContainer}>
+                <View style={{flex:1}}></View>
+                <View style={{flex:1}}>
+                    <Button
+                                onPress={ () => {(orderTime)?(navigation.navigate('TrackOrder')):(console.log('no order time selected!'))} }
+                                buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
+                                    ios: {
+                                        shadowColor: 'black',
+                                        shadowOffset: { width: 0, height: 3 },
+                                        shadowOpacity: 0.12,
+                                        shadowRadius: 10,
+                                    },
+                                    android: {
+                                        elevation: 6,
+                                    },
+                                })}}
+                                icon={
+                                    <Icon
+                                        name="arrow-forward"
+                                        size={18}
+                                        color="white"
+                                        style={{paddingLeft:10, paddingTop:2}}
+                                    />
+                                }
+                                iconRight
+                                title="CONTINUE"
                             />
-                        }
-                        iconRight
-                        title="CONTINUE"
-                    />
+                </View>
+            </View>
         </View>
     );
 }
@@ -130,6 +135,29 @@ const templateTime = [
 let timeOptionArr = templateTime.map(() => {return false;});
 
 const styles = StyleSheet.create({
+    tabBarInfoContainer: {
+        displat:'flex',
+        position: 'absolute',
+        bottom: 0,
+        flex:1,
+        left: 0,
+        right: 0,
+        flexDirection:'row',
+        textAlign:'right',
+        ...Platform.select({
+            ios: {
+                shadowColor: 'black',
+                shadowOffset: { width: 0, height: -3 },
+                shadowOpacity: 0.1,
+                shadowRadius: 3,
+            },
+            android: {
+                elevation: 20,
+            },
+        }),
+        backgroundColor: 'transparent',
+        padding: 15,
+    },
     input:{
         padding:10,
         fontSize:15,

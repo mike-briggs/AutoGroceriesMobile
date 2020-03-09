@@ -20,31 +20,36 @@ export default function OrderDetails({ navigation }){
                     </View>
                 </View>
             </ScrollView>
-            <Button
-                        onPress={()=>navigation.navigate('SelectTime')
-                    }
-                        buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
-                            ios: {
-                                shadowColor: 'black',
-                                shadowOffset: { width: 0, height: 3 },
-                                shadowOpacity: 0.12,
-                                shadowRadius: 10,
-                            },
-                            android: {
-                                elevation: 6,
-                            },
-                        })}}
-                        icon={
-                            <Icon
-                                name="arrow-forward"
-                                size={18}
-                                color="white"
-                                style={{paddingLeft:10, paddingTop:2}}
-                            />
-                        }
-                        iconRight
-                        title="CONTINUE"
-                    /> 
+            <View style={styles.tabBarInfoContainer}>
+                <View style={{flex:1}}></View>
+                <View style={{flex:1}}>
+                    <Button
+                                onPress={()=>navigation.navigate('SelectTime')
+                            }
+                                buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
+                                    ios: {
+                                        shadowColor: 'black',
+                                        shadowOffset: { width: 0, height: 3 },
+                                        shadowOpacity: 0.12,
+                                        shadowRadius: 10,
+                                    },
+                                    android: {
+                                        elevation: 6,
+                                    },
+                                })}}
+                                icon={
+                                    <Icon
+                                        name="arrow-forward"
+                                        size={18}
+                                        color="white"
+                                        style={{paddingLeft:10, paddingTop:2}}
+                                    />
+                                }
+                                iconRight
+                                title="CONTINUE"
+                            /> 
+                </View>
+            </View>
         </View>
     );
 }
@@ -109,6 +114,29 @@ const templateOrder = {
 }
 
 const styles = StyleSheet.create({
+    tabBarInfoContainer: {
+        position: 'absolute',
+        display: 'flex',
+        bottom: 0,
+        flex:1,
+        left: 0,
+        right: 0,
+        flexDirection:'row',
+        textAlign:'right',
+        ...Platform.select({
+            ios: {
+                shadowColor: 'black',
+                shadowOffset: { width: 0, height: -3 },
+                shadowOpacity: 0.1,
+                shadowRadius: 3,
+            },
+            android: {
+                elevation: 20,
+            },
+        }),
+        backgroundColor: 'transparent',
+        padding: 15,
+    },
     textContainer: {
         flex: 1,
         marginRight: 12,
