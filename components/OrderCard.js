@@ -39,8 +39,20 @@ const styles = StyleSheet.create({
     cardContainer:{
         display: 'flex',
         flexDirection: 'column',
-        borderRadius:5,
-        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+        borderColor:'#999999',
+        borderWidth:StyleSheet.hairlineWidth,
+        borderRadius:20,
+        ...Platform.select({
+            ios: {
+                shadowColor: 'black',
+                shadowOffset: { width: 0, height: 3 },
+                shadowOpacity: 0.1,
+                shadowRadius: 5,
+            },
+            android: {
+                elevation: 5,
+            },
+        }),
         backgroundColor:'#FFF',
         margin:20
     },
@@ -58,8 +70,6 @@ const styles = StyleSheet.create({
         alignItems:"flex-end",
     },
     bottomContent:{
-        borderColor:'black',
-        borderWidth: '1',
         display: 'flex',
         flexDirection:'row',
         paddingHorizontal:20,
@@ -122,7 +132,7 @@ const styles = StyleSheet.create({
         borderRadius:40,
         backgroundColor:'#6CD34C',
         fontWeight:'500',
-        float:'right',
+        alignSelf:'flex-end',
         paddingHorizontal:15,
         paddingVertical:5
     },

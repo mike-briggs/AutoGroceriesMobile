@@ -87,7 +87,7 @@ export default function RecipeScreen({ route, navigation,image,recipe }, props) 
       <ScrollView>
         <View style={styles.card} >
 
-          <Image style={styles.welcomeImage} source={route.params.image} />
+          <Image style={styles.welcomeImage} source={{uri:route.params.image}} />
           <View style={styles.recipeContainer}>
             <View style={styles.descContainer} >
               <Text style={styles.title}>{JSON.stringify(route.params.title).slice(1, JSON.stringify(route.params.title).length - 1)}</Text>

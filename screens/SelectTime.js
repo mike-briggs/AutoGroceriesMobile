@@ -3,6 +3,8 @@ import { Image, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } 
 import { Button } from 'react-native-elements';
 import TimeOption from '../components/TimeOption.js';
 import { ScrollView } from 'react-native-gesture-handler';
+import Modal from 'react-native-modal'
+
 import units from '../constants/Units.js';
 import OrderList from '../components/OrderList.js';
 import Icon from 'react-native-ionicons';
@@ -13,9 +15,55 @@ const { useState } = React;
 export default function SelectTime({ navigation, order }){
     
     const [ orderTime, setOrderTime ] = useState(0);
+    const [visible, setVisible] = React.useState(false)
 
     return (
         <View style={styles.container}>
+            <Modal animationIn="slideInUp" animationOut="slideOutDown" onBackdropPress={() => setVisible(false)} onSwipeComplete={() => this.closeModal()} swipeDirection="right" isVisible={visible} style={{ backgroundColor: 'white', borderRadius:20,marginTop:230,maxHeight: 200}}>
+        <View style={{ flexDirection: 'column', flex: 1 }}>
+          <Text style={{ fontWeight: '600', fontSize: 18, textAlign: 'center', flex: 1,paddingTop:50 }}>Please select a delivery window</Text>
+
+          <View style={{ flexDirection: 'row', flex: 1 }}>
+            <View style={{ flex: 1,paddingLeft:10 ,paddingRight:5}}>
+              
+            </View>
+            <View style={{ flex: 1,paddingRight:10,paddingLeft:5 }}>
+              <Button
+                onPress={() =>{ setVisible(false)
+                  navigation.navigate('Root')}
+              }
+                icon={
+                  <Icon
+                      name="add"
+                      size={22}
+                      color="white"
+                      style={{paddingLeft:10, paddingTop:2}}
+                  />
+              }
+              iconRight
+                buttonStyle={{
+                  borderRadius: 50, backgroundColor: '#6CD34C', fontWeight: '500', padding: 15, ...Platform.select({
+                    ios: {
+                      shadowColor: 'black',
+                      shadowOffset: { width: 0, height: 3 },
+                      shadowOpacity: 0.12,
+                      shadowRadius: 10,
+                    },
+                    android: {
+                      elevation: 6,
+                    },
+                  })
+                }}
+                title="Back"
+              />
+            </View>
+
+
+          </View>
+
+        </View>
+
+      </Modal>
             <ScrollView>
                 <View style={styles.header}>
                     <Text style={styles.headerText}>Select Time</Text>
@@ -66,11 +114,14 @@ export default function SelectTime({ navigation, order }){
                 </View>
             </View>
             </ScrollView>
+            
             <View style={styles.tabBarInfoContainer}>
-                <View style={{flex:1}}></View>
-                <View style={{flex:1}}>
+                <View style={{flex:10}}>
+
+                </View>
+                <View style={{flex:1,alignSelf:'flex-end',width:'50%',margin:15}}>
                     <Button
-                                onPress={ () => {(orderTime)?(navigation.navigate('TrackOrder')):(console.log('no order time selected!'))} }
+                                onPress={ () => {(orderTime)?(navigation.navigate('TrackOrder')):(setVisible(true))} }
                                 buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
                                     ios: {
                                         shadowColor: 'black',
@@ -136,14 +187,13 @@ let timeOptionArr = templateTime.map(() => {return false;});
 
 const styles = StyleSheet.create({
     tabBarInfoContainer: {
-        displat:'flex',
         position: 'absolute',
         bottom: 0,
-        flex:1,
+        flex: 1,
         left: 0,
         right: 0,
-        flexDirection:'row',
-        textAlign:'right',
+        flexDirection: 'row',
+        textAlign: 'right',
         ...Platform.select({
             ios: {
                 shadowColor: 'black',
