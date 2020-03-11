@@ -6,7 +6,7 @@ Spoonacular API,
 Reverse Engineered Instacart API, 
 Flask, 
 mongoDB
-# Demo
+# Current Demo
 ![Alt text](./app-mockup.gif?raw=true "Site Home")
 
 
