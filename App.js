@@ -24,6 +24,7 @@ import Add from './screens/InitialSlides/Add'
 import Order from './screens/InitialSlides/Order'
 import Instacart from './screens/InitialSlides/Instacart'
 
+console.disableYellowBox = true;
 
 const Stack = createStackNavigator();
 
