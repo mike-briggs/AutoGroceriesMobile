@@ -15,7 +15,7 @@ export default function SignUpScreen({ navigation }) {
 
             </View>
             <View style={{ flex: 10 }}>
-                <View style={{ padding: 20 }}>
+                {/*<View style={{ padding: 20 }}>
                     <Input
                         label="Email Address"
                         labelStyle={styles.inputLabel}
@@ -71,7 +71,7 @@ export default function SignUpScreen({ navigation }) {
                         }
                     />
 
-                </View>
+                </View>*/}
                 <View style={styles.tabBarInfoContainer}>
                     <View style={{ flex: 1 }}>
                         <Button
