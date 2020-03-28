@@ -3,7 +3,7 @@ import { Text,StyleSheet,View,Image,Button,Platform } from 'react-native';
 import TextIcon from '../components/TextIcon';
 
 
-export function RecipeCard({navigation,title,image},props) {
+export function RecipeCard({navigation,title,image, readyTime, servings },props) {
     return( <View {...props} style={styles.card} >
 
         <Image  style={styles.welcomeImage} source={{uri:image}}/>
@@ -14,9 +14,9 @@ export function RecipeCard({navigation,title,image},props) {
         </View>
 
         <View style={{flex: 1, flexDirection: 'row',alignItems:'center'}}>
-        <TextIcon sheet={styles.iconList} size={18} text="30 Min." name='alarm' color="#000"></TextIcon>
-        <TextIcon sheet={styles.iconList} size={18} text="300 Cal." name='flash' color="#000"></TextIcon>
-        <TextIcon sheet={styles.iconList} size={18} text="6 Serv." name='person' color="#000"></TextIcon>
+        <TextIcon sheet={styles.iconList} size={18} text={readyTime+" Min."} name='alarm' color="#000"></TextIcon>
+        {/*<TextIcon sheet={styles.iconList} size={18} text="300 ." name='flash' color="#000"></TextIcon>*/}
+        <TextIcon sheet={styles.iconList} size={18} text={servings+" Serv."} name='person' color="#000"></TextIcon>
 
         </View>
         
