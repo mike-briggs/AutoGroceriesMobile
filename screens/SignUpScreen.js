@@ -75,7 +75,7 @@ export default function SignUpScreen({ navigation }) {
                 <View style={styles.tabBarInfoContainer}>
                     <View style={{ flex: 1 }}>
                         <Button
-                            onPress={() => navigation.navigate('Ingredients')
+                            onPress={() => {/* Take user to instacart */}
                             }
                             buttonStyle={{ borderRadius: 40, backgroundColor: '#6CD34C', fontWeight: '500', float: 'right', padding: 15 }}
                             icon={
@@ -87,7 +87,7 @@ export default function SignUpScreen({ navigation }) {
                                 />
                             }
                             iconRight
-                            title='SIGN UP'
+                            title='Go To Instacart'
                         />
                     </View>
 

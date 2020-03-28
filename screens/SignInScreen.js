@@ -115,10 +115,10 @@ export default function SignInScreen({ navigation }) {
                     <Text style={{textAlign:'center',color:'#909090'}}>Don't have an account?</Text>
 
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=> navigation.navigate('SignUp')} style={{flex:1,textAlign:'center',paddingTop:0}}>
+                {/*<TouchableOpacity onPress={()=> navigation.navigate('SignUp')} style={{flex:1,textAlign:'center',paddingTop:0}}>
                     <Text style={{textAlign:'center',color:'#909090'}}>Forgot password.</Text>
 
-                </TouchableOpacity>
+                </TouchableOpacity>*/}
             </View>
             <View style={{flex:1}}>
                 
