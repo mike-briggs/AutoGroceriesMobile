@@ -1,10 +1,49 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-ionicons'
 import { Input, Button } from 'react-native-elements'
 import * as WebBrowser from 'expo-web-browser';
+import { disableExpoCliLogging } from 'expo/build/logs/Logs';
 
 export default function SignInScreen({ navigation }) {
+
+    let [ loading, setLoading ] = useState(false);
+    let [ email, setEmail ] = useState('');
+    let [ password, setPassword ] = useState('');
+
+    const signIn = async () => {
+        try{
+            let res = await fetch('https://meal-planner-qhacks-2020.appspot.com/login',{
+            method:'post',
+            headers: {
+                'Content-Type':'application/json',
+
+            } ,
+            body:JSON.stringify({
+                email: email,
+                password: password
+            })
+            });
+            console.log(res);
+            if(res.ok){
+                let body = await res.json();
+                console.log(body);
+                navigation.navigate('Ingredients');
+                setLoading(false);
+            }
+            else{
+                alert('incorrect login attempt');
+            }
+        }
+        catch(e){
+            console.log('error');
+            console.log(e);
+        }
+
+        setLoading(false);
+        
+    }
+
     return (
         <View style={styles.container}>
             {/*<View style={styles.welcomeContainer}>
@@ -17,6 +56,7 @@ export default function SignInScreen({ navigation }) {
             <View style={{flex:5}}>
             <View style={{ padding: 20 }}>
                 <Input
+                    onChangeText={text => setEmail(text)}
                     label="Email Address or Username"
                     labelStyle={styles.inputLabel}
                     inputContainerStyle={{borderBottomWidth:0, borderRadius: 30, fontSize: 1, height:48, backgroundColor: 'rgba(0,0,0,0.05)' }}
@@ -31,6 +71,7 @@ export default function SignInScreen({ navigation }) {
                 />
                
                 <Input
+                    onChangeText={text => setPassword(text)}
                     label="Password"
                     secureTextEntry={true}
                     labelStyle={styles.inputLabel}
@@ -49,19 +90,22 @@ export default function SignInScreen({ navigation }) {
             <View style={styles.tabBarInfoContainer}>
             <View style={{flex:1}}>
                 <Button
-                        onPress={()=> navigation.navigate('Ingredients')
-                    }
+                        onPress={()=>{ 
+                            if(!loading){
+                                setLoading(true); 
+                                signIn();
+                            }
+                        }}
                         buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15}}
-                        icon={
-                            <Icon
-                                name="arrow-forward"
+                        icon=
+                            {(<Icon
+                                name={(loading)?"hourglass":"arrow-forward"}
                                 size={18}
                                 color="white"
                                 style={{paddingLeft:10, paddingTop:2}}
-                            />
-                        }
+                            />)}
                         iconRight
-                        title='SIGN IN'
+                        title={(loading)?('LOADING'):('SIGN IN')}
                     /> 
                 </View>
                 

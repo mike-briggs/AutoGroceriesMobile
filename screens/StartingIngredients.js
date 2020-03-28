@@ -21,11 +21,71 @@ export default class StartingIngrdients extends React.Component {
         });
 
         this.state = {
+            pantryLoading: false,
+            itemsLoading: true,
             search: '',
             pantry: [],
             spices: ['Oregano', 'Rosemary', 'Chili Flakes', 'Salt', 'Pepper', 'Basil', 'Saffron', 'Garlic', 'Olive Oil', 'Cashews', 'Tomato Paste', 'Canned Tomatoes', 'Black Beans', 'Kidney Beans', 'Turmeric', 'Chickpeas', 'Brown Sugar', 'Granulated Sugar', 'White Beans', 'Icing Sugar', 'Honey', 'Peanut Butter', 'Almonds', 'Rolled Oats', 'Quinoa', 'Flax Seeds', 'Rice', 'Paprika', 'Cumin', 'Lentils', 'Vanilla', 'Baking Soda', 'Baking Powder', 'All Purpose Flour', 'Yeast', 'Coconut Milk']
         };
 
+    }
+
+    loadPantryItems = async () => {
+        this.setState({itemsLoading:true});
+        try{
+            let res = await fetch('https://meal-planner-qhacks-2020.appspot.com/get-user-pantry',{
+                method:'get'
+            });
+            console.log(res);
+            if(res.ok){
+                let body = await res.json();
+                console.log(body);
+            }
+            else{
+                //alert('Unable to load your pantry items.');
+            }
+        }
+        catch(e){
+            alert('Unable to load your pantry items.');
+            console.log('error');
+            console.log(e);
+        }
+        this.setState({itemsLoading: false});
+    }
+
+    componentDidMount(){
+        this.loadPantryItems();
+    }
+
+    addIngredients = async () => {
+        const ingredients = this.state.pantry;
+        this.setState({pantryLoading:true});
+        try{
+            let res = await fetch('https://meal-planner-qhacks-2020.appspot.com/add-user-pantry',{
+                method:'post',
+                headers: {
+                    'Content-Type':'application/json',
+
+                } ,
+                body:JSON.stringify({
+                    new_pantry_items: this.state.pantry
+                })
+            });
+            console.log(res);
+            if(res.ok){
+                let body = await res.json();
+                console.log(body);
+                this.props.navigation.navigate('root');
+            }
+            else{
+                alert('unable to store pantry items');
+            }
+        }
+        catch(e){
+            console.log('error');
+            console.log(e);
+        }
+        this.setState({pantryLoading: false});
     }
 
     updateSearch = search => {
@@ -105,7 +165,7 @@ export default class StartingIngrdients extends React.Component {
                             ))}
                         <View style={{ padding: 20 }}>
                             <Text style={{ fontSize: 24, fontWeight: '600' }}>In Pantry</Text>
-                            {(pantry.length == 0) ? <Text style={{ fontSize: 14, fontweight: '400' }}>Nothing in pantry.</Text> : <></>}
+                            {(this.state.itemsLoading)?(<View style={{display:'flex',justifyContent:'center'}}><Text style={{ fontSize: 14, fontweight: '400' }}>LOADING ITEMS</Text></View>):((pantry.length == 0) ? <Text style={{ fontSize: 14, fontweight: '400' }}>Nothing in pantry.</Text> : <></>)}
                         </View>
                         <View style={{paddingBottom:40}}>
                         {(pantry.length > 0) ? pantry.map(item => (
@@ -169,8 +229,7 @@ export default class StartingIngrdients extends React.Component {
                 </View>
                 <View style={{flex:1}}>
                 <Button
-                        onPress={()=> this.props.navigation.navigate('Root')
-                    }
+                        onPress={() => {this.addIngredients()}}
                         buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
                             ios: {
                                 shadowColor: 'black',
@@ -184,14 +243,14 @@ export default class StartingIngrdients extends React.Component {
                         })}}
                         icon={
                             <Icon
-                                name="arrow-forward"
+                                name={(this.state.pantryLoading)?"hourglass":"arrow-forward"}
                                 size={18}
                                 color="white"
                                 style={{paddingLeft:10, paddingTop:2}}
                             />
                         }
                         iconRight
-                        title="ALL DONE"
+                        title={(this.state.pantryLoading)?"LOADING":"ALL DONE"}
                     /> 
                 </View>
             

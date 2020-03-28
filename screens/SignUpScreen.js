@@ -87,7 +87,7 @@ export default function SignUpScreen({ navigation }) {
                                 />
                             }
                             iconRight
-                            title='SIGN IN'
+                            title='SIGN UP'
                         />
                     </View>
 
