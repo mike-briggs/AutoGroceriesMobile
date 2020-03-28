@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Platform, Text, View, Image } from 'react-native';
 import { Button } from "react-native-elements";
 import Icon from 'react-native-ionicons'
@@ -6,8 +6,15 @@ import Modal from 'react-native-modal'
 import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import TextIcon from '../components/TextIcon'
-export default function RecipeScreen({ route, navigation,image,recipe }, props) {
-  const [visible, setVisible] = React.useState(false)
+export default function RecipeScreen({ route, navigation }, props) {
+  const [ visible, setVisible ] = React.useState(false);
+  const [ items, setItems ] = React.useState();
+
+  useEffect(() => {
+    fetch(`https://api.spoonacular.com/recipes/${route.params.id}/ingredientWidget.json?apiKey=14201a9af8744411b9a22039f5b71d30`,{method:'get'}).then(res => res.text()).then(result => {
+      setItems(JSON.parse(result));
+    });
+  }, [])
   return (
     <View style={{ flex: 1 }}>
       
@@ -86,7 +93,6 @@ export default function RecipeScreen({ route, navigation,image,recipe }, props) 
       
       <ScrollView>
         <View style={styles.card} >
-
           <Image style={styles.welcomeImage} source={{uri:route.params.image}} />
           <View style={styles.recipeContainer}>
             <View style={styles.descContainer} >
@@ -94,11 +100,11 @@ export default function RecipeScreen({ route, navigation,image,recipe }, props) 
               <Text style={styles.p}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</Text>
             </View>
             <View style={styles.iconContainer}>
-              <TextIcon sheet={styles.rating} size={18} text="4.9" name='star' color="#EFB110"></TextIcon>
+              {/*<TextIcon sheet={styles.rating} size={18} text="4.9" name='star' color="#EFB110"></TextIcon>*/}
 
-              <TextIcon sheet={styles.rating} size={18} text="30 Min." name='alarm' color="#000"></TextIcon>
-              <TextIcon sheet={styles.rating} size={18} text="300 Cal." name='flash' color="#000"></TextIcon>
-              <TextIcon sheet={styles.rating} size={18} text="6 Serv." name='person' color="#000"></TextIcon>
+              <TextIcon sheet={styles.rating} size={18} text={route.params.readyTime + " Min."} name='alarm' color="#000"></TextIcon>
+              {/*<TextIcon sheet={styles.rating} size={18} text="300 Cal." name='flash' color="#000"></TextIcon>*/}
+              <TextIcon sheet={styles.rating} size={18} text={route.params.servings + " Serv."} name='person' color="#000"></TextIcon>
 
             </View>
           </View>
@@ -110,30 +116,31 @@ export default function RecipeScreen({ route, navigation,image,recipe }, props) 
             <View style={{ flex: 1, marginHorizontal: 10 }}>
 
               <Text style={styles.title}>Required</Text>
-              {[1, 2, 3, 4].map(item => (
+              {console.log(items)}
+              {(items && items.ingredients)?items.ingredients.map(item => (
                 <View style={styles.listItem}>
-                  <Text style={styles.listP}>Chicken</Text>
-                  <Text style={styles.listItemAmount}>1 <Text style={{ fontSize: 12 }}>Kg</Text></Text>
+                  <Text style={styles.listP}>{item.name}</Text>
+                  <Text style={styles.listItemAmount}>{item.amount.value}<Text style={{ fontSize: 12 }}>{item.amount.metric.unit}</Text></Text>
 
                 </View>
-              ))}
+              )):<Text style={styles.listP}>LOADING</Text>}
 
             </View>
             <View style={{ flex: 1, marginHorizontal: 10 }}>
 
-              <Text style={styles.title}>Extra</Text>
+              {/*<Text style={styles.title}>Extra</Text>
               {[1, 2, 3, 4].map(item => (
                 <View style={styles.listItem}>
                   <Text style={styles.listP}>Cilantro</Text>
                   <Text style={styles.listItemAmount}>100 <Text style={{ fontSize: 12 }}>g</Text></Text>
                 </View>
-              ))}
+              ))}*/}
 
             </View>
           </View>
         </View>
 
-        <View style={styles.container}>
+        {/*<View style={styles.container}>
           <Text style={styles.instructionTitle}>Instructions</Text>
           <View >
 
@@ -145,7 +152,7 @@ export default function RecipeScreen({ route, navigation,image,recipe }, props) 
 
 
           </View>
-        </View>
+        </View>*/}
 
 
       </ScrollView>

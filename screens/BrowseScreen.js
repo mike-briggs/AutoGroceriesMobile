@@ -201,9 +201,8 @@ export default function BrowseScreen({ navigation }) {
 
                     </ScrollView>
                     <View style={styles.getStartedContainer}>
-                        {console.log(currentRecipes.results)}
-
-                        {currentRecipes.results.map(item => (<TouchableOpacity key={item.id} style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', { title: item.title, image: baseUri + '' + item.imageUrls })}><RecipeCard image={baseUri + '' + item.imageUrls} title={item.title} /></TouchableOpacity>))}
+                        {console.log(currentRecipes.results[0])}
+                        {currentRecipes.results.map(item => (<TouchableOpacity key={item.id} style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {readyTime:item.readyInMinutes, servings:item.servings, id:item.id, title: item.title, image: baseUri + '' + item.imageUrls })}><RecipeCard image={baseUri + '' + item.imageUrls} title={item.title} readyTime={item.readyInMinutes} servings={item.servings}/></TouchableOpacity>))}
 
                     </View>
 
