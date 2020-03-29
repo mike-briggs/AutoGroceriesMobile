@@ -24,10 +24,8 @@ export default function SignInScreen({ navigation }) {
                 password: password
             })
             });
-            console.log(res);
             if(res.ok){
                 let body = await res.json();
-                console.log(body);
                 navigation.navigate('Ingredients');
                 setLoading(false);
             }
@@ -36,8 +34,7 @@ export default function SignInScreen({ navigation }) {
             }
         }
         catch(e){
-            console.log('error');
-            console.log(e);
+            
         }
 
         setLoading(false);

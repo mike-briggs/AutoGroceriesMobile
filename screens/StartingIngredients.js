@@ -36,10 +36,8 @@ export default class StartingIngrdients extends React.Component {
             let res = await fetch('https://meal-planner-qhacks-2020.appspot.com/get-user-pantry',{
                 method:'get'
             });
-            console.log(res);
             if(res.ok){
                 let body = await res.json();
-                console.log(body);
             }
             else{
                 //alert('Unable to load your pantry items.');
@@ -47,8 +45,6 @@ export default class StartingIngrdients extends React.Component {
         }
         catch(e){
             alert('Unable to load your pantry items.');
-            console.log('error');
-            console.log(e);
         }
         this.setState({itemsLoading: false});
     }
@@ -57,33 +53,56 @@ export default class StartingIngrdients extends React.Component {
         this.loadPantryItems();
     }
 
-    addIngredients = async () => {
-        const ingredients = this.state.pantry;
+    addIngredients = async (ingredient, callBack) => {
         this.setState({pantryLoading:true});
         try{
-            let res = await fetch('https://meal-planner-qhacks-2020.appspot.com/add-user-pantry',{
+            let res = await fetch('https://meal-planner-qhacks-2020.appspot.com/add-to-pantry',{
                 method:'post',
                 headers: {
                     'Content-Type':'application/json',
 
                 } ,
                 body:JSON.stringify({
-                    new_pantry_items: this.state.pantry
+                    ingredients: [ingredient] 
                 })
             });
-            console.log(res);
             if(res.ok){
                 let body = await res.json();
-                console.log(body);
-                this.props.navigation.navigate('root');
+                callBack();
             }
             else{
                 alert('unable to store pantry items');
             }
         }
         catch(e){
-            console.log('error');
-            console.log(e);
+            alert('unable to store pantry items');
+        }
+        this.setState({pantryLoading: false});
+    }
+
+    removeIngredient = async (ingredient, callBack) => {
+        this.setState({pantryLoading:true});
+        try{
+            let res = await fetch('https://meal-planner-qhacks-2020.appspot.com/remove-from-pantry',{
+                method:'post',
+                headers: {
+                    'Content-Type':'application/json',
+
+                } ,
+                body:JSON.stringify({
+                    ingredients: [ingredient] 
+                })
+            });
+            if(res.ok){
+                let body = await res.json();
+                callBack();
+            }
+            else{
+                alert('unable to store pantry items');
+            }
+        }
+        catch(e){
+            alert('unable to store pantry items');
         }
         this.setState({pantryLoading: false});
     }
@@ -94,28 +113,28 @@ export default class StartingIngrdients extends React.Component {
     };
 
     updatePantry = (remove, value) => {
-        let editedList = []
-        if (remove) {
-            //Remove element by splicing at the index of the value we want to remove
-            editedList = this.state.pantry
-            editedList.splice(editedList.indexOf(value), 1) 
-            
-            this.setState({ pantry: editedList })
-           //Optionally reset search after adding item
-           // this.setState({ search: '' })
-        } else {
-            //Check if ingredient is already in pantry (index is -1)
-            this.setState({ pantry: ((this.state.pantry.indexOf(value) == -1) ? this.state.pantry.concat(value) : this.state.pantry) })
-            //Remove ingredient from list of options 
-            editedList = this.state.spices
-            editedList.splice(editedList.indexOf(value), 1) 
-            this.setState({ spices: editedList})
-
-            this.setState({ search: '' })
+        if(!this.state.pantryLoading){
+            let editedList = []
+            if (remove) {   //Remove element by splicing at the index of the value we want to remove
+                this.removeIngredients(value, () => {
+                    editedList = this.state.pantry
+                    editedList.splice(editedList.indexOf(value), 1) 
+                    this.setState({ pantry: editedList })
+                })
+                
+            //Optionally reset search after adding item
+            // this.setState({ search: '' })
+            } else {
+                this.addIngredients(value, () => {
+                    //Check if ingredient is already in pantry (index is -1)
+                    this.setState({ pantry: ((this.state.pantry.indexOf(value) == -1) ? this.state.pantry.concat(value) : this.state.pantry) })
+                    //Remove ingredient from list of options 
+                    editedList = this.state.spices
+                    editedList.splice(editedList.indexOf(value), 1) 
+                    this.setState({ spices: editedList, search:''});
+                })
+            }
         }
-
-        console.log(this.state.pantry[0])
-        console.log(value)
     }
 
     render() {
@@ -229,7 +248,11 @@ export default class StartingIngrdients extends React.Component {
                 </View>
                 <View style={{flex:1}}>
                 <Button
-                        onPress={() => {this.addIngredients()}}
+                        onPress={() => {
+                            if(!this.state.pantryLoading){
+                                this.props.navigation.navigate('root');
+                            }
+                        }}
                         buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
                             ios: {
                                 shadowColor: 'black',

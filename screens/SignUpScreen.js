@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { WebView, Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-ionicons'
 import { Input, Button } from 'react-native-elements'
 import * as WebBrowser from 'expo-web-browser';
@@ -14,9 +14,11 @@ export default function SignUpScreen({ navigation }) {
             <View style={{ flex: 1 }}>
 
             </View>
-            <View style={{ flex: 10 }}>
-                {/*<View style={{ padding: 20 }}>
-                    <Input
+            <View style={{ flex: 10, flexDirection:'column', justifyContent:'space-around', alignItems:'space-around'}}>
+                <View style={{flex:1}}></View>
+                <View style={{ flex:1, padding: 20 }}>
+                    <Text style={{textAlign:'center', fontWeight:'600',fontSize:24}}>Sign Up Through Instacart!</Text>
+                    {/*<Input
                         label="Email Address"
                         labelStyle={styles.inputLabel}
                         inputContainerStyle={{ borderBottomWidth: 0, borderRadius: 30, fontSize: 1, height: 48, backgroundColor: 'rgba(0,0,0,0.05)' }}
@@ -70,12 +72,12 @@ export default function SignUpScreen({ navigation }) {
                             />
                         }
                     />
-
-                </View>*/}
+                        */}
+                </View>
                 <View style={styles.tabBarInfoContainer}>
                     <View style={{ flex: 1 }}>
                         <Button
-                            onPress={() => {/* Take user to instacart */}
+                            onPress={() => {navigation.navigate('WebSignup')}
                             }
                             buttonStyle={{ borderRadius: 40, backgroundColor: '#6CD34C', fontWeight: '500', float: 'right', padding: 15 }}
                             icon={
@@ -89,6 +91,7 @@ export default function SignUpScreen({ navigation }) {
                             iconRight
                             title='Go To Instacart'
                         />
+                        <Text style={{textAlign:'center', color:'#7C7C82', fontSize:12}}>*please use the example account provided*</Text>
                     </View>
 
 

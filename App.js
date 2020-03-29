@@ -23,8 +23,9 @@ import Welcome from './screens/InitialSlides/Welcome'
 import Add from './screens/InitialSlides/Add'
 import Order from './screens/InitialSlides/Order'
 import Instacart from './screens/InitialSlides/Instacart'
+import WebSignupScreen from './screens/WebSignupScreen';
 
-console.disableYellowBox = true;
+//console.disableYellowBox = true;
 
 const Stack = createStackNavigator();
 
@@ -95,6 +96,7 @@ export default function App(props) {
             <Stack.Screen name="SelectTime" component={SelectTime} />
             <Stack.Screen name="TrackOrder" component={TrackOrder} />
             <Stack.Screen name="PastOrders" component={PastOrdersScreen} />
+            <Stack.Screen name="WebSignup" component={WebSignupScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

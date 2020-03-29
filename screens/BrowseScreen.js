@@ -52,10 +52,8 @@ export default function BrowseScreen({ navigation }) {
                 var json = JSON.parse(result);
                 setItalianRecipes(json)
                 setLoadingItalianComplete(true)
-                console.log('hello')
-                console.log(json)
             })
-            .catch(error => console.log('error', error));}
+            .catch(error => {});}
 
             if(!loadingHealthyComplete){
         fetch("https://api.spoonacular.com/recipes/search?query=healthy&apiKey=14201a9af8744411b9a22039f5b71d30")
@@ -64,10 +62,8 @@ export default function BrowseScreen({ navigation }) {
                 var json = JSON.parse(result);
                 setHealthyRecipes(json)
                 setLoadingHealthyComplete(true)
-                console.log('hello')
-                console.log(json)
             })
-            .catch(error => console.log('error', error));}
+            .catch(error => {})}
 
             if(!loadingChineseComplete){
             fetch("https://api.spoonacular.com/recipes/search?query=chinese&apiKey=14201a9af8744411b9a22039f5b71d30")
@@ -80,11 +76,8 @@ export default function BrowseScreen({ navigation }) {
                 setBaseUri(json.baseUri)
                 setCurrentRecipes(json)
                 setLoadingChineseComplete(true);
-
-                console.log('hello')
-                console.log(recipes)
             })
-            .catch(error => console.log('error', error));}
+            .catch(error => {})}
 
             if(!loadingQuickComplete){
                 fetch("https://api.spoonacular.com/recipes/search?query=quick&apiKey=14201a9af8744411b9a22039f5b71d30")
@@ -96,11 +89,8 @@ export default function BrowseScreen({ navigation }) {
                     setQuickRecipes(json)
                     setBaseUri(json.baseUri)
                     setLoadingQuickComplete(true);
-    
-                    console.log('hello')
-                    console.log(recipes)
                 })
-                .catch(error => console.log('error', error));}
+                .catch(error => {})}
 
                 if(!loadingVeganComplete){
                     fetch("https://api.spoonacular.com/recipes/search?diet=vegan&apiKey=14201a9af8744411b9a22039f5b71d30")
@@ -114,10 +104,8 @@ export default function BrowseScreen({ navigation }) {
                         setCurrentRecipes(json)
                         setLoadingVeganComplete(true);
         
-                        console.log('hello')
-                        console.log(recipes)
                     })
-                    .catch(error => console.log('error', error));}
+                    .catch(error => {});}
 
                     if(!loadingVegetarianComplete){
                         fetch("https://api.spoonacular.com/recipes/search?diet=vegetarian&apiKey=14201a9af8744411b9a22039f5b71d30")
@@ -130,10 +118,8 @@ export default function BrowseScreen({ navigation }) {
                             setBaseUri(json.baseUri)
                             setLoadingVegetarianComplete(true);
             
-                            console.log('hello')
-                            console.log(recipes)
                         })
-                        .catch(error => console.log('error', error));}
+                        .catch(error => {});}
 
                         if(!loadingProteinComplete){
                             fetch("https://api.spoonacular.com/recipes/search?query=protein&apiKey=14201a9af8744411b9a22039f5b71d30")
@@ -145,11 +131,8 @@ export default function BrowseScreen({ navigation }) {
                                 setProteinRecipes(json)
                                 setBaseUri(json.baseUri)
                                 setLoadingProteinComplete(true);
-                
-                                console.log('hello')
-                                console.log(recipes)
                             })
-                            .catch(error => console.log('error', error));}
+                            .catch(error => {});}
 
         switch (currentCategory) {
             case 'Italian': 
@@ -201,7 +184,6 @@ export default function BrowseScreen({ navigation }) {
 
                     </ScrollView>
                     <View style={styles.getStartedContainer}>
-                        {console.log(currentRecipes.results[0])}
                         {currentRecipes.results.map(item => (<TouchableOpacity key={item.id} style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {readyTime:item.readyInMinutes, servings:item.servings, id:item.id, title: item.title, image: baseUri + '' + item.imageUrls })}><RecipeCard image={baseUri + '' + item.imageUrls} title={item.title} readyTime={item.readyInMinutes} servings={item.servings}/></TouchableOpacity>))}
 
                     </View>

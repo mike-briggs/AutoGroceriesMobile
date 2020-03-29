@@ -74,5 +74,7 @@ function getHeaderTitle(route) {
       return 'Past Order';
     case 'TrackOrder':
       return 'Track Order';
+    case 'WebViewSignupScreen':
+      return 'Instacart Signup';
   }
 }
