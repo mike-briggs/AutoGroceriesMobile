@@ -10,6 +10,16 @@ export default function RecipeScreen({ route, navigation }, props) {
   const [ visible, setVisible ] = React.useState(false);
   const [ items, setItems ] = React.useState();
   const [ nutrition, setNutrition ] = React.useState();
+
+  const addToCart = () => {
+    fetch('https://meal-planner-qhacks-2020.appspot.com/add-to-user-cart',{
+      method:'post',
+      body:JSON.stringify({
+        id:route.params.id
+      })
+    }).then(() => {setVisible(true)}).catch(e => alert('unable to add to cart'));
+  }
+
   useEffect(() => {
     fetch(`https://api.spoonacular.com/recipes/${route.params.id}/ingredientWidget.json?apiKey=14201a9af8744411b9a22039f5b71d30`,{method:'get'}).then(res => res.text()).then(result => {
       setItems(JSON.parse(result));
@@ -103,12 +113,12 @@ export default function RecipeScreen({ route, navigation }, props) {
               <Text style={styles.p}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</Text>
             </View>
             <View style={styles.iconContainer}>
-              {/*<TextIcon sheet={styles.rating} size={18} text="4.9" name='star' color="#EFB110"></TextIcon>*/}
-
               <TextIcon sheet={styles.rating} size={18} text={route.params.readyTime + " Min."} name='alarm' color="#000"></TextIcon>
-              {/*<TextIcon sheet={styles.rating} size={18} text="300 Cal." name='flash' color="#000"></TextIcon>*/}
               <TextIcon sheet={styles.rating} size={18} text={route.params.servings + " Serv."} name='person' color="#000"></TextIcon>
-
+              <TextIcon sheet={styles.rating} size={18} text={(nutrition)?nutrition.calories+" Cal.":"loading"} name='flash' color="#000"></TextIcon>
+              <TextIcon sheet={styles.rating} size={18} text={(nutrition)?nutrition.carbs+" Carbs.":"loading"} name='pizza' color="#000"></TextIcon>
+              <TextIcon sheet={styles.rating} size={18} text={(nutrition)?nutrition.protein+" Protein.":"loading"} name='restaurant' color="#000"></TextIcon>
+              {/*<TextIcon sheet={styles.rating} size={18} text="4.9" name='star' color="#EFB110"></TextIcon>*/}
             </View>
           </View>
         </View>
@@ -119,11 +129,10 @@ export default function RecipeScreen({ route, navigation }, props) {
             <View style={{ flex: 1, marginHorizontal: 10 }}>
 
               <Text style={styles.title}>Required</Text>
-              {console.log(items)}
               {(items && items.ingredients)?items.ingredients.map(item => (
                 <View style={styles.listItem}>
                   <Text style={styles.listP}>{item.name}</Text>
-                  <Text style={styles.listItemAmount}>{item.amount.value}<Text style={{ fontSize: 12 }}>{item.amount.metric.unit}</Text></Text>
+                  <Text style={styles.listItemAmount}>{item.amount.metric.value+" "}<Text style={{ fontSize: 12 }}>{item.amount.metric.unit}</Text></Text>
 
                 </View>
               )):<Text style={styles.listP}>LOADING</Text>}
@@ -165,7 +174,7 @@ export default function RecipeScreen({ route, navigation }, props) {
         </View>
         <View style={{ flex: 1, padding: 20, paddingRight: 40 }}>
           <Button
-            onPress={() => setVisible(true)
+            onPress={() => {addToCart()}
             }
             buttonStyle={{
               borderRadius: 50, height: 100, width: 100, backgroundColor: '#6CD34C', fontWeight: '500', padding: 15, ...Platform.select({
@@ -295,8 +304,8 @@ const styles = StyleSheet.create({
   },
   listItemAmount: {
     flex: 2,
-    fontWeight: '700',
-    fontSize: 18
+    fontWeight: '400',
+    fontSize: 12
   },
   iconContainer: {
     margin: 16,

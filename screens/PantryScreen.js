@@ -10,11 +10,91 @@ export default class PantryScreen extends React.Component {
     super()
 
     this.state = {
+      pantryLoading: false,
+      itemsLoading: true,
       search: '',
       pantry:[],
       spices:['Oregano','Rosemary','Chili Flakes','Salt','Pepper','Basil','Saffron','Garlic','Olive Oil','Cashews','Tomato Paste', 'Canned Tomatoes', 'Black Beans', 'Kidney Beans', 'Turmeric','Chickpeas','Brown Sugar', 'Granulated Sugar', 'White Beans', 'Icing Sugar', 'Honey', 'Peanut Butter','Almonds','Rolled Oats', 'Quinoa','Flax Seeds','Rice','Paprika','Cumin','Lentils','Vanilla','Baking Soda', 'Baking Powder','All Purpose Flour', 'Yeast', 'Coconut Milk'  ]
     };
 
+  }
+
+  loadPantryItems = async () => {
+    this.setState({itemsLoading:true});
+    try{
+        let res = await fetch('https://meal-planner-qhacks-2020.appspot.com/get-pantry',{
+            method:'get'
+        });
+        if(res.ok){
+            let body = await res.json();
+            this.setState({pantry:body.ingredients});
+        }
+        else{
+            alert('Unable to load your pantry items.');
+        }
+    }
+    catch(e){
+        alert('Unable to load your pantry items.');
+    }
+    this.setState({itemsLoading: false});
+  }
+
+  addIngredients = async (ingredient, callBack) => {
+    this.setState({pantryLoading:true});
+    try{
+        let res = await fetch('https://meal-planner-qhacks-2020.appspot.com/add-to-pantry',{
+            method:'post',
+            headers: {
+                'Content-Type':'application/json',
+
+            } ,
+            body:JSON.stringify({
+                ingredients: [ingredient] 
+            })
+        });
+        if(res.ok){
+            let body = await res.json();
+            callBack();
+        }
+        else{
+            alert('unable to store pantry items');
+        }
+    }
+    catch(e){
+        alert('unable to store pantry items');
+    }
+    this.setState({pantryLoading: false});
+  }
+
+  removeIngredients = async (ingredient, callBack) => {
+    this.setState({pantryLoading:true});
+    try{
+        let res = await fetch('https://meal-planner-qhacks-2020.appspot.com/remove-from-pantry',{
+            method:'post',
+            headers: {
+                'Content-Type':'application/json',
+
+            } ,
+            body:JSON.stringify({
+                ingredients: [ingredient] 
+            })
+        });
+        if(res.ok){
+            let body = await res.json();
+            callBack();
+        }
+        else{
+            alert('unable to store pantry items');
+        }
+    }
+    catch(e){
+        alert('unable to store pantry items');
+    }
+    this.setState({pantryLoading: false});
+  }
+
+  componentDidMount(){
+    this.loadPantryItems();
   }
 
   updateSearch = search => {
@@ -23,17 +103,23 @@ export default class PantryScreen extends React.Component {
   };
 
   updatePantry = (remove,value) => {
-    if(remove){
-      //Keeps elements in pantry that aren't equal to the value we want to remove
-      this.setState({pantry:this.state.pantry.filter(a => a != value)})
-      this.setState({search:''})
-    }else{
-      this.setState({pantry:((this.state.pantry.indexOf(value) == -1) ? this.state.pantry.concat(value) : this.state.pantry)})
-      this.setState({search:''})
+    if(!this.state.pantryLoading){
+      if(remove){
+        //Keeps elements in pantry that aren't equal to the value we want to remove
+        this.removeIngredients(value, () => {
+          this.setState({pantry:this.state.pantry.filter(a => a != value)})
+          this.setState({search:''});
+        });
+      }else{
+        this.addIngredients(value, () => {
+          this.setState({pantry:((this.state.pantry.indexOf(value) == -1) ? this.state.pantry.concat(value) : this.state.pantry)})
+          this.setState({search:''});
+        });
+      }
+      
+      console.log(this.state.pantry[0])
+      console.log(value)
     }
-    
-    console.log(this.state.pantry[0])
-    console.log(value)
   }
 
   render(){ 
@@ -74,10 +160,10 @@ export default class PantryScreen extends React.Component {
         :<></>}</ScrollView>
         <View style={{padding:20}}>
         <Text style={{fontSize:24,fontWeight:'600'}}>In Pantry</Text>
-        {(pantry.length == 0) ? <Text style={{fontSize:14, fontweight:'400'}}>Nothing in pantry.</Text>:<></>}
+        {(this.state.itemsLoading)?(<View style={{display:'flex',justifyContent:'center'}}><Text style={{ fontSize: 14, fontweight: '400' }}>LOADING ITEMS</Text></View>):((pantry.length == 0) ? <Text style={{ fontSize: 14, fontweight: '400' }}>Nothing in pantry.</Text> : <></>)}
         </View>
         
-      {(pantry.length > 0) ? pantry.map(item =>(
+      {(pantry.length > 0) ? pantry.map(item =>{console.log(item);return (
           <OptionButton
           left={false}
           icon="remove"
@@ -85,7 +171,7 @@ export default class PantryScreen extends React.Component {
           label={item}
           onPress={() => this.updatePantry(true,item)}
         />
-        )):<></>
+        )}):<></>
         }
       </View>
       <View >

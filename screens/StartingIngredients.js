@@ -33,14 +33,15 @@ export default class StartingIngrdients extends React.Component {
     loadPantryItems = async () => {
         this.setState({itemsLoading:true});
         try{
-            let res = await fetch('https://meal-planner-qhacks-2020.appspot.com/get-user-pantry',{
+            let res = await fetch('https://meal-planner-qhacks-2020.appspot.com/get-pantry',{
                 method:'get'
             });
             if(res.ok){
                 let body = await res.json();
+                this.setState({pantry:body.ingredients});
             }
             else{
-                //alert('Unable to load your pantry items.');
+                alert('Unable to load your pantry items.');
             }
         }
         catch(e){
@@ -80,7 +81,7 @@ export default class StartingIngrdients extends React.Component {
         this.setState({pantryLoading: false});
     }
 
-    removeIngredient = async (ingredient, callBack) => {
+    removeIngredients = async (ingredient, callBack) => {
         this.setState({pantryLoading:true});
         try{
             let res = await fetch('https://meal-planner-qhacks-2020.appspot.com/remove-from-pantry',{
@@ -120,7 +121,7 @@ export default class StartingIngrdients extends React.Component {
                     editedList = this.state.pantry
                     editedList.splice(editedList.indexOf(value), 1) 
                     this.setState({ pantry: editedList })
-                })
+                });
                 
             //Optionally reset search after adding item
             // this.setState({ search: '' })
@@ -250,7 +251,7 @@ export default class StartingIngrdients extends React.Component {
                 <Button
                         onPress={() => {
                             if(!this.state.pantryLoading){
-                                this.props.navigation.navigate('root');
+                                this.props.navigation.navigate('Root');
                             }
                         }}
                         buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
