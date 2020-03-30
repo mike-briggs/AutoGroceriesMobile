@@ -5,8 +5,8 @@ import { RectButton } from 'react-native-gesture-handler';
 
 
 export default function IngredientItem({ ingredient, style }) {
-  const { name, quantity, unit } = ingredient;
-  console.log(style);
+  const { name, quantity, price} = ingredient;
+  let test = 1/0;
 
   return (
     <View style={{ flexDirection: 'row', flex: 1, borderBottomColor: '#ccc', paddingTop: 10, borderBottomWidth: StyleSheet.hairlineWidth }}>
@@ -14,8 +14,13 @@ export default function IngredientItem({ ingredient, style }) {
         <Text style={styles.optionText1}>{name}</Text>
       </View>
       <View style={styles.optionIconContainer2}>
+        <View style={{ flex: 1 }}> 
+          <Text style={styles.optionText3}>{quantity.amount.toFixed(1)+' '}{quantity.unitShort}</Text>
+        </View>
+      </View>
+      <View style={styles.optionIconContainer2}>
         <View style={{ flex: 1 }}>
-          <Text style={styles.optionText2}>{quantity} {unit}</Text>
+          <Text style={styles.optionText2}>{price}</Text>
         </View>
       </View>
     </View>

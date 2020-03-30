@@ -36,7 +36,7 @@ export default function ProfileScreen({ navigation: { navigate } }) {
       <OptionButton
       left={true}
         icon="pizza"
-        label="Edit Favourite Foods"
+        label="Edit Favourite Foods (coming soon)"
         onPress={() => {}}
       />
 
@@ -50,29 +50,22 @@ export default function ProfileScreen({ navigation: { navigate } }) {
       <OptionButton
       left={true}
         icon="compass"
-        label="Change Location"
+        label="Change Location (coming soon)"
         onPress={() => {}}
         isLastOption
       />
       <OptionButton
       left={true}
         icon="cart"
-        label="Change Grocery Store"
+        label="Change Grocery Store (coming soon)"
         onPress={() => {}}
         isLastOption
       />
       <OptionButton
       left={true}
         icon="person"
-        label="Edit Account Info"
+        label="Edit Account Info (coming soon)"
         onPress={() => {}}
-        isLastOption
-      />
-      <OptionButton
-      left={true}
-        icon="clock"
-        label="Past Orders"
-        onPress={() => navigate('PastOrders')}
         isLastOption
       />
       <OptionButton
@@ -85,14 +78,14 @@ export default function ProfileScreen({ navigation: { navigate } }) {
       <OptionButton
       left={true}
         icon="lock"
-        label="Change Password"
+        label="Change Password (coming soon)"
         onPress={() => {}}
         isLastOption
       />
       <OptionButton
       left={true}
         icon="code"
-        label="View Code"
+        label="View Code (coming soon)"
         onPress={() => {}}
         isLastOption
       />

@@ -5,33 +5,123 @@ import units from '../constants/Units.js';
 import OrderList from '../components/OrderList.js';
 import { RecipeCard } from '../components/RecipeCard';
 import Icon from 'react-native-ionicons';
-import {Button} from 'react-native-elements'
+import {Button} from 'react-native-elements';
+import IngredientItem from '../components/IngredientItem';
+import { RectButton } from 'react-native-gesture-handler';
 
 
 export default function OrderDetails({ navigation,route }){
     navigation.setOptions({headerTitleAlign:'center'})
     const[currentOrder,setCurrentOrder] = React.useState(JSON.stringify(route.params.order))
+    const [cart, setCart] = React.useState();
+    let orderTotal = 0;
+    const [ deleteLoading, setDeleteLoading ] = React.useState(false);
+    const [ clearLoading, setClearLoading ] = React.useState(false);
+
+
+    const getCart = async () => {
+        try{
+            const res = await fetch('https://meal-planner-qhacks-2020.appspot.com/get-cart',{method:'get'});
+            const body = await res.json();
+            setCart(body);
+        }
+        catch(e){
+            alert('unable to get cart, please connect to the internet or log in again');
+        }
+
+    }
+
+    const deleteFromCart = async (id, index) => {
+        if(!deleteLoading){
+            setDeleteLoading(true);
+            fetch('https://meal-planner-qhacks-2020.appspot.com/remove-from-cart',{
+                method:'post',
+                headers: {
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({id:id})}).then(res => {
+                let tmpCart = cart;
+                tmpCart.splice(index, 1);
+                setCart(tmpCart);
+                setDeleteLoading(false);
+                alert('item deleted');
+            }).catch((e)=>{setDeleteLoading(false);alert('unable to delete from cart')});
+        }
+    } 
+
+    const clearCart = async () => {
+        if(!clearLoading){
+            setClearLoading(true);
+            try{
+                let res = await fetch('https://meal-planner-qhacks-2020.appspot.com/clear-cart',{
+                    method:'get',
+                    headers: {
+                        'Content-Type':'application/json',
+
+                    },
+                });
+                if(res.ok){
+                    let body = await res.json();
+                    navigation.navigate('SelectTime');
+                    setClearLoading(false);
+                }
+                else{
+                    alert('unable to place order');
+                    setClearLoading(false);
+                }
+            }catch(e){
+                alert('unable to place order');
+                setClearLoading(false);
+            }
+        }
+    }
+
     useEffect(()=>{
-
-
+        getCart();
+       
         setCurrentOrder(JSON.stringify(route.params.order))
 
     },[]);
     return (
         <View style={styles.container}>
             <ScrollView>
-                <OrderList ingredients={templateOrder.itemsList}/>
+                {(cart)?cart.map((item, index)=>{
+                    let subOrderTotal = 0;
+
+                    return (<View style={styles.card}>
+                        <View style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'center', marginVertical:10}}>
+                            <Text style={[styles.orderTitle, {flex:3}]}>{item.recipe.title}</Text>
+                            <View style={[styles.btnContainer, {flex:1}]}>
+                                <RectButton onPress={() => deleteFromCart(item.recipe.id, index)} style={styles.btn}>
+                                    <Icon name="remove" size={26} color="red" />
+                                </RectButton>
+                            </View> 
+                        </View>
+                        {item.ingredients.map((ingredient, index, arr) => {
+                            let addition = parseFloat(ingredient.price.substring(1, ingredient.price.length))
+                            subOrderTotal += addition;
+                            orderTotal += addition;
+                            return (<IngredientItem ingredient={{name:ingredient.name, quantity:ingredient.source_value.measures.metric, price:ingredient.price}} style={(index != arr.length-1)?(styles.mid):({})}/>);
+                        })}
+                        <View style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
+                            <Text style={styles.subTotal}>Recipe Price: ${subOrderTotal.toFixed(1)}</Text>
+                        </View>
+                    </View>
+                )}):<></>}
                 <View style={styles.orderTotal}>
                     <View style={styles.textContainer}>
                         <Text style={styles.orderTitle}>Order Total:</Text>
                     </View>
                     <View style={styles.textContainer}>
-                        <Text style={styles.orderDetail}>{ templateOrder.total }</Text>
+                        <Text style={styles.orderDetail}>${ orderTotal.toFixed(1) }</Text>
                     </View>
                 </View>
-                <View>
-                {(route.params.order.results!=null)?route.params.order.results.map(item=>(<TouchableOpacity key={item.id} style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:item.title,image:JSON.stringify(route.params.imageUrl) +''+item.imageUrls})}><RecipeCard image={route.params.imageUrl +''+item.imageUrls} title={item.title}/></TouchableOpacity>)):<Text>No Recipes in Cart</Text>}
-                </View>
+                {/*<View>
+                    {(false)?cart.map(item => 
+                    (
+                        <TouchableOpacity key={item.id} style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {readyTime:item.readyInMinutes, servings:item.servings, id:item.id, title: item.title, image: baseUri + '' + item.imageUrls })}><RecipeCard image={baseUri + '' + item.imageUrls} title={item.title} readyTime={item.readyInMinutes} servings={item.servings}/></TouchableOpacity>)):<Text>Loading ...</Text>}
+                    {(route.params.order.results!=null)?route.params.order.results.map(item=>(<TouchableOpacity key={item.id} style={{ width: '100%' }} onPress={() => navigation.navigate('Recipe', {title:item.title,image:JSON.stringify(route.params.imageUrl) +''+item.imageUrls})}><RecipeCard image={route.params.imageUrl +''+item.imageUrls} title={item.title}/></TouchableOpacity>)):<Text>No Recipes in Cart</Text>}
+                </View>*/}
             </ScrollView>
             <View style={styles.tabBarInfoContainer}>
                 <View style={{flex:1}}>
@@ -39,7 +129,7 @@ export default function OrderDetails({ navigation,route }){
                 </View>
                 <View style={{flex:1,alignSelf:'flex-end',width:'50%',margin:15}}>
                     <Button
-                                onPress={()=>navigation.navigate('SelectTime')}
+                                onPress={()=>clearCart()}
                                 buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
                                     ios: {
                                         shadowColor: 'black',
@@ -54,13 +144,13 @@ export default function OrderDetails({ navigation,route }){
                                 icon={
                                     <Icon
                                         name="arrow-forward"
-                                        size={18}
+                                        size={16}
                                         color="white"
                                         style={{paddingLeft:10, paddingTop:2}}
                                     />
                                 }
                                 iconRight
-                                title="CONTINUE"
+                                title="PLACE ORDER"
                             />
                 </View>
             </View>
@@ -129,6 +219,47 @@ const templateOrder = {
 }
 
 const styles = StyleSheet.create({
+    btnContainer:{
+        display:'flex',
+        justifyContent:'center',
+        alignItems: 'center'
+    },
+    btn:{
+        ...Platform.select({
+            ios: {
+                shadowColor: 'black',
+                shadowOffset: { width: 0, height: 3 },
+                shadowOpacity: 0.1,
+                shadowRadius: 5,
+            },
+            android: {
+                elevation: 5,
+            },
+        }),
+        backgroundColor:'#fff',
+        borderRadius:15,
+        padding: 2,
+        paddingHorizontal:6
+    },
+    card: {
+        ...Platform.select({
+            ios: {
+                shadowColor: 'black',
+                shadowOffset: { width: 0, height: 3 },
+                shadowOpacity: 0.1,
+                shadowRadius: 5,
+            },
+            android: {
+                elevation: 5,
+            },
+        }),
+        backgroundColor:'#fff',
+        width:'100%',
+        height: 'auto',
+        borderRadius:10,
+        marginVertical: 20,
+        paddingHorizontal: 10
+    },
     tabBarInfoContainer: {
         position: 'absolute',
         display: 'flex',
@@ -164,7 +295,12 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
         marginTop: 1,
         fontWeight: '600'
-    },  
+    },
+    subTotal:{
+        fontSize: 24,
+        marginVertical:3,
+        fontWeight: '600'
+    }, 
     orderTitle:{
         fontSize: 24,
         alignSelf: 'flex-start',
@@ -213,6 +349,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 10,
         marginBottom: 20,
+    },
+    mid:{
+        borderBottomColor: '#E8E8E8',
+        borderBottomWidth: 1.5,
+        width:'100%'
     },
     welcomeImage: {
         width: 100,

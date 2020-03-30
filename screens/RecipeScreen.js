@@ -10,14 +10,22 @@ export default function RecipeScreen({ route, navigation }, props) {
   const [ visible, setVisible ] = React.useState(false);
   const [ items, setItems ] = React.useState();
   const [ nutrition, setNutrition ] = React.useState();
+  const [ loading, setLoading ] = React.useState(false);
 
   const addToCart = () => {
-    fetch('https://meal-planner-qhacks-2020.appspot.com/add-to-user-cart',{
-      method:'post',
-      body:JSON.stringify({
-        id:route.params.id
-      })
-    }).then(() => {setVisible(true)}).catch(e => alert('unable to add to cart'));
+    if(!loading){
+      setLoading(true);
+      fetch('https://meal-planner-qhacks-2020.appspot.com/add-to-user-cart',{
+        method:'post',
+        headers: {
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          id: route.params.id,
+          title: route.params.title
+        })
+      }).then((res) => res.text()).then((result => {console.log(result);setLoading(false);setVisible(true)})).catch(e => {setLoading(false);alert('unable to add to cart')});
+    }
   }
 
   useEffect(() => {
@@ -33,7 +41,7 @@ export default function RecipeScreen({ route, navigation }, props) {
       
       <Modal animationIn="slideInUp" animationOut="slideOutDown" onBackdropPress={() => setVisible(false)} onSwipeComplete={() => this.closeModal()} swipeDirection="right" isVisible={visible} style={{ backgroundColor: 'white', borderRadius:20,marginTop:230,maxHeight: 200}}>
         <View style={{ flexDirection: 'column', flex: 1 }}>
-          <Text style={{ fontWeight: '600', fontSize: 18, textAlign: 'center', flex: 1,paddingTop:50 }}>Item Added!</Text>
+          <Text style={{ fontWeight: '600', fontSize: 18, textAlign: 'center', flex: 1,paddingTop:50 }}>Item Added! It may take a minute for the item to apear in your cart.</Text>
 
           <View style={{ flexDirection: 'row', flex: 1 }}>
             {/*<View style={{ flex: 1,paddingLeft:10 ,paddingRight:5}}>
@@ -168,7 +176,7 @@ export default function RecipeScreen({ route, navigation }, props) {
 
 
       </ScrollView>
-      <View style={styles.tabBarInfoContainer}>
+      {(route.params.orderScreen)?<></>:<View style={styles.tabBarInfoContainer}>
         <View style={{ flex: 3 }}>
 
         </View>
@@ -202,7 +210,7 @@ export default function RecipeScreen({ route, navigation }, props) {
           />
         </View>
 
-      </View>
+      </View>}
 
     </View>
 
