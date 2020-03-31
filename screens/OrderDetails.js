@@ -62,7 +62,7 @@ export default function OrderDetails({ navigation,route }){
                 });
                 if(res.ok){
                     let body = await res.json();
-                    navigation.navigate('SelectTime');
+                    navigation.navigate('CheckEmail');
                     setClearLoading(false);
                 }
                 else{

@@ -41,7 +41,7 @@ export default function RecipeScreen({ route, navigation }, props) {
       
       <Modal animationIn="slideInUp" animationOut="slideOutDown" onBackdropPress={() => setVisible(false)} onSwipeComplete={() => this.closeModal()} swipeDirection="right" isVisible={visible} style={{ backgroundColor: 'white', borderRadius:20,marginTop:230,maxHeight: 200}}>
         <View style={{ flexDirection: 'column', flex: 1 }}>
-          <Text style={{ fontWeight: '600', fontSize: 18, textAlign: 'center', flex: 1,paddingTop:50 }}>Item Added! It may take a minute for the item to apear in your cart.</Text>
+          <Text style={{ fontWeight: '600', fontSize: 18, textAlign: 'center', flex: 1,paddingTop:50,paddingHorizontal:15 }}>Item Added! It may take a minute for the item to apear in your cart.</Text>
 
           <View style={{ flexDirection: 'row', flex: 1 }}>
             {/*<View style={{ flex: 1,paddingLeft:10 ,paddingRight:5}}>
@@ -132,11 +132,10 @@ export default function RecipeScreen({ route, navigation }, props) {
         </View>
 
         <View style={styles.container}>
-          <Text style={styles.title}>Ingredients</Text>
+          <Text style={styles.title}>Ingredients Required</Text>
           <View style={{ flex: 1, flexDirection: 'row' }}>
             <View style={{ flex: 1, marginHorizontal: 10 }}>
 
-              <Text style={styles.title}>Required</Text>
               {(items && items.ingredients)?items.ingredients.map(item => (
                 <View style={styles.listItem}>
                   <Text style={styles.listP}>{item.name}</Text>
@@ -146,17 +145,17 @@ export default function RecipeScreen({ route, navigation }, props) {
               )):<Text style={styles.listP}>LOADING</Text>}
 
             </View>
-            <View style={{ flex: 1, marginHorizontal: 10 }}>
+            {/*<View style={{ flex: 1, marginHorizontal: 10 }}>
 
-              {/*<Text style={styles.title}>Extra</Text>
+              <Text style={styles.title}>Extra</Text>
               {[1, 2, 3, 4].map(item => (
                 <View style={styles.listItem}>
                   <Text style={styles.listP}>Cilantro</Text>
                   <Text style={styles.listItemAmount}>100 <Text style={{ fontSize: 12 }}>g</Text></Text>
                 </View>
-              ))}*/}
+              ))}
 
-            </View>
+            </View>*/}
           </View>
         </View>
 
@@ -180,12 +179,12 @@ export default function RecipeScreen({ route, navigation }, props) {
         <View style={{ flex: 3 }}>
 
         </View>
-        <View style={{ flex: 1, padding: 20, paddingRight: 40 }}>
+        <View style={{ flex: 1, padding: 20, paddingRight: 10 }}>
           <Button
             onPress={() => {addToCart()}
             }
             buttonStyle={{
-              borderRadius: 50, height: 100, width: 100, backgroundColor: '#6CD34C', fontWeight: '500', padding: 15, ...Platform.select({
+              borderRadius: 50, height: 75, width: 75, backgroundColor: '#6CD34C', fontWeight: '500', padding: 15, ...Platform.select({
                 ios: {
                   shadowColor: 'black',
                   shadowOffset: { width: 0, height: 3 },
@@ -200,7 +199,7 @@ export default function RecipeScreen({ route, navigation }, props) {
             icon={
               <Icon
                 name="add"
-                size={52}
+                size={36}
                 color="white"
                 style={{ paddingLeft: 0, paddingTop: 2 }}
               />
@@ -252,7 +251,7 @@ const styles = StyleSheet.create({
     marginLeft: 32
   },
   descContainer: {
-    flex: 5,
+    flex: 6,
     marginRight: 10,
   },
   card: {
@@ -317,7 +316,8 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     margin: 16,
-    flex: 2, flexDirection: 'column',
+    marginLeft:0,
+    flex: 3, flexDirection: 'column',
   },
   rating: {
     flex: 1,
