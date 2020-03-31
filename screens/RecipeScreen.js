@@ -29,10 +29,10 @@ export default function RecipeScreen({ route, navigation }, props) {
   }
 
   useEffect(() => {
-    fetch(`https://api.spoonacular.com/recipes/${route.params.id}/ingredientWidget.json?apiKey=14201a9af8744411b9a22039f5b71d30`,{method:'get'}).then(res => res.text()).then(result => {
+    fetch(`https://api.spoonacular.com/recipes/${route.params.id}/ingredientWidget.json?apiKey=08d541c08d3d4430a7f46c41b100462f`,{method:'get'}).then(res => res.text()).then(result => {
       setItems(JSON.parse(result));
     });
-    fetch(`https://api.spoonacular.com/recipes/${route.params.id}/nutritionWidget.json?apiKey=14201a9af8744411b9a22039f5b71d30`,{method:'get'}).then(res => res.text()).then(result => {
+    fetch(`https://api.spoonacular.com/recipes/${route.params.id}/nutritionWidget.json?apiKey=08d541c08d3d4430a7f46c41b100462f`,{method:'get'}).then(res => res.text()).then(result => {
       setNutrition(JSON.parse(result));
     });
   }, [])
