@@ -109,8 +109,7 @@ export default class StartingIngrdients extends React.Component {
     }
 
     updateSearch = search => {
-        let s = search.toLowerCase()
-        this.setState({ search: s });
+        this.setState({ search: search.toLowerCase() });
     };
 
     updatePantry = (remove, value) => {
@@ -157,7 +156,8 @@ export default class StartingIngrdients extends React.Component {
                             placeholder="Search Ingredients"
                             lightTheme="light"
                             round
-                            value={search.toLowerCase()}
+                            autoCapitalize="none"
+                            value={search}
                             onChangeText={this.updateSearch}
                             containerStyle={{ backgroundColor: 'white', borderBottomWidth: 0, borderTopWidth: 0 }}
                             inputContainerStyle={{ backgroundColor: 'rgba(0,0,0,0.05)' }}

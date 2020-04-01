@@ -98,7 +98,7 @@ export default class PantryScreen extends React.Component {
   }
 
   updateSearch = search => {
-    this.setState({ search:search.toLowerCase()+'' });
+    this.setState({ search:search.toLowerCase()});
   };
 
   updatePantry = (remove,value) => {
