@@ -30,6 +30,30 @@ export default function CheckEmail({ navigation, order }){
                 <View style={styles.header}>
                     <Text style={styles.headerText}>Check Email</Text>
                     <Text style={styles.headerDescription}>Order details have been sent to your email. Please go to instacart to see order progress.</Text>
+                    <Button
+                                onPress={ () => navigation.navigate('WebSignup') }
+                                buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,marginTop:40,...Platform.select({
+                                    ios: {
+                                        shadowColor: 'black',
+                                        shadowOffset: { width: 0, height: 3 },
+                                        shadowOpacity: 0.12,
+                                        shadowRadius: 10,
+                                    },
+                                    android: {
+                                        elevation: 6,
+                                    },
+                                })}}
+                                icon={
+                                    <Icon
+                                        name="arrow-forward"
+                                        size={18}
+                                        color="white"
+                                        style={{paddingLeft:10, paddingTop:2}}
+                                    />
+                                }
+                                iconRight
+                                title="Instacart"
+                            />
                 </View>
                 
             
@@ -60,7 +84,7 @@ export default function CheckEmail({ navigation, order }){
                                     />
                                 }
                                 iconRight
-                                title="CONTINUE"
+                                title="BACK HOME"
                             />
                 </View>
             </View>

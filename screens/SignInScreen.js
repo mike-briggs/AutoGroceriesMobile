@@ -26,7 +26,7 @@ export default function SignInScreen({ navigation }) {
             });
             if(res.ok){
                 let body = await res.json();
-                navigation.navigate('Ingredients');
+                navigation.navigate('Root');
                 setLoading(false);
             }
             else{

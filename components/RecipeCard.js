@@ -48,6 +48,8 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 125,
         resizeMode: 'cover',
+        borderTopLeftRadius:10,
+        borderTopRightRadius:10
       },
 
       title:{

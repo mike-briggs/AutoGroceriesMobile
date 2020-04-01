@@ -7,6 +7,7 @@ import Icon from 'react-native-ionicons'
 import { MonoText } from '../components/StyledText';
 import { RecipeCard } from '../components/RecipeCard';
 import { CategoryCard } from '../components/CategoryCard';
+import { FacebookLoader, InstagramLoader } from 'react-native-easy-content-loader';
 
 export default function BrowseScreen({ navigation }) {
 
@@ -170,7 +171,7 @@ export default function BrowseScreen({ navigation }) {
 
     if (!loadingChineseComplete) {
 
-        return null;
+        return (<View><InstagramLoader active /><InstagramLoader active /><InstagramLoader active /></View>);
 
     } else {
         return (
