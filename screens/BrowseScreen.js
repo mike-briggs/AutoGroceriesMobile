@@ -7,6 +7,7 @@ import Icon from 'react-native-ionicons'
 import { MonoText } from '../components/StyledText';
 import { RecipeCard } from '../components/RecipeCard';
 import { CategoryCard } from '../components/CategoryCard';
+import { FacebookLoader, InstagramLoader } from 'react-native-easy-content-loader';
 
 export default function BrowseScreen({ navigation }) {
 
@@ -46,7 +47,7 @@ export default function BrowseScreen({ navigation }) {
             redirect: 'follow'
         };
 
-        if(!loadingItalianComplete){fetch("https://api.spoonacular.com/recipes/search?query=italian&apiKey=14201a9af8744411b9a22039f5b71d30")
+        if(!loadingItalianComplete){fetch("https://api.spoonacular.com/recipes/search?query=italian&apiKey=08d541c08d3d4430a7f46c41b100462f")
             .then(response => response.text())
             .then((result) => {
                 var json = JSON.parse(result);
@@ -56,7 +57,7 @@ export default function BrowseScreen({ navigation }) {
             .catch(error => {});}
 
             if(!loadingHealthyComplete){
-        fetch("https://api.spoonacular.com/recipes/search?query=healthy&apiKey=14201a9af8744411b9a22039f5b71d30")
+        fetch("https://api.spoonacular.com/recipes/search?query=healthy&apiKey=08d541c08d3d4430a7f46c41b100462f")
             .then(response => response.text())
             .then((result) => {
                 var json = JSON.parse(result);
@@ -66,7 +67,7 @@ export default function BrowseScreen({ navigation }) {
             .catch(error => {})}
 
             if(!loadingChineseComplete){
-            fetch("https://api.spoonacular.com/recipes/search?query=chinese&apiKey=14201a9af8744411b9a22039f5b71d30")
+            fetch("https://api.spoonacular.com/recipes/search?query=chinese&apiKey=08d541c08d3d4430a7f46c41b100462f")
             .then(response => response.text())
             .then((result) => {
 
@@ -80,7 +81,7 @@ export default function BrowseScreen({ navigation }) {
             .catch(error => {})}
 
             if(!loadingQuickComplete){
-                fetch("https://api.spoonacular.com/recipes/search?query=quick&apiKey=14201a9af8744411b9a22039f5b71d30")
+                fetch("https://api.spoonacular.com/recipes/search?query=quick&apiKey=08d541c08d3d4430a7f46c41b100462f")
                 .then(response => response.text())
                 .then((result) => {
     
@@ -93,7 +94,7 @@ export default function BrowseScreen({ navigation }) {
                 .catch(error => {})}
 
                 if(!loadingVeganComplete){
-                    fetch("https://api.spoonacular.com/recipes/search?diet=vegan&apiKey=14201a9af8744411b9a22039f5b71d30")
+                    fetch("https://api.spoonacular.com/recipes/search?diet=vegan&apiKey=08d541c08d3d4430a7f46c41b100462f")
                     .then(response => response.text())
                     .then((result) => {
         
@@ -108,7 +109,7 @@ export default function BrowseScreen({ navigation }) {
                     .catch(error => {});}
 
                     if(!loadingVegetarianComplete){
-                        fetch("https://api.spoonacular.com/recipes/search?diet=vegetarian&apiKey=14201a9af8744411b9a22039f5b71d30")
+                        fetch("https://api.spoonacular.com/recipes/search?diet=vegetarian&apiKey=08d541c08d3d4430a7f46c41b100462f")
                         .then(response => response.text())
                         .then((result) => {
             
@@ -122,7 +123,7 @@ export default function BrowseScreen({ navigation }) {
                         .catch(error => {});}
 
                         if(!loadingProteinComplete){
-                            fetch("https://api.spoonacular.com/recipes/search?query=protein&apiKey=14201a9af8744411b9a22039f5b71d30")
+                            fetch("https://api.spoonacular.com/recipes/search?query=protein&apiKey=08d541c08d3d4430a7f46c41b100462f")
                             .then(response => response.text())
                             .then((result) => {
                 
@@ -170,7 +171,7 @@ export default function BrowseScreen({ navigation }) {
 
     if (!loadingChineseComplete) {
 
-        return null;
+        return (<View><InstagramLoader active /><InstagramLoader active /><InstagramLoader active /></View>);
 
     } else {
         return (

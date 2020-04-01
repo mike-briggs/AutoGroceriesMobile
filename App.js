@@ -12,7 +12,7 @@ import RecipeScreen from './screens/RecipeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import OrderDetails from './screens/OrderDetails';
 import PastOrdersScreen from './screens/PastOrdersScreen';
-import SelectTime from './screens/SelectTime';
+import CheckEmail from './screens/CheckEmail';
 import TrackOrder from './screens/TrackOrder';
 import SignInScreen from './screens/SignInScreen';
 import StartingIngredients from './screens/StartingIngredients'
@@ -93,7 +93,7 @@ export default function App(props) {
             <Stack.Screen name="Recipe" component={RecipeScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
             <Stack.Screen name="OrderDetails" component={OrderDetails} />
-            <Stack.Screen name="SelectTime" component={SelectTime} />
+            <Stack.Screen name="CheckEmail" component={CheckEmail} />
             <Stack.Screen name="TrackOrder" component={TrackOrder} />
             <Stack.Screen name="PastOrders" component={PastOrdersScreen} />
             <Stack.Screen name="WebSignup" component={WebSignupScreen} />

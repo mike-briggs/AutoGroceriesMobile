@@ -14,65 +14,10 @@ export default function SignUpScreen({ navigation }) {
             <View style={{ flex: 1 }}>
 
             </View>
-            <View style={{ flex: 10, flexDirection:'column', justifyContent:'space-around', alignItems:'space-around'}}>
+            <View style={{ flex: 10, flexDirection:'column'}}>
                 <View style={{flex:1}}></View>
                 <View style={{ flex:1, padding: 20 }}>
                     <Text style={{textAlign:'center', fontWeight:'600',fontSize:24}}>Sign Up Through Instacart!</Text>
-                    {/*<Input
-                        label="Email Address"
-                        labelStyle={styles.inputLabel}
-                        inputContainerStyle={{ borderBottomWidth: 0, borderRadius: 30, fontSize: 1, height: 48, backgroundColor: 'rgba(0,0,0,0.05)' }}
-                        leftIcon={
-                            <Icon
-                                name='send'
-                                size={20}
-                                color='#6CD34C'
-                                style={{ paddingRight: 10 }}
-                            />
-                        }
-                    />
-                    <Input
-                        label="Username"
-                        labelStyle={styles.inputLabel}
-                        inputContainerStyle={{ borderBottomWidth: 0, borderRadius: 30, fontSize: 1, height: 48, backgroundColor: 'rgba(0,0,0,0.05)' }}
-                        leftIcon={
-                            <Icon
-                                name='person'
-                                size={20}
-                                color='#6CD34C'
-                                style={{ paddingRight: 10 }}
-                            />
-                        }
-                    />
-                    <Input
-                        label="Password"
-                        labelStyle={styles.inputLabel}
-                        secureTextEntry={true}
-                        inputContainerStyle={{ borderBottomWidth: 0, borderRadius: 30, fontSize: 1, height: 48, backgroundColor: 'rgba(0,0,0,0.05)' }}
-                        leftIcon={
-                            <Icon
-                                name='lock'
-                                size={20}
-                                color='#6CD34C'
-                                style={{ paddingRight: 10 }}
-                            />
-                        }
-                    />
-                    <Input
-                        label="Confirm Password"
-                        secureTextEntry={true}
-                        labelStyle={styles.inputLabel}
-                        inputContainerStyle={{ borderBottomWidth: 0, borderRadius: 30, fontSize: 1, height: 48, backgroundColor: 'rgba(0,0,0,0.05)' }}
-                        leftIcon={
-                            <Icon
-                                name='lock'
-                                size={20}
-                                color='#6CD34C'
-                                style={{ paddingRight: 10 }}
-                            />
-                        }
-                    />
-                        */}
                 </View>
                 <View style={styles.tabBarInfoContainer}>
                     <View style={{ flex: 1 }}>
@@ -91,17 +36,17 @@ export default function SignUpScreen({ navigation }) {
                             iconRight
                             title='Go To Instacart'
                         />
-                        <Text style={{textAlign:'center', color:'#7C7C82', fontSize:12}}>*please use the example account provided*</Text>
+                        
                     </View>
-
+                    <Text style={{textAlign:'center', color:'#7C7C82', fontSize:12}}>*for grading purposes please use the example account provided*</Text>
 
                 </View>
 
-                <View style={{ textAlign: 'center', paddingTop: 10 }}>
-                <TouchableOpacity onPress={() => navigation.navigate('SignIn')} >
+                <View style={{ textAlign: 'center', paddingTop: 10,flex:1 }}>
+                <TouchableOpacity onPress={()=> navigation.navigate('SignIn')} style={{flex:1,textAlign:'center',marginTop:20}}>
+                    <Text style={{textAlign:'center',color:'#909090'}}>Already own Account?</Text>
 
-                    <Text style={{ textAlign: 'center' }}>Already own an account?</Text>
-                    </TouchableOpacity>
+                </TouchableOpacity>
 
                 </View>
 

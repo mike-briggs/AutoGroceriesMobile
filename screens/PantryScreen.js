@@ -14,7 +14,7 @@ export default class PantryScreen extends React.Component {
       itemsLoading: true,
       search: '',
       pantry:[],
-      spices:['Oregano','Rosemary','Chili Flakes','Salt','Pepper','Basil','Saffron','Garlic','Olive Oil','Cashews','Tomato Paste', 'Canned Tomatoes', 'Black Beans', 'Kidney Beans', 'Turmeric','Chickpeas','Brown Sugar', 'Granulated Sugar', 'White Beans', 'Icing Sugar', 'Honey', 'Peanut Butter','Almonds','Rolled Oats', 'Quinoa','Flax Seeds','Rice','Paprika','Cumin','Lentils','Vanilla','Baking Soda', 'Baking Powder','All Purpose Flour', 'Yeast', 'Coconut Milk'  ]
+      spices:['Oregano','Soy Sauce','Ketchup','Mustard','Mayo','BBQ Sauce','Oil','Rosemary','Chili Flakes','Salt','Pepper','Basil','Saffron','Garlic','Olive Oil','Cashews','Tomato Paste', 'Canned Tomatoes', 'Black Beans', 'Kidney Beans', 'Turmeric','Chickpeas','Brown Sugar', 'Granulated Sugar', 'White Beans', 'Icing Sugar', 'Honey', 'Peanut Butter','Almonds','Rolled Oats', 'Quinoa','Flax Seeds','Rice','Paprika','Cumin','Lentils','Vanilla','Baking Soda', 'Baking Powder','All Purpose Flour', 'Yeast', 'Coconut Milk'  ]
     };
 
   }
@@ -130,7 +130,7 @@ export default class PantryScreen extends React.Component {
 
         <View style={{ flex: 1 }}>
           <Text style={styles.title}>Add Ingredients</Text>
-          <Text style={styles.p}>Search for things you already own and we won't add them at checkout.</Text>
+          <Text style={styles.p}>Search for non-perishables you already own and we won't add them at checkout.</Text>
         </View>
 
       </View>

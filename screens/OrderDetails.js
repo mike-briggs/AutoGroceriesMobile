@@ -8,7 +8,7 @@ import Icon from 'react-native-ionicons';
 import {Button} from 'react-native-elements';
 import IngredientItem from '../components/IngredientItem';
 import { RectButton } from 'react-native-gesture-handler';
-
+import {  InstagramLoader } from 'react-native-easy-content-loader';
 
 export default function OrderDetails({ navigation,route }){
     navigation.setOptions({headerTitleAlign:'center'})
@@ -62,7 +62,7 @@ export default function OrderDetails({ navigation,route }){
                 });
                 if(res.ok){
                     let body = await res.json();
-                    navigation.navigate('SelectTime');
+                    navigation.navigate('CheckEmail');
                     setClearLoading(false);
                 }
                 else{
@@ -104,16 +104,17 @@ export default function OrderDetails({ navigation,route }){
                             return (<IngredientItem ingredient={{name:ingredient.name, quantity:ingredient.source_value.measures.metric, price:ingredient.price}} style={(index != arr.length-1)?(styles.mid):({})}/>);
                         })}
                         <View style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
-                            <Text style={styles.subTotal}>Recipe Price: ${subOrderTotal.toFixed(1)}</Text>
+                            <Text style={styles.subTotal}>Bulk Ingredient Price: ${subOrderTotal.toFixed(2)}</Text>
+                            <Text style={styles.servings}>Approx $ / Serving: ${(subOrderTotal/15).toFixed(2)}</Text>
                         </View>
                     </View>
-                )}):<></>}
+                )}):<View><InstagramLoader active /><InstagramLoader active /><InstagramLoader active /></View>}
                 <View style={styles.orderTotal}>
                     <View style={styles.textContainer}>
                         <Text style={styles.orderTitle}>Order Total:</Text>
                     </View>
                     <View style={styles.textContainer}>
-                        <Text style={styles.orderDetail}>${ orderTotal.toFixed(1) }</Text>
+                        <Text style={styles.orderDetail}>${ orderTotal.toFixed(2) }</Text>
                     </View>
                 </View>
                 {/*<View>
@@ -128,8 +129,8 @@ export default function OrderDetails({ navigation,route }){
 
                 </View>
                 <View style={{flex:1,alignSelf:'flex-end',width:'50%',margin:15}}>
-                    <Button
-                                onPress={()=>clearCart()}
+                    {(orderTotal===0) ? <Button
+                                onPress={()=>navigation.navigate('Root')}
                                 buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
                                     ios: {
                                         shadowColor: 'black',
@@ -150,8 +151,31 @@ export default function OrderDetails({ navigation,route }){
                                     />
                                 }
                                 iconRight
-                                title="PLACE ORDER"
-                            />
+                                title="ADD RECIPES"
+                            />:<Button
+                            onPress={()=>clearCart()}
+                            buttonStyle={{borderRadius:40,backgroundColor:'#6CD34C',fontWeight:'500', float:'right',padding:15,...Platform.select({
+                                ios: {
+                                    shadowColor: 'black',
+                                    shadowOffset: { width: 0, height: 3 },
+                                    shadowOpacity: 0.12,
+                                    shadowRadius: 10,
+                                },
+                                android: {
+                                    elevation: 6,
+                                },
+                            })}}
+                            icon={
+                                <Icon
+                                    name="arrow-forward"
+                                    size={16}
+                                    color="white"
+                                    style={{paddingLeft:10, paddingTop:2}}
+                                />
+                            }
+                            iconRight
+                            title="PLACE ORDER"
+                        />}
                 </View>
             </View>
             
@@ -297,9 +321,16 @@ const styles = StyleSheet.create({
         fontWeight: '600'
     },
     subTotal:{
-        fontSize: 24,
-        marginVertical:3,
+        fontSize: 18,
+        marginTop: 20,
+        marginBottom: 10,
         fontWeight: '600'
+    }, 
+    servings:{
+        fontSize: 14,
+        marginTop: 10,
+        marginBottom: 20,
+        fontWeight: '400'
     }, 
     orderTitle:{
         fontSize: 24,
