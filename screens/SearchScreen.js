@@ -76,6 +76,7 @@ export default class SearchScreen extends React.Component {
       <SearchBar
         placeholder="Search Ingredients"
         onChangeText={this.updateSearch}
+        autoCapitalize="none"
         value={search}
         lightTheme='light'
         containerStyle={{backgroundColor:'white',borderBottomWidth:0,borderTopWidth:0}}
@@ -84,22 +85,15 @@ export default class SearchScreen extends React.Component {
       <Button buttonStyle={{backgroundColor:'#6CD34C',color:'white'}} onPress={()=>this.search(search)} title="Search"/>
       </View>
       <View>
-
+        {console.log(searchResults)}
         {(searchLoaded) ? searchResults.results.map(item =>(
           <OptionButton
           left={false}
           icon="arrow-forward"
           label={item.title}
-          onPress={() => this.props.navigation.navigate('Recipe',{title:item.title,image:searchResults.baseUri+''+item.imageUrls})}
+          onPress={() => this.props.navigation.navigate('Recipe',{readyTime:item.readyInMinutes, servings:item.servings, id:item.id, title: item.title, image: searchResults.baseUri + '' + item.imageUrls })}
         />
-        )):spices.slice(0,5).sort().map(item =>(
-          <OptionButton
-          left={false}
-          icon="arrow-forward"
-          label={item}
-          onPress={() => this.props.navigation.navigate('Recipe',{title:item})}
-        />
-        ))}
+        )):<></>}
       {/*<OptionButton
         left={false}
         icon="add"
