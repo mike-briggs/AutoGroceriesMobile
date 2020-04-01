@@ -32,19 +32,24 @@ export default function ProfileScreen({ navigation: { navigate } }) {
 
       </View>
 
-
       <OptionButton
       left={true}
-        icon="pizza"
-        label="Edit Favourite Foods (coming soon)"
-        onPress={() => {}}
+        icon="arrow-back"
+        label="Logout"
+        onPress={() => navigate('SignIn')}
+        isLastOption
       />
-
       <OptionButton
       left={true}
         icon="add"
         label="Add Ingredients to Pantry"
         onPress={() => navigate('Pantry')}
+      />
+      <OptionButton
+      left={true}
+        icon="pizza"
+        label="Edit Favourite Foods (coming soon)"
+        onPress={() => {}}
       />
 
       <OptionButton
@@ -68,13 +73,7 @@ export default function ProfileScreen({ navigation: { navigate } }) {
         onPress={() => {}}
         isLastOption
       />
-      <OptionButton
-      left={true}
-        icon="arrow-back"
-        label="Logout"
-        onPress={() => navigate('SignIn')}
-        isLastOption
-      />
+      
       <OptionButton
       left={true}
         icon="lock"
